@@ -16,8 +16,8 @@ use App\Http\Controllers\Auth\LoginController;
 */
 
 
-Route::middleware('ensureCekbayar')->group(function () {
-    Route::get('/', [LandingController::class, 'showLandingPage'])->name('landing.page');
-    Route::get('login', [LandingController::class, 'showLoginPage'])->name('login.page');
-    Route::post('login', [LandingController::class, 'handleFormLogin'])->name('login.action');
-});
+Route::get('/', [LandingController::class, 'showLandingPage'])->name('landing.page');
+Route::get('login', [LandingController::class, 'showLoginPage'])->name('login.page');
+Route::post('login', [LandingController::class, 'handleFormLogin'])->name('login.action');
+// Route::middleware('ensureCekbayar')->group(function () {
+// });
