@@ -12,22 +12,22 @@
                         <div class="swiper-container image-slider">
                             <div class="swiper-wrapper">
                                 <div class="swiper-slide">
-                                        <img class="img-fluid" src="images/customer-logo-1.png" alt="alternative">
+                                        <img class="img-fluid" src="{{ asset('assets') }}/images/client/client-1.png" alt="alternative">
                                 </div>
                                 <div class="swiper-slide">
-                                        <img class="img-fluid" src="images/customer-logo-2.png" alt="alternative">
+                                        <img class="img-fluid" src="{{ asset('assets') }}/images/client/client-2.png" alt="alternative">
                                 </div>
                                 <div class="swiper-slide">
-                                        <img class="img-fluid" src="images/customer-logo-3.png" alt="alternative">
+                                        <img class="img-fluid" src="{{ asset('assets') }}/images/client/client-3.png" alt="alternative">
                                 </div>
                                 <div class="swiper-slide">
-                                        <img class="img-fluid" src="images/customer-logo-4.png" alt="alternative">
+                                        <img class="img-fluid" src="{{ asset('assets') }}/images/client/client-4.png" alt="alternative">
                                 </div>
                                 <div class="swiper-slide">
-                                        <img class="img-fluid" src="images/customer-logo-5.png" alt="alternative">
+                                        <img class="img-fluid" src="{{ asset('assets') }}/images/client/client-5.png" alt="alternative">
                                 </div>
                                 <div class="swiper-slide">
-                                        <img class="img-fluid" src="images/customer-logo-6.png" alt="alternative">
+                                        <img class="img-fluid" src="{{ asset('assets') }}/images/client/client-6.png" alt="alternative">
                                 </div>
                             </div> <!-- end of swiper-wrapper -->
                         </div> <!-- end of swiper container -->

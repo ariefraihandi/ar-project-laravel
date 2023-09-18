@@ -6,8 +6,8 @@
         <!-- <a class="navbar-brand logo-text page-scroll" href="index.html">Tivo</a> -->
 
         <!-- Image Logo -->
-        <a class="navbar-brand logo-image" href="index.html"><img src="{{ asset('assets') }}/images/logo.svg" alt="alternative"></a> 
-        
+        <a class="navbar-brand logo-image" href="index.html"><img src="{{ asset('assets') }}/images/logo/art.png" alt="alternative"></a> 
+       
         <!-- Mobile Menu Toggle Button -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-awesome fas fa-bars"></span>

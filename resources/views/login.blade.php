@@ -10,4 +10,14 @@
         <br>
         <button type="submit">Login Now</button>
     </form>
+
+    {{-- @php
+        $menu = App\Model\Menu::all();
+    @endphp
+
+
+    @foreach ($menu as $item)
+        <li class="@if($request->uri->segment(1) == $item->slug ) active @endif">{{$item->judul_menu}}</li>
+    @endforeach
+    @if($request->uri->segment(1) == ) --}}
 @endsection
