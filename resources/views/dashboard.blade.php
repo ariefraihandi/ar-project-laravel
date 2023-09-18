@@ -56,7 +56,7 @@
                     <!-- Card -->
                     <div class="card">
                         <div class="card-image">
-                            <img class="img-fluid" src="images/description-1.png" alt="alternative">
+                            <img class="img-fluid" src="{{ asset('assets') }}/images/description-1.png" alt="alternative">
                         </div>
                         <div class="card-body">
                             <h4 class="card-title">Lists Builder</h4>
@@ -68,7 +68,7 @@
                     <!-- Card -->
                     <div class="card">
                         <div class="card-image">
-                            <img class="img-fluid" src="images/description-2.png" alt="alternative">
+                            <img class="img-fluid" src="{{ asset('assets') }}/images/description-2.png" alt="alternative">
                         </div>
                         <div class="card-body">
                             <h4 class="card-title">Campaign Tracker</h4>
@@ -80,7 +80,7 @@
                     <!-- Card -->
                     <div class="card">
                         <div class="card-image">
-                            <img class="img-fluid" src="images/description-3.png" alt="alternative">
+                            <img class="img-fluid" src="{{ asset('assets') }}/images/description-3.png" alt="alternative">
                         </div>
                         <div class="card-body">
                             <h4 class="card-title">Analytics Tool</h4>
