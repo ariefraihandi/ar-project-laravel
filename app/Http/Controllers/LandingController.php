@@ -9,7 +9,7 @@ class LandingController extends Controller
     public function showLandingPage(Request $request)
     {
         $data = [
-            'title'     => "Ini adalah halaman Landing Page",
+            'title'     => "Ini adalah halaman Landing Page di rubah",
             'penerima'  => $request->penerima, 
         ];
         return view('dashboard', $data);
