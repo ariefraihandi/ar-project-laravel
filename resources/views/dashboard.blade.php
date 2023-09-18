@@ -1,6 +1,6 @@
 @extends('layouts/app')
 
-{{-- @section('content')
+@section('content')
     <!-- Customers -->
     <div class="slider-1">
         <div class="container">
@@ -686,11 +686,4 @@
         </div> <!-- end of container -->
     </div> <!-- end of form -->
     <!-- end of newsletter -->
-@endsection --}}
-
-
-@section('content')
-    ini halaman apa ya ?  ini halaman {{ $title }}
-
-    penerima : {{ $penerima }}
 @endsection
