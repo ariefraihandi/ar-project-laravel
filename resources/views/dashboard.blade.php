@@ -205,7 +205,7 @@
                                                 <div class="media-body">Rekomendasi perbaikan untuk menghilangkan plagiasi</div>
                                             </li>
                                         </ul>
-                                        <a class="btn-solid-reg popup-with-move-anim" href="#details-lightbox-2">LIGHTBOX</a>
+                                        <a class="btn-solid-reg popup-with-move-anim" href="#details-lightbox-2">Mulai</a>
                                     </div> <!-- end of text-container -->
                                 </div> <!-- end of col -->
                             </div> <!-- end of row -->
@@ -297,7 +297,7 @@
                 <button title="Close (Esc)" type="button" class="mfp-close x-button">×</button>
                 <div class="col-lg-8">
                     <div class="image-container">
-                        <img class="img-fluid" src="images/details-lightbox.png" alt="alternative">
+                        <img class="img-fluid" src="{{ asset('assets') }}/images/details-lightbox.png" alt="alternative">
                     </div> <!-- end of image-container -->
                 </div> <!-- end of col -->
                 <div class="col-lg-4">
@@ -346,27 +346,22 @@
                     <h3>Cek Turnitin</h3>
                     <hr>
                     <h5>Anda Memiliki Kesempatan Pengecekan Gratis</h5>
-                    <p>It's very easy to start using Tivo. You just need to fill out and submit the Sign Up Form and you will receive access to the app.</p>
-                    <ul class="list-unstyled li-space-lg">
-                        <li class="media">
-                            <i class="fas fa-square"></i><div class="media-body">List building framework</div>
-                        </li>
-                        <li class="media">
-                            <i class="fas fa-square"></i><div class="media-body">Easy database browsing</div>
-                        </li>
-                        <li class="media">
-                            <i class="fas fa-square"></i><div class="media-body">User administration</div>
-                        </li>
-                        <li class="media">
-                            <i class="fas fa-square"></i><div class="media-body">Automate user signup</div>
-                        </li>
-                        <li class="media">
-                            <i class="fas fa-square"></i><div class="media-body">Quick formatting tools</div>
-                        </li>
-                        <li class="media">
-                            <i class="fas fa-square"></i><div class="media-body">Fast email checking</div>
-                        </li>
-                    </ul>
+                    <p>Mengapa memilih AR-Project untuk pengecekan dokumen Anda?. Hanya dengan mengirimkan Formulir Pengajuan, Anda akan mendapatkan akses eksklusif ke fitur-fitur unggulan kami:</p>
+                        <ul class="list-unstyled li-space-lg">
+                            <li class="media">
+                                <i class="fas fa-square"></i><div class="media-body">Pengecekan Cepat: Kami menyediakan hasil pengecekan dalam waktu singkat, sehingga Anda dapat menghemat waktu berharga Anda.</div>
+                            </li>
+                            <li class="media">
+                                <i class="fas fa-square"></i><div class="media-body">Pengecekan Akurat: Turnitin.com menggunakan teknologi canggih untuk memastikan akurasi tinggi dalam mendeteksi plagiarisme dan kesalahan penulisan.</div>
+                            </li>
+                            <li class="media">
+                                <i class="fas fa-square"></i><div class="media-body">Gratis: Kami menawarkan layanan pengecekan konten secara gratis, sehingga Anda dapat memanfaatkan alat ini tanpa biaya tambahan.</div>
+                            </li>
+                            <li class="media">
+                                <i class="fas fa-square"></i><div class="media-body">Dukungan Pelanggan: Tim dukungan pelanggan kami siap membantu Anda setiap saat dalam menggunakan Turnitin.com.</div>
+                            </li>
+                        </ul>
+
                     <a class="btn-solid-reg mfp-close" href="{{ url('/turnitin#start') }}">Cek Sekarang</a> <a class="btn-outline-reg mfp-close as-button" href="#screenshots">BACK</a>
                 </div> <!-- end of col -->
             </div> <!-- end of row -->
@@ -381,7 +376,7 @@
                 <button title="Close (Esc)" type="button" class="mfp-close x-button">×</button>
                 <div class="col-lg-8">
                     <div class="image-container">
-                        <img class="img-fluid" src="images/details-lightbox.png" alt="alternative">
+                        <img class="img-fluid" src="{{ asset('assets') }}/images/details-lightbox.png" alt="alternative">
                     </div> <!-- end of image-container -->
                 </div> <!-- end of col -->
                 <div class="col-lg-4">
@@ -441,7 +436,7 @@
                 </div> <!-- end of col -->
                 <div class="col-lg-6">
                     <div class="image-container">
-                        <img class="img-fluid" src="images/details.png" alt="alternative">
+                        <img class="img-fluid" src="{{ asset('assets') }}/images/details.png" alt="alternative">
                     </div> <!-- end of image-container -->
                 </div> <!-- end of col -->
             </div> <!-- end of row -->
@@ -460,7 +455,7 @@
                     <div class="image-container">
                         <div class="video-wrapper">
                             <a class="popup-youtube" href="https://www.youtube.com/watch?v=fLCjQJCekTs" data-effect="fadeIn">
-                                <img class="img-fluid" src="images/video-image.png" alt="alternative">
+                                <img class="img-fluid" src="{{ asset('assets') }}/images/video-image.png" alt="alternative">
                                 <span class="video-play-button">
                                     <span></span>
                                 </span>
@@ -606,7 +601,7 @@
                                 <!-- Slide -->
                                 <div class="swiper-slide">
                                     <div class="image-wrapper">
-                                        <img class="img-fluid" src="images/testimonial-1.jpg" alt="alternative">
+                                        <img class="img-fluid" src="{{ asset('assets') }}/images/testimonial-1.jpg" alt="alternative">
                                     </div> <!-- end of image-wrapper -->
                                     <div class="text-wrapper">
                                         <div class="testimonial-text">I started to use Tivo with the free trial about a year ago and never stopped since then. It does all the repeating marketing tasks and allows me to focus on core development activities like new product research and design. I love it and recommend it to everyone.</div>
@@ -618,7 +613,7 @@
                                 <!-- Slide -->
                                 <div class="swiper-slide">
                                     <div class="image-wrapper">
-                                        <img class="img-fluid" src="images/testimonial-2.jpg" alt="alternative">
+                                        <img class="img-fluid" src="{{ asset('assets') }}/images/testimonial-2.jpg" alt="alternative">
                                     </div> <!-- end of image-wrapper -->
                                     <div class="text-wrapper">
                                         <div class="testimonial-text">Awesome features for the money. I never thought such a low ammount of money would bring me so many leads per month. Before Tivo I used the services of an agency which cost 10x more and delivered far less. Highly recommended to marketers focused on results.</div>
@@ -630,7 +625,7 @@
                                 <!-- Slide -->
                                 <div class="swiper-slide">
                                     <div class="image-wrapper">
-                                        <img class="img-fluid" src="images/testimonial-3.jpg" alt="alternative">
+                                        <img class="img-fluid" src="{{ asset('assets') }}/images/testimonial-3.jpg" alt="alternative">
                                     </div> <!-- end of image-wrapper -->
                                     <div class="text-wrapper">
                                         <div class="testimonial-text">Tivo is the best marketing automation app for small and medium sized business. It understands the mindset of young entrepreneurs and provides the necessary data for wise marketing decisions. Just give it a try and you will definitely not regret spending your time.</div>
@@ -642,7 +637,7 @@
                                 <!-- Slide -->
                                 <div class="swiper-slide">
                                     <div class="image-wrapper">
-                                        <img class="img-fluid" src="images/testimonial-4.jpg" alt="alternative">
+                                        <img class="img-fluid" src="{{ asset('assets') }}/images/testimonial-4.jpg" alt="alternative">
                                     </div> <!-- end of image-wrapper -->
                                     <div class="text-wrapper">
                                         <div class="testimonial-text">Tivo is one of the greatest marketing automation apps out there. I especially love the Reporting Tools module because it gives me such a great amount of information based on little amounts of input gathered in just few weeks of light weight usage. Recommended!</div>

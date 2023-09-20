@@ -25,9 +25,11 @@
     <link href="{{ asset('assets') }}/css/swiper.css" rel="stylesheet">
 	<link href="{{ asset('assets') }}/css/magnific-popup.css" rel="stylesheet">
 	<link href="{{ asset('assets') }}/css/styles.css" rel="stylesheet">
-	
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
 	<!-- Favicon  -->
-    <link rel="icon" href="{{ asset('assets') }}/images/favicon.png">
+    <link rel="icon" href="{{ asset('assets') }}/images/logo/arp.png">
     @stack('head-script')
 </head>
 @stack('css-addon')

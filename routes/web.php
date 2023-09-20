@@ -21,5 +21,6 @@ Route::get('login', [LandingController::class, 'showLoginPage'])->name('login.pa
 Route::post('login', [LandingController::class, 'handleFormLogin'])->name('login.action');
 Route::get('turnitin', [CekturnitinController::class, 'showTurnitinPage'])->name('turnitin.page');
 Route::post('turnitin', [CekturnitinController::class, 'checkTurnitin'])->name('turnitin.action');
+Route::post('turnitin.validation', [CekturnitinController::class, 'checkAvailability'])->name('turnitin.validation');
 // Route::middleware('ensureCekbayar')->group(function () {
 // });

@@ -5,8 +5,8 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="footer-col first">
-                    <h4>About Tivo</h4>
-                    <p class="p-small">We're passionate about designing and developing one of the best marketing apps in the market</p>
+                    <h4>About AR Project</h4>
+                    <p class="p-small">Solusi untuk Kebutuhan Akademis Anda, Jasa Pembuatan Makalah, Pengecekan Turnitin, Pembuatan Website, dan Perbaikan Plagiasi.</p>
                 </div>
             </div> <!-- end of col -->
             <div class="col-md-4">
@@ -15,7 +15,7 @@
                     <ul class="list-unstyled li-space-lg p-small">
                         <li class="media">
                             <i class="fas fa-square"></i>
-                            <div class="media-body">Our business partners <a class="white" href="#your-link">startupguide.com</a></div>
+                            <div class="media-body">layanan Kami <a class="white" href="{{ url('/#features') }}">Halaman Utama</a></div>
                         </li>
                         <li class="media">
                             <i class="fas fa-square"></i>
@@ -30,11 +30,11 @@
                     <ul class="list-unstyled li-space-lg p-small">
                         <li class="media">
                             <i class="fas fa-map-marker-alt"></i>
-                            <div class="media-body">22 Innovative, San Francisco, CA 94043, US</div>
+                            <div class="media-body">Lhokseumawe, Aceh, ID</div>
                         </li>
                         <li class="media">
                             <i class="fas fa-envelope"></i>
-                            <div class="media-body"><a class="white" href="mailto:contact@tivo.com">contact@tivo.com</a> <i class="fas fa-globe"></i><a class="white" href="#your-link">www.tivo.com</a></div>
+                            <div class="media-body"><a class="white" href="mailto:contact@tivo.com">admin@bossmakalah.com</a></div>
                         </li>
                     </ul>
                 </div> 
@@ -50,8 +50,9 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <p class="p-small">Copyright © 2020 <a href="https://inovatik.com">Template by Inovatik</a><br>
-                    Distributed By <a href="https://themewagon.com" target="_blank">ThemeWagon</a>
+                <p class="p-small">Copyright © 2023 
+                    {{-- <a href="https://inovatik.com">Template by Inovatik</a><br> --}}
+                    Powered By <a href="https://bossmakalah.com" target="_blank">BossMakalah</a>
                 </p>
             </div> <!-- end of col -->
         </div> <!-- enf of row -->

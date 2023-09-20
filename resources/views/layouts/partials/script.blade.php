@@ -8,4 +8,6 @@
 <script src="{{ asset('assets') }}/js/validator.min.js"></script> <!-- Validator.js - Bootstrap plugin that validates forms -->
 <script src="{{ asset('assets') }}/js/scripts.js"></script> <!-- Custom scripts -->
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
 @stack('footer-script')

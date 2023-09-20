@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
-            $table->timestamps();
+            $table->string('name'); // Kolom nama
+            $table->string('email')->unique(); // Kolom email dengan nilai unik
+            $table->boolean('status')->default(false); // Kolom status dengan default false
+            $table->timestamp('activated_at')->nullable(); // Kolom kapan diaktifkan dengan nilai null (nullable)
+            $table->timestamps(); // Kolom created_at dan updated_at
         });
+        
     }
 
     /**

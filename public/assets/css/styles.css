@@ -1956,6 +1956,12 @@ a:hover.back-to-top {
 		margin-right: 7rem;
 		margin-left: 7rem;
 	}
+	
+	.p-form {
+		text-align: center;
+		/* margin-right: 7rem;
+		margin-left: 7rem; */
+	}
 
 	.form form {
 		margin-right: 9rem;
