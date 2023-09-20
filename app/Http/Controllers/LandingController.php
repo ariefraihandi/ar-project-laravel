@@ -6,15 +6,16 @@ use Illuminate\Http\Request;
 
 class LandingController extends Controller
 {
-    public function showLandingPage(Request $request)
+    public function showLandingPage()
     {
         $data = [
-            'title'     => "Ini adalah halaman Landing Page di rubah",
-            'penerima'  => $request->penerima, 
+            'title'     => "Solusi untuk Kebutuhan Akademis Anda",
+            'subtitle'     => "AR Project",            
         ];
         return view('dashboard', $data);
     }
     
+
     public function showLoginpage()
     {
         return view('login');

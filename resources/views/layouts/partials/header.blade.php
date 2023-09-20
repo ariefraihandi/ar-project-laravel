@@ -7,7 +7,8 @@
                     <div class="text-container">
                         <h1>Solusi untuk Kebutuhan Akademis Anda</h1>
                         <p class="p-large">Jasa Pembuatan Makalah, Pengecekan Turnitin, Pembuatan Website, dan Perbaikan Plagiasi.</p>
-                        <a class="btn-solid-lg page-scroll" href="sign-up.html">SIGN UP</a>
+                        {{-- <a class="btn-solid-lg page-scroll" href="sign-up.html">SIGN UP</a> --}}
+                        <a class="btn-solid-lg page-scroll" href="#start">Pelajari Selengkapnya</a>
                     </div> <!-- end of text-container -->
                 </div> <!-- end of col -->
                 <div class="col-lg-6 col-xl-7">

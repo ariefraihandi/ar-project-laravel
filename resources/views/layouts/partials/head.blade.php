@@ -16,7 +16,7 @@
 	<meta property="og:type" content="article" />
 
     <!-- Website Title -->
-    <title>Tivo - SaaS App HTML Landing Page Template</title>
+    <title>{{$title}} - {{$subtitle}}</title>
     
     <!-- Styles -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700&display=swap&subset=latin-ext" rel="stylesheet">
@@ -28,5 +28,6 @@
 	
 	<!-- Favicon  -->
     <link rel="icon" href="{{ asset('assets') }}/images/favicon.png">
+    @stack('head-script')
 </head>
-@stack('head-script')
+@stack('css-addon')

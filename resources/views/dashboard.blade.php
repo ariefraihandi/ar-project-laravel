@@ -6,8 +6,6 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    
-                    <!-- Image Slider -->
                     <div class="slider-container">
                         <div class="swiper-container image-slider">
                             <div class="swiper-wrapper">
@@ -33,64 +31,84 @@
                         </div> <!-- end of swiper container -->
                     </div> <!-- end of slider-container -->
                     <!-- end of image slider -->
-
                 </div> <!-- end of col -->
             </div> <!-- end of row -->
         </div> <!-- end of container -->
     </div> <!-- end of slider-1 -->
-    <!-- end of customers -->
+
 
 
     <!-- Description -->
-    <div class="cards-1">
+    <div id="start" class="cards-1">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="above-heading">DESCRIPTION</div>
-                    <h2 class="h2-heading">Marketing Automation Will Bring More Qualified Leads</h2>
+                    <div class="above-heading">LAYANAN KAMI</div>
+                    <h2 class="h2-heading">Solusi untuk Berbagai Kebutuhan Akademis Anda</h2>                    
                 </div> <!-- end of col -->
             </div> <!-- end of row -->
             <div class="row">
-                <div class="col-lg-12">
-
-                    <!-- Card -->
+                <!-- Card 1 -->
+                <div class="col-lg-3 col-md-3 col-sm-6">
                     <div class="card">
                         <div class="card-image">
-                            <img class="img-fluid" src="{{ asset('assets') }}/images/description-1.png" alt="alternative">
+                            <img class="img-fluid" src="{{ asset('assets') }}/images/description-4.png" alt="alternative">
                         </div>
                         <div class="card-body">
-                            <h4 class="card-title">Lists Builder</h4>
-                            <p>It's very easy to start creating email lists for your marketing actions. Just create your Tivo account</p>
+                            <h4 class="card-title">Pembuatan Makalah</h4>
+                            <p>Kami menyediakan layanan pembuatan makalah akademik berkualitas tinggi untuk membantu Anda mencapai keberhasilan dalam studi Anda.</p>
+                            <a class="btn-solid-reg nav-link page-scroll" href="#features">Pelajari Selengkapnya</a>
                         </div>
                     </div>
-                    <!-- end of card -->
-
-                    <!-- Card -->
+                </div>
+                <!-- End of Card 1 -->
+            
+                <!-- Card 2 -->
+                <div class="col-lg-3 col-md-3 col-sm-6">
                     <div class="card">
                         <div class="card-image">
-                            <img class="img-fluid" src="{{ asset('assets') }}/images/description-2.png" alt="alternative">
+                            <img class="img-fluid" src="{{ asset('assets') }}/images/description-5.png" alt="alternative">
                         </div>
                         <div class="card-body">
-                            <h4 class="card-title">Campaign Tracker</h4>
-                            <p>Campaigns is a feature we've developed since the beginning because it's at the core of Tivo's functionalities</p>
+                            <h4 class="card-title">Pengecekan Plagiasi</h4>
+                            <p>Kami juga menawarkan layanan pengecekan plagiasi yang canggih untuk memastikan keaslian dan integritas karya akademik Anda.</p>
+                            <a class="btn-solid-reg nav-link page-scroll" href="#features">Pelajari Selengkapnya</a>
                         </div>
                     </div>
-                    <!-- end of card -->
-
-                    <!-- Card -->
+                </div>
+                <!-- End of Card 2 -->
+            
+                <!-- Card 3 -->
+                <div class="col-lg-3 col-md-3 col-sm-6">
                     <div class="card">
                         <div class="card-image">
-                            <img class="img-fluid" src="{{ asset('assets') }}/images/description-3.png" alt="alternative">
+                            <img class="img-fluid" src="{{ asset('assets') }}/images/description-6.png" alt="alternative">
                         </div>
                         <div class="card-body">
-                            <h4 class="card-title">Analytics Tool</h4>
-                            <p>Tivo collects customer data in order to help you analyse different situations and take required action</p>
+                            <h4 class="card-title">Perbaikan Plagiasi</h4>
+                            <p>Jika ditemukan plagiasi, kami juga menyediakan layanan perbaikan plagiasi untuk membantu Anda membuat karya yang orisinal.</p>
+                            <a class="btn-solid-reg nav-link page-scroll" href="#features">Pelajari Selengkapnya</a>
                         </div>
                     </div>
-                    <!-- end of card -->
-
-                </div> <!-- end of col -->
-            </div> <!-- end of row -->
+                </div>
+                <!-- End of Card 3 -->
+            
+                <!-- Card 4 -->
+                <div class="col-lg-3 col-md-3 col-sm-6">
+                    <div class="card">
+                        <div class="card-image">
+                            <img class="img-fluid" src="{{ asset('assets') }}/images/description-7.png" alt="alternative">
+                        </div>
+                        <div class="card-body">
+                            <h4 class="card-title">Pembuatan Website</h4>
+                            <p>Kami memiliki tim yang berpengalaman dalam pembuatan website yang dapat membantu Anda membangun kehadiran online yang kuat.</p>
+                            <a class="btn-solid-reg nav-link page-scroll" href="#features">Pelajari Selengkapnya</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- End of Card 4 -->
+            </div>
+            
         </div> <!-- end of container -->
     </div> <!-- end of cards-1 -->
     <!-- end of description -->
@@ -102,8 +120,8 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="above-heading">FEATURES</div>
-                    <h2 class="h2-heading">Marketing Automation</h2>
-                    <p class="p-heading">Take your business strategy to the next level and automatize your marketing tasks to save time for product development. Tivo can provide results in less than 2 weeks</p>
+                    <h2 class="h2-heading">Kebutuhan Akademis Anda,<br>Solusi Kami</h2>
+                    <p class="p-heading">Kami menyediakan beragam solusi akademis yang dirancang untuk membantu Anda mencapai kesuksesan dalam studi Anda. Dengan tim berpengalaman dan teknologi terkini, kami siap membantu Anda meraih prestasi akademis yang lebih tinggi.</p>
                 </div> <!-- end of col -->
             </div> <!-- end of row -->
             <div class="row">
@@ -112,44 +130,46 @@
                     <!-- Tabs Links -->
                     <ul class="nav nav-tabs" id="argoTabs" role="tablist">
                         <li class="nav-item">
-                            <a class="nav-link active" id="nav-tab-1" data-toggle="tab" href="#tab-1" role="tab" aria-controls="tab-1" aria-selected="true"><i class="fas fa-list"></i>List Builder</a>
+                            <a class="nav-link" id="nav-tab-1" data-toggle="tab" href="#tab-1" role="tab" aria-controls="tab-1" aria-selected="false"><i class="fas fa-solid fa-file-word"></i>Pembuatan Makalah</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="nav-tab-2" data-toggle="tab" href="#tab-2" role="tab" aria-controls="tab-2" aria-selected="false"><i class="fas fa-envelope-open-text"></i>Campaigns</a>
+                            <a class="nav-link active" id="nav-tab-2" data-toggle="tab" href="#tab-2" role="tab" aria-controls="tab-2" aria-selected="true"><i class="fas fa-solid fa-check-double"></i>Pengecekan Plagiasi</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="nav-tab-3" data-toggle="tab" href="#tab-3" role="tab" aria-controls="tab-3" aria-selected="false"><i class="fas fa-chart-bar"></i>Analytics</a>
+                            <a class="nav-link" id="nav-tab-3" data-toggle="tab" href="#tab-3" role="tab" aria-controls="tab-3" aria-selected="false"><i class="fas fa-solid fa-file-pdf"></i>Perbaikan Plagiasi</a>
                         </li>
-                    </ul>
+                        <li class="nav-item">
+                            <a class="nav-link" id="nav-tab-4" data-toggle="tab" href="#tab-4" role="tab" aria-controls="tab-4" aria-selected="false"><i class="fas fa-regular fa-window-restore"></i></i>Pembuatan Website</a>
+                        </li>
+                    </ul>                    
                     <!-- end of tabs links -->
 
                     <!-- Tabs Content -->
                     <div class="tab-content" id="argoTabsContent">
-
-                        <!-- Tab -->
-                        <div class="tab-pane fade show active" id="tab-1" role="tabpanel" aria-labelledby="tab-1">
+                        <!-- Tab - Pembuatan Makalah -->
+                        <div class="tab-pane fade" id="tab-1" role="tabpanel" aria-labelledby="tab-1">
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="image-container">
-                                        <img class="img-fluid" src="images/features-1.png" alt="alternative">
+                                        <img class="img-fluid" src="{{ asset('assets') }}/images/description-4.png" alt="pembuatan-makalah">
                                     </div> <!-- end of image-container -->
                                 </div> <!-- end of col -->
                                 <div class="col-lg-6">
                                     <div class="text-container">
-                                        <h3>List Building Is Easier Than Ever</h3>
-                                        <p>It's very easy to start using Tivo. You just need to fill out and submit the <a class="blue page-scroll" href="sign-up.html">Sign Up Form</a> and you will receive access to the app and all of its features in no more than 24h.</p>
+                                        <h3>Pembuatan Makalah</h3>
+                                        <p>Kami menyediakan layanan pembuatan makalah akademik berkualitas tinggi untuk membantu Anda mencapai keberhasilan dalam studi Anda. Tim ahli kami akan membantu Anda merancang dan menghasilkan makalah yang sesuai dengan kebutuhan Anda.</p>
                                         <ul class="list-unstyled li-space-lg">
                                             <li class="media">
                                                 <i class="fas fa-square"></i>
-                                                <div class="media-body">Create and embed on websites newsletter sign up forms</div>
+                                                <div class="media-body">Penyusunan makalah yang sesuai dengan standar akademik</div>
                                             </li>
                                             <li class="media">
                                                 <i class="fas fa-square"></i>
-                                                <div class="media-body">Manage forms and landing pages for your services</div>
+                                                <div class="media-body">Pengeditan dan proofreading untuk kesalahan tata bahasa</div>
                                             </li>
                                             <li class="media">
                                                 <i class="fas fa-square"></i>
-                                                <div class="media-body">Add and remove subscribers using the control panel</div>
+                                                <div class="media-body">Penelitian mendalam untuk konten yang akurat</div>
                                             </li>
                                         </ul>
                                         <a class="btn-solid-reg popup-with-move-anim" href="#details-lightbox-1">LIGHTBOX</a>
@@ -158,31 +178,31 @@
                             </div> <!-- end of row -->
                         </div> <!-- end of tab-pane -->
                         <!-- end of tab -->
-
-                        <!-- Tab -->
-                        <div class="tab-pane fade" id="tab-2" role="tabpanel" aria-labelledby="tab-2">
+                    
+                        <!-- Tab - Pengecekan Plagiasi -->
+                        <div class="tab-pane fade show active" id="tab-2" role="tabpanel" aria-labelledby="tab-2">
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="image-container">
-                                        <img class="img-fluid" src="images/features-2.png" alt="alternative">
+                                        <img class="img-fluid" src="{{ asset('assets') }}/images/description-5.png" alt="pengecekan-plagiasi">
                                     </div> <!-- end of image-container -->
                                 </div> <!-- end of col -->
                                 <div class="col-lg-6">
                                     <div class="text-container">
-                                        <h3>Campaigns Monitoring Tools</h3>
-                                        <p>Campaigns monitoring is a feature we've developed since the beginning because it's at the core of Tivo and basically to any marketing activity focused on results.</p>
+                                        <h3>Pengecekan Plagiasi</h3>
+                                        <p>Kami juga menawarkan layanan pengecekan plagiasi yang canggih untuk memastikan keaslian dan integritas karya akademik Anda. Dengan alat kami yang canggih, Anda dapat dengan mudah memeriksa apakah ada unsur plagiasi dalam tulisan Anda.</p>
                                         <ul class="list-unstyled li-space-lg">
                                             <li class="media">
                                                 <i class="fas fa-square"></i>
-                                                <div class="media-body">Easily plan campaigns and schedule their starting date</div>
+                                                <div class="media-body">Pengecekan kesamaan teks dengan sumber-sumber online</div>
                                             </li>
                                             <li class="media">
                                                 <i class="fas fa-square"></i>
-                                                <div class="media-body">Start campaigns and follow their evolution closely</div>
+                                                <div class="media-body">Laporan detil tentang persentase plagiasi</div>
                                             </li>
                                             <li class="media">
                                                 <i class="fas fa-square"></i>
-                                                <div class="media-body">Evaluate campaign results and optimize future actions</div>
+                                                <div class="media-body">Rekomendasi perbaikan untuk menghilangkan plagiasi</div>
                                             </li>
                                         </ul>
                                         <a class="btn-solid-reg popup-with-move-anim" href="#details-lightbox-2">LIGHTBOX</a>
@@ -191,31 +211,31 @@
                             </div> <!-- end of row -->
                         </div> <!-- end of tab-pane -->
                         <!-- end of tab -->
-
-                        <!-- Tab -->
+                    
+                        <!-- Tab - Perbaikan Plagiasi -->
                         <div class="tab-pane fade" id="tab-3" role="tabpanel" aria-labelledby="tab-3">
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="image-container">
-                                        <img class="img-fluid" src="images/features-3.png" alt="alternative">
+                                        <img class="img-fluid" src="{{ asset('assets') }}/images/description-6.png" alt="perbaikan-plagiasi">
                                     </div> <!-- end of image-container -->
                                 </div> <!-- end of col -->
                                 <div class="col-lg-6">
                                     <div class="text-container">
-                                        <h3>Analytics Control Panel</h3>
-                                        <p>Analytics control  panel is important for every marketing team so it's beed implemented from the begging and designed to produce reports based on very little input information.</p>
+                                        <h3>Perbaikan Plagiasi</h3>
+                                        <p>Jika ditemukan plagiasi, kami juga menyediakan layanan perbaikan plagiasi untuk membantu Anda membuat karya yang orisinal. Tim kami akan membantu Anda menghilangkan plagiasi dan meningkatkan kualitas tulisan Anda.</p>
                                         <ul class="list-unstyled li-space-lg">
                                             <li class="media">
                                                 <i class="fas fa-square"></i>
-                                                <div class="media-body">If you set it up correctly you will get acces to great intel</div>
+                                                <div class="media-body">Analisis dan perbaikan kesamaan dengan sumber-sumber plagiat</div>
                                             </li>
                                             <li class="media">
                                                 <i class="fas fa-square"></i>
-                                                <div class="media-body">Easy to integrate in your websites and landing pages</div>
+                                                <div class="media-body">Pengeditan untuk meningkatkan keaslian dan kualitas tulisan</div>
                                             </li>
                                             <li class="media">
                                                 <i class="fas fa-square"></i>
-                                                <div class="media-body">The generated reports are important for your strategy</div>
+                                                <div class="media-body">Saran perbaikan untuk menghindari plagiasi di masa depan</div>
                                             </li>
                                         </ul>
                                         <a class="btn-solid-reg popup-with-move-anim" href="#details-lightbox-3">LIGHTBOX</a>
@@ -223,9 +243,43 @@
                                 </div> <!-- end of col -->
                             </div> <!-- end of row -->
                         </div> <!-- end of tab-pane -->
+
+                        <!-- Tab - Pembuatan Website -->
+                        <div class="tab-pane fade" id="tab-4" role="tabpanel" aria-labelledby="tab-4">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="image-container">
+                                        <img class="img-fluid" src="{{ asset('assets') }}/images/description-7.png" alt="pembuatan-website">
+                                    </div> <!-- end of image-container -->
+                                </div> <!-- end of col -->
+                                <div class="col-lg-6">
+                                    <div class="text-container">
+                                        <h3>Pembuatan Website</h3>
+                                        <p>Kami memiliki tim yang berpengalaman dalam pembuatan website yang dapat membantu Anda membangun kehadiran online yang kuat. Dengan desain kreatif dan fungsionalitas yang canggih, kami akan membantu Anda mencapai tujuan online Anda.</p>
+                                        <ul class="list-unstyled li-space-lg">
+                                            <li class="media">
+                                                <i class="fas fa-square"></i>
+                                                <div class="media-body">Desain website yang menarik dan responsif</div>
+                                            </li>
+                                            <li class="media">
+                                                <i class="fas fa-square"></i>
+                                                <div class="media-body">Pengembangan website dengan teknologi terbaru</div>
+                                            </li>
+                                            <li class="media">
+                                                <i class="fas fa-square"></i>
+                                                <div class="media-body">Optimasi SEO untuk meningkatkan visibilitas online</div>
+                                            </li>
+                                        </ul>
+                                        <a class="btn-solid-reg popup-with-move-anim" href="#details-lightbox-4">LIGHTBOX</a>
+                                    </div> <!-- end of text-container -->
+                                </div> <!-- end of col -->
+                            </div> <!-- end of row -->
+                        </div>
+                        <!-- end of tab-pane -->
+
                         <!-- end of tab -->
-                        
-                    </div> <!-- end of tab content -->
+                    </div>
+                    
                     <!-- end of tabs content -->
 
                 </div> <!-- end of col -->
@@ -283,15 +337,15 @@
         <div class="container">
             <div class="row">
                 <button title="Close (Esc)" type="button" class="mfp-close x-button">×</button>
-                <div class="col-lg-8">
+                <div class="col-lg-5">
                     <div class="image-container">
-                        <img class="img-fluid" src="images/details-lightbox.png" alt="alternative">
+                        <img class="img-fluid" src="{{ asset('assets') }}/images/description-5.png" alt="alternative">
                     </div> <!-- end of image-container -->
                 </div> <!-- end of col -->
-                <div class="col-lg-4">
-                    <h3>Campaign Monitoring</h3>
+                <div class="col-lg-7">
+                    <h3>Cek Turnitin</h3>
                     <hr>
-                    <h5>Core service</h5>
+                    <h5>Anda Memiliki Kesempatan Pengecekan Gratis</h5>
                     <p>It's very easy to start using Tivo. You just need to fill out and submit the Sign Up Form and you will receive access to the app.</p>
                     <ul class="list-unstyled li-space-lg">
                         <li class="media">
@@ -313,7 +367,7 @@
                             <i class="fas fa-square"></i><div class="media-body">Fast email checking</div>
                         </li>
                     </ul>
-                    <a class="btn-solid-reg mfp-close" href="sign-up.html">SIGN UP</a> <a class="btn-outline-reg mfp-close as-button" href="#screenshots">BACK</a>
+                    <a class="btn-solid-reg mfp-close" href="{{ url('/turnitin#start') }}">Cek Sekarang</a> <a class="btn-outline-reg mfp-close as-button" href="#screenshots">BACK</a>
                 </div> <!-- end of col -->
             </div> <!-- end of row -->
         </div> <!-- end of container -->
