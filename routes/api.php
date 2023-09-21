@@ -25,7 +25,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::middleware('throttle:5,1')->group(function () {
     Route::get('send-email', function () {
         try {
-            $data['email'] = 'achdiadsyah@gmail.com';
+            $data['email'] = 'ariefraihandiazka@gmail.com';
             dispatch(new SendEmailJob($data));
             
             return response()->json(['message' => 'Email job dispatched successfully'], 200);

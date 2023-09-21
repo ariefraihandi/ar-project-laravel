@@ -13,16 +13,17 @@ return new class extends Migration
     {
         Schema::create('files', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('id_user'); // Kolom untuk merekam ID pengguna
+            // $table->foreign('id_user')->references('id')->on('users');
             $table->string('file_name'); // Kolom untuk merekam nama file
             $table->integer('file_size'); // Kolom untuk merekam ukuran file
             $table->string('mime_type'); // Kolom untuk merekam tipe MIME file
             $table->string('status'); // Kolom untuk merekam status file
-            $table->unsignedBigInteger('id_user'); // Kolom untuk merekam ID pengguna
-        
+            // $table->foreign('')
             $table->timestamps();
         
             // Menambahkan relasi ke tabel 'users' untuk merekam ID pengguna
-            $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
         });
         
     }
