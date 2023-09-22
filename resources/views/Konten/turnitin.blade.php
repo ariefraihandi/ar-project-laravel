@@ -191,7 +191,8 @@
                                 </li>
                             </ul>
                             <div class="button-wrapper">
-                                <a class="btn-solid-reg page-scroll" href="sign-up.html">Bayar</a>
+                                {{-- <a class="btn-solid-reg page-scroll" href="sign-up.html">Bayar</a> --}}
+                                <a class="btn-solid-reg popup-with-move-anim" href="#payment-form-1">DAFTAR</a>
                             </div>
                         </div>
                     </div> <!-- end of card -->
@@ -253,6 +254,51 @@
             </div>         
         </div> <!-- end of container -->
     </div>
+
+    <div id="payment-form-1" class="lightbox-basic zoom-anim-dialog mfp-hide">
+        <div class="container">
+            <div class="row">
+                <button title="Close (Esc)" type="button" class="mfp-close x-button">×</button>
+                <div class="col-lg-6">
+                    <div class="image-container d-flex justify-content-center align-items-center">
+                        <!-- Anda dapat menambahkan gambar yang relevan untuk pembayaran di sini -->
+                        <img class="img-fluid" src="{{ asset('assets') }}/images/payment.png" alt="alternative">
+                    </div> <!-- end of image-container -->
+                </div> <!-- end of col -->
+                <div class="col-lg-6">
+                    <h3>Pembayaran</h3>
+                    <h5>Paket Basic Cek Turnitin</h5>
+                    <div class="price"><span class="currency">Rp</span><span class="value">10.000</span></div>
+                    <hr>
+                    <!-- Formulir Pembayaran -->
+                    <form action="{{ route('payment.proses') }}" method="POST">
+                        @csrf
+                        <div class="form-group">
+                            <input type="text" class="form-control-input" id="name" name="name" required>
+                            <label class="label-control" for="name">nama:</label>
+                            <div class="help-block with-errors"></div>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" class="form-control-input" id="email" name="email" required>
+                            <label class="label-control" for="email">Email:</label>
+                            <div class="help-block with-errors"></div>
+                        </div>
+                        <div class="form-group">
+                            <input type="number" class="form-control-input" id="whatsapp" name="whatsapp" required>
+                            <label class="label-control" for="whatsapp">Whatsapp:</label>
+                            <div class="help-block with-errors"></div>
+                        </div>
+                        <input type="hidden" id="code_barang" name="code_barang" value="turpb">
+                        <!-- Anda dapat menambahkan lebih banyak informasi pembayaran yang diperlukan di sini -->
+                        <button type="submit" class="form-control-submit-button">PROSES PEMBAYARAN</button>
+                    </form>
+                </div> <!-- end of col -->
+            </div> <!-- end of row -->
+        </div> <!-- end of container -->
+    </div>
+    
+    
+
     <div  id="start" class="form">
         <div class="container">
             <div class="row">

@@ -1876,6 +1876,20 @@ a:hover.back-to-top {
 	.lightbox-basic h3 {
 		margin-top: 0.5rem;
 	}
+	
+	.lightbox-basic .price .currency {
+		margin-right: 0.25rem;
+		color: #434c54;
+		font-weight: 700;
+		font-size: 1.5rem;
+		vertical-align: 40%;
+	}
+	
+	.lightbox-basic .price .value {
+		color: #434c54;
+		font: 700 3.25rem/3.5rem "Open Sans", sans-serif;
+		text-align: center;
+	}
 	/* end of features lightboxes */
 
 
