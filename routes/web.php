@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\CekturnitinController;
+use App\Http\Controllers\PaymentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,5 +23,7 @@ Route::post('login', [LandingController::class, 'handleFormLogin'])->name('login
 Route::get('turnitin', [CekturnitinController::class, 'showTurnitinPage'])->name('turnitin.page');
 Route::post('turnitin', [CekturnitinController::class, 'checkTurnitin'])->name('turnitin.action');
 Route::post('turnitin.validation', [CekturnitinController::class, 'checkAvailability'])->name('turnitin.validation');
+// Route::get('/payment/{kode_barang}', 'PaymentController@showPaymentForm')->name('payment.form');
+Route::post('payment/proses', [PaymentController::class, 'processPayment'])->name('payment.proses');
 // Route::middleware('ensureCekbayar')->group(function () {
 // });
