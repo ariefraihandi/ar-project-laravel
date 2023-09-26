@@ -7,13 +7,13 @@
     <meta name="author" content="Inovatik">
 
     <!-- OG Meta Tags to improve the way the post looks when you share the page on LinkedIn, Facebook, Google+ -->
-	<meta property="og:site_name" content="" /> <!-- website name -->
-	<meta property="og:site" content="" /> <!-- website link -->
-	<meta property="og:title" content=""/> <!-- title shown in the actual shared post -->
-	<meta property="og:description" content="" /> <!-- description shown in the actual shared post -->
-	<meta property="og:image" content="" /> <!-- image link, make sure it's jpg -->
-	<meta property="og:url" content="" /> <!-- where do you want your post to link to -->
-	<meta property="og:type" content="article" />
+	<meta property="og:site_name" content="AR Project" /> <!-- Nama situs web Anda -->
+    <meta property="og:site" content="https://www.ariefraihandi.biz.id" /> <!-- Tautan situs web Anda -->
+    <meta property="og:title" content="Jasa Pembuatan Makalah, Pengecekan Turnitin, dan Pembuatan Website di Lhokseumawe" /> <!-- Judul yang akan ditampilkan pada posting yang dibagikan -->
+    <meta property="og:description" content="Kami adalah penyedia jasa terpercaya di Lhokseumawe untuk pembuatan makalah berkualitas, pengecekan Turnitin gratis, perbaikan plagiasi, dan pembuatan website profesional." /> <!-- Deskripsi yang akan ditampilkan pada posting yang dibagikan -->
+    <meta property="og:image" content="https://www.ariefraihandi.biz.id/assets/images/logo/arp.png" /> <!-- Tautan gambar yang sesuai dengan bisnis Anda (pastikan gambarnya berformat jpg) -->
+    <meta property="og:url" content="https://www.ariefraihandi.biz.id" /> <!-- Tautan yang ingin Anda bagikan dalam posting -->
+    <meta property="og:type" content="article" />
 
     <!-- Website Title -->
     <title>{{$title}} - {{$subtitle}}</title>

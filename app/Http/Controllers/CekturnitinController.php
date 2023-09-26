@@ -99,25 +99,25 @@ class CekturnitinController extends Controller
     }
 
     public function checkAvailability(Request $request)
-{
-    $username = $request->input('username');
+    {
+        $username = $request->input('username');
 
-    // Check if a user profile with the given Instagram username exists
-    $userProfile = UsersProfile::where('user_ig', $username)
-        ->where(function ($query) {
-            $query->where('created_at', '>=', now()->subDays(30))
-                ->orWhere('updated_at', '>=', now()->subDays(30));
-        })
-        ->first();
+        // Check if a user profile with the given Instagram username exists
+        $userProfile = UsersProfile::where('user_ig', $username)
+            ->where(function ($query) {
+                $query->where('created_at', '>=', now()->subDays(30))
+                    ->orWhere('updated_at', '>=', now()->subDays(30));
+            })
+            ->first();
 
-    if ($userProfile) {
-        // If a user profile with the username exists in the last 30 days
-        return response()->json(['available' => false]);
-    } else {
-        // If the username is available or not used in the last 30 days
-        return response()->json(['available' => true]);
+        if ($userProfile) {
+            // If a user profile with the username exists in the last 30 days
+            return response()->json(['available' => false]);
+        } else {
+            // If the username is available or not used in the last 30 days
+            return response()->json(['available' => true]);
+        }
     }
-}
 
 
 }

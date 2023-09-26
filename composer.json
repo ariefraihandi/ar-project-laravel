@@ -9,8 +9,11 @@
         "google/recaptcha": "*",
         "guzzlehttp/guzzle": "^7.8",
         "laravel/framework": "^10.10",
+        "laravel/passport": "^11.9",
         "laravel/sanctum": "^3.2",
         "laravel/tinker": "^2.8",
+        "lcobucci/jwt": "^5.0",
+        "league/oauth2-server": "^8.5.1",
         "realrashid/sweet-alert": "^7.1"
     },
     "require-dev": {
