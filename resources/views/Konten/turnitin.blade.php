@@ -7,75 +7,75 @@
     padding: 20px;
     text-align: center;
     cursor: pointer;
-}
-.browse-files-text {
-	color: #7b2cbf;
-	font-weight: bolder;
-	cursor: pointer;
-}
-
-.drag-drop-text {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-#drop-area p {
-    margin: 0;
-}
-
-.custom-file-input {
-        opacity: 0;
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        top: 0;
-        left: 0;
+    }
+    .browse-files-text {
+        color: #7b2cbf;
+        font-weight: bolder;
         cursor: pointer;
     }
 
-    .custom-file-label {
-        background-color: #007bff; /* Warna latar belakang label */
-        color: #fff; /* Warna teks label */
-        padding: 10px 15px; /* Spasi dalam label */
-        border-radius: 5px; /* Sudut label dibulatkan */
-        cursor: pointer;
+    .drag-drop-text {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
     }
 
-    /* Gaya untuk progress bar */
+    #drop-area p {
+        margin: 0;
+    }
+
+    .custom-file-input {
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            cursor: pointer;
+        }
+
+        .custom-file-label {
+            background-color: #007bff; /* Warna latar belakang label */
+            color: #fff; /* Warna teks label */
+            padding: 10px 15px; /* Spasi dalam label */
+            border-radius: 5px; /* Sudut label dibulatkan */
+            cursor: pointer;
+        }
+
+        /* Gaya untuk progress bar */
 
 
-/* Gaya untuk file info */
-.file-info {
-    display: none;
-    align-items: center;
-    font-size: 15px;
-}
+    /* Gaya untuk file info */
+    .file-info {
+        display: none;
+        align-items: center;
+        font-size: 15px;
+    }
 
-.file-icon {
-    margin-right: 10px;
-}
+    .file-icon {
+        margin-right: 10px;
+    }
 
-.progress-bar {
-    width: 0;
-    height: 20px; /* Ubah tinggi progress bar sesuai keinginan Anda */
-    background-color: #4BB543;
-    transition: width 0.3s ease-in-out;
-    border-radius: 10px; /* Menambah border-radius untuk membuatnya tidak terlalu siku */
-    margin-bottom: 10px; /* Menambah margin-bottom agar tidak terlalu dekat dengan tombol submit */
-}
+    .progress-bar {
+        width: 0;
+        height: 20px; /* Ubah tinggi progress bar sesuai keinginan Anda */
+        background-color: #4BB543;
+        transition: width 0.3s ease-in-out;
+        border-radius: 10px; /* Menambah border-radius untuk membuatnya tidak terlalu siku */
+        margin-bottom: 10px; /* Menambah margin-bottom agar tidak terlalu dekat dengan tombol submit */
+    }
 
-.file-name, .file-size {
-    /* display: flex; Untuk mengatur konten secara horizontal */
-    justify-content: center; /* Untuk membuat konten berada di tengah */
-    align-items: center;
-    padding: 0 3px;
-    color: #7b2cbf;
-    font-weight: bolder;
-    cursor: pointer;
-    text-align: center;
-}
+    .file-name, .file-size {
+        /* display: flex; Untuk mengatur konten secara horizontal */
+        justify-content: center; /* Untuk membuat konten berada di tengah */
+        align-items: center;
+        padding: 0 3px;
+        color: #7b2cbf;
+        font-weight: bolder;
+        cursor: pointer;
+        text-align: center;
+    }
 
 
 </style>    
@@ -296,8 +296,6 @@
             </div> <!-- end of row -->
         </div> <!-- end of container -->
     </div>
-    
-    
 
     <div  id="start" class="form">
         <div class="container">
@@ -405,24 +403,24 @@
 </script>
 
 <script>
-        // Cek apakah ada pesan sukses yang dikirim dari controller
-        @if(session('success'))
-            Swal.fire({
-                title: 'Sukses',
-                text: '{{ session('success') }}',
-                icon: 'success',
-                confirmButtonText: 'OK'
-            });
-        @endif
+    // Cek apakah ada pesan sukses yang dikirim dari controller
+    @if(session('success'))
+        Swal.fire({
+            title: 'Sukses',
+            text: '{{ session('success') }}',
+            icon: 'success',
+            confirmButtonText: 'OK'
+        });
+    @endif
 
-        // Cek apakah ada pesan error yang dikirim dari controller
-        @if(session('error'))
-            Swal.fire({
-                title: 'Error',
-                text: '{{ session('error') }}',
-                icon: 'error',
-                confirmButtonText: 'OK'
-            });
-        @endif
-    </script>
+    // Cek apakah ada pesan error yang dikirim dari controller
+    @if(session('error'))
+        Swal.fire({
+            title: 'Error',
+            text: '{{ session('error') }}',
+            icon: 'error',
+            confirmButtonText: 'OK'
+        });
+    @endif
+</script>
 @endpush
