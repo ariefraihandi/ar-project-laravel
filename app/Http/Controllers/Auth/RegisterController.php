@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
-use App\Models\User;
+use App\Models\Users; // Change from Users to User
 use App\Models\UserProfile;
 use Illuminate\Support\Facades\Session;
 
@@ -19,7 +19,7 @@ class RegisterController extends Controller
             'subtitle' => "AR Project",
         ];
 
-        return view('Konten/register', $data); // Updated the view name to use dot notation
+        return view('Konten.register', $data); // Updated the view name to use dot notation
     }
 
     public function checkUsername(Request $request)
@@ -37,6 +37,7 @@ class RegisterController extends Controller
             return response()->json(['available' => true]);
         }
     }
+
    
     public function checkEmail(Request $request)
     {

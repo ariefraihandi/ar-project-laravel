@@ -18,7 +18,9 @@ class Users extends Model
         'name',
         'email',
         'status',
-        // Kolom lain yang ingin Anda izinkan untuk diisi secara massal
+        'activated_at', // Add the additional fields here
+        'password',
+        'username',
     ];
 
     // Relasi dengan UserProfile
