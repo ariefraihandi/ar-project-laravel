@@ -19,4 +19,4 @@ Route::get('dashboard', [PortalController::class, 'showPortalPage'])->name('dash
 Route::get('register', [RegisterController::class, 'showRegisPage'])->name('regis.page');
 Route::post('register.username', [RegisterController::class, 'checkUsername'])->name('register.username');
 Route::post('register.email', [RegisterController::class, 'checkEmail'])->name('register.email');
-Route::post('register', [CekturnitinController::class, 'registerUser'])->name('register.action');
+Route::post('register', [RegisterController::class, 'registerUser'])->name('register.action');

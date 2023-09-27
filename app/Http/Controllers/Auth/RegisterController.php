@@ -3,12 +3,20 @@
 namespace App\Http\Controllers\Auth;
 
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Http\Request;
-use App\Models\Users; // Change from Users to User
-use App\Models\UserProfile;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Log; // Import Log facade
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Str; // Import Str facade
+use Illuminate\Http\Request;
+use App\Mail\SendEmail;
+use App\Models\Users; // Assuming this is your User model
+use App\Models\UsersProfile;
+use App\Models\EmailVerificationToken; 
+use RealRashid\SweetAlert\Facades\Alert;
+use Carbon\Carbon;
+
 
 class RegisterController extends Controller
 {
@@ -41,10 +49,10 @@ class RegisterController extends Controller
    
     public function checkEmail(Request $request)
     {
-        $username = $request->input('email');
+        $email = $request->input('email');
 
         // Check if a user profile with the given username exists
-        $user = Users::where('email', $username)->first();
+        $user = Users::where('email', $email)->first();
 
         if ($user) {
             // If a user profile with the username exists
@@ -56,59 +64,72 @@ class RegisterController extends Controller
     }
 
     public function registerUser(Request $request)
-    {
-        try {
-            // Define the validation rules
-            $validator = Validator::make($request->all(), [
-                'username' => 'required',
-                'email' => 'required|email',
-                'password' => 'required|min:6',
-                'confirm-password' => 'required|same:password',
-                'terms' => 'accepted',
-            ]);
+{
+    try {
+        // Define the validation rules
+        $validator = Validator::make($request->all(), [
+            'username' => 'required',
+            'email' => 'required|email',
+            'password' => 'required|min:6',
+            'confirm-password' => 'required|same:password',
+            'terms' => 'accepted',
+        ]);
 
-        
-            if ($validator->fails()) {
-                return redirect()->back()->withErrors($validator)->withInput();
-            }
-
-            // Use a database transaction to ensure data consistency
-            DB::beginTransaction();
-
-            $user = Users::create([
-                'username' => $request->input('username'),
-                'email' => $request->input('email'),
-                'password' => $request->input('password'),
-                'status' => '0', // Sesuaikan dengan nilai yang sesuai
-            ]);
-
-            $userProfile = UsersProfile::create([
-                'user_id' => $user->id, // Menghubungkan profil dengan user yang baru dibuat
-                'alamat' => '', // Sesuaikan dengan alamat jika ada
-                'universitas' => '', // Sesuaikan dengan universitas jika ada
-                'fakultas' => '', // Sesuaikan dengan fakultas jika ada
-                'image' => '', // Sesuaikan dengan nama gambar jika ada
-                'user_ig' => $request->input('instagram_username'),
-                'user_tt' => '', // Sesuaikan dengan akun Twitter jika ada
-                'user_fb' => '', // Sesuaikan dengan akun Facebook jika ada
-            ]);
-
-
-            Mail::to($user->email)->send(new SendEmail($user));
-            // Commit the transaction
-            DB::commit();
-
-            return redirect()->back()->with('success', 'Data berhasil disimpan.');          
-            
-
-        } catch (\Exception $e) {
-            // Rollback the transaction on error
-            DB::rollback();
-        
-            // Redirect or return an error response
-            return redirect()->back()->with('error', 'Terjadi kesalahan. Data tidak disimpan.');
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
         }
+
+        // Use a database transaction to ensure data consistency
+        DB::beginTransaction();
+
+        // Generate a secure verification token
+        $verificationToken = Str::random(64);
+
+        // Create the user
+        $user = Users::create([
+            'username' => $request->input('username'),
+            'name' => $request->input('username'),
+            'email' => $request->input('email'),
+            'password' => bcrypt($request->input('password')),
+            'status' => '0', // Adjust as needed
+        ]);
+
+        $userProfile = UsersProfile::create([
+            'user_id' => $user->id,
+            'alamat' => '', // Sesuaikan dengan alamat jika ada
+            'universitas' => '', // Sesuaikan dengan universitas jika ada
+            'fakultas' => '', // Sesuaikan dengan fakultas jika ada
+            'image' => '', // Sesuaikan dengan nama gambar jika ada
+            'user_ig' => '',
+            'user_tt' => '', // Sesuaikan dengan akun Twitter jika ada
+            'user_fb' => '', // Sesuaikan dengan akun Facebook jika ada
+        ]);
+
+        // Store the token in the custom table
+        $emailVerificationToken = EmailVerificationToken::create([
+            'user_id' => $user->id,
+            'token' => $verificationToken,
+            'expires_at' => now()->addHours(24), // Adjust token expiration as needed
+        ]);
+
+        // Send the verification email
+        Mail::to($user->email)->send(new SendEmail($user, $verificationToken));
+
+        // Commit the transaction
+        DB::commit();
+
+        return redirect()->back()->with('success', 'Data berhasil disimpan. Silakan cek email Anda untuk verifikasi.');
+       
+    } catch (\Exception $e) {
+        // Rollback the transaction on error
+        DB::rollback();
+    
+        Log::error('Registration error: ' . $e->getMessage());
+    
+        // Handle the error and return a response
+        return redirect()->back()->with('error', 'Registration failed. Please try again.');
     }
+}
 
 
 }

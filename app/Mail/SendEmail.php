@@ -5,10 +5,7 @@ namespace App\Mail;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
-use Illuminate\Mail\Mailables\Content;
-use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
-
 
 class SendEmail extends Mailable
 {
@@ -19,33 +16,19 @@ class SendEmail extends Mailable
      */
     public $user;
 
-    public function __construct($user)
+    public function __construct($user, $token)
     {
         $this->user = $user;
+        $this->token = $token;
     }
-
-    /**
-     * Get the message envelope.
-     */
-    public function envelope(): Envelope
-    {
-        return new Envelope(
-            subject: 'Registration Confirmation',
-        );
-    }
-
-    public function content(): Content
-    {
-        return new Content(
-            view: 'Emails.welcome',
-        );
-    }
-
+    
     public function build()
-    {
-        return $this->subject('Registration Confirmation')
-                    ->view('Emails.welcome');
-    }
+{
+    return $this->subject('Registration Confirmation')
+                ->view('Emails.welcome', [
+                    'token' => $this->token,
+                ]);
+}
 
     /**
      * Get the attachments for the message.
@@ -57,4 +40,5 @@ class SendEmail extends Mailable
         return [];
     }
 }
+
 

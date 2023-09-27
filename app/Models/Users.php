@@ -18,10 +18,12 @@ class Users extends Model
         'name',
         'email',
         'status',
-        'activated_at', // Add the additional fields here
+        'activated_at',
         'password',
-        'username',
+        'username', // Added 'username'
     ];
+
+    
 
     // Relasi dengan UserProfile
     public function userProfile()

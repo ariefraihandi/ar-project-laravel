@@ -14,6 +14,8 @@
    
         @yield('content')
                       
+        @include('Index/partials/footer')
+        
         @include('Index/partials/script')
 
     </body>

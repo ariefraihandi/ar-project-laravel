@@ -83,6 +83,9 @@
       <!-- / Content -->
 
 @endsection
+
+
+@push('footer-script')
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
 <script>
@@ -264,8 +267,5 @@
         });
     @endif
 </script>
-
-
-@push('footer-script')
 
 @endpush
