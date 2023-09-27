@@ -55,9 +55,7 @@
                             <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
                         </div>
                         <div id="conpassError" style="color: red;"></div> 
-                    </div>
-                    
-                    
+                    </div>                   
                     <div class="mb-3">
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" id="terms-conditions" name="terms" required/>
@@ -67,12 +65,8 @@
                             </label>
                         </div>
                     </div>
-
-        
                     <button type="submit" id="submitBtn" class="btn btn-primary d-grid w-100">Sign up</button>
-                </form>
-                
-  
+                </form> 
                 <p class="text-center">
                   <span>Already have an account?</span>
                   <a href="auth-login-basic.html">
