@@ -16,7 +16,7 @@
                 <!-- Logo -->
                 <div class="app-brand justify-content-center">
                     <a href="index.html" class="app-brand-link gap-2">
-                        <img src="https://www.ariefraihandi.biz.id/assets/images/logo/arp.png" alt="AR Project Logo" class="app-brand-logo demo" width="25">
+                        <img src="https://www.ariefraihandi.biz.id/assets/images/logo/arp.png" alt="AR Project Logo" class="app-brand-logo demo" width="40">
                         <span class="app-brand-text demo text-body fw-bolder">AR Project</span>
                     </a>
                 </div>                

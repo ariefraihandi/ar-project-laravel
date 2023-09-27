@@ -92,6 +92,8 @@ class RegisterController extends Controller
                 'user_fb' => '', // Sesuaikan dengan akun Facebook jika ada
             ]);
 
+
+            Mail::to($user->email)->send(new SendEmail($user));
             // Commit the transaction
             DB::commit();
 

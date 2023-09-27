@@ -17,9 +17,11 @@ class SendEmail extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public $user;
+
+    public function __construct($user)
     {
-        //
+        $this->user = $user;
     }
 
     /**
@@ -28,13 +30,10 @@ class SendEmail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Send Email',
+            subject: 'Registration Confirmation',
         );
     }
 
-    /**
-     * Get the message content definition.
-     */
     public function content(): Content
     {
         return new Content(
@@ -44,8 +43,8 @@ class SendEmail extends Mailable
 
     public function build()
     {
-        return $this->subject('Send Email')
-                    ->view('Emails.welcome'); // Note: Use 'emails.welcome' assuming you have a "welcome" email blade template in the "resources/views/emails" directory
+        return $this->subject('Registration Confirmation')
+                    ->view('Emails.welcome');
     }
 
     /**
@@ -58,3 +57,4 @@ class SendEmail extends Mailable
         return [];
     }
 }
+
