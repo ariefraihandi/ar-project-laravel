@@ -67,6 +67,7 @@ class RegisterController extends Controller
                 'terms' => 'accepted',
             ]);
 
+        
             if ($validator->fails()) {
                 return redirect()->back()->withErrors($validator)->withInput();
             }
