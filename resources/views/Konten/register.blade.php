@@ -122,11 +122,23 @@
                         submitButton.disabled = true;
                     }
                 })
+                // .catch(function (error) {
+                //     usernameError.textContent = "Terjadi kesalahan saat memeriksa username.";
+                //     usernameError.style.color = "red"; // Menambahkan warna merah
+                //     submitButton.disabled = true;
+                // });
+
                 .catch(function (error) {
-                    usernameError.textContent = "Terjadi kesalahan saat memeriksa username.";
-                    usernameError.style.color = "red"; // Menambahkan warna merah
-                    submitButton.disabled = true;
-                });
+    // Menampilkan pesan kesalahan dari respons server jika ada
+    if (error.response && error.response.data && error.response.data.message) {
+        usernameError.textContent = "Terjadi kesalahan saat memeriksa username: " + error.response.data.message;
+    } else {
+        // Pesan kesalahan umum jika tidak ada pesan dari server
+        usernameError.textContent = "Terjadi kesalahan saat memeriksa username. Detail kesalahan: " + error.message;
+    }
+    usernameError.style.color = "red"; // Menambahkan warna merah
+    submitButton.disabled = true;
+});
         }
     }
 
