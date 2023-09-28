@@ -4,26 +4,26 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Auth\Authenticatable as AuthenticableTrait; // Tambahkan import untuk Authenticatable
 
-class Users extends Model
+class Users extends Model implements Authenticatable
 {
-    use HasFactory;
+    use HasFactory, AuthenticableTrait; // Tambahkan AuthenticableTrait ke penggunaan trait
+
     /**
      * fillable
      *
      * @var array
      */
-
-     protected $fillable = [
+    protected $fillable = [
         'name',
         'email',
         'status',
         'activated_at',
         'password',
-        'username', // Added 'username'
+        'username',
     ];
-
-    
 
     // Relasi dengan UserProfile
     public function userProfile()

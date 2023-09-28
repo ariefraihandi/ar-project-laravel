@@ -109,6 +109,7 @@ class RegisterController extends Controller
         $emailVerificationToken = EmailVerificationToken::create([
             'user_id' => $user->id,
             'token' => $verificationToken,
+            'email' => $request->input('email'),
             'expires_at' => now()->addHours(24), // Adjust token expiration as needed
         ]);
 
@@ -118,7 +119,7 @@ class RegisterController extends Controller
         // Commit the transaction
         DB::commit();
 
-        return redirect()->back()->with('success', 'Data berhasil disimpan. Silakan cek email Anda untuk verifikasi.');
+        return redirect()->route('login.page')->with('success', 'Email Anda berhasil diverifikasi. Silakan masuk.');
        
     } catch (\Exception $e) {
         // Rollback the transaction on error

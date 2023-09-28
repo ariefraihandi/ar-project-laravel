@@ -29,7 +29,7 @@ class VerificationController extends Controller
                 // Email ditemukan, lihat status
                 if ($user->status === 1) {
                     // Pengguna telah terverifikasi (status 1), mungkin ingin menangani lupa kata sandi di sini
-                    return redirect()->route('login'); // Gantilah 'password.reset' dengan rute yang sesuai
+                    return redirect()->route('login.page'); // Gantilah 'password.reset' dengan rute yang sesuai
                 } else {
                     // Status pengguna adalah 0, token salah
                     return redirect()->route('register')->with('error', 'Token verifikasi salah.');
@@ -57,7 +57,7 @@ class VerificationController extends Controller
         $verificationToken->delete();
 
         // Redirect ke halaman autentikasi setelah berhasil verifikasi
-        return redirect()->route('login')->with('success', 'Email Anda berhasil diverifikasi. Silakan masuk.');
+        return redirect()->route('login.page')->with('success', 'Email Anda berhasil diverifikasi. Silakan masuk.');
     }
 
     private function isTokenExpired($verificationToken)
