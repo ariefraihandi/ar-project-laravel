@@ -37,8 +37,7 @@
                         <label for="email" class="form-label">Email</label>
                         <input type="email" class="form-control" id="email" name="email" onkeyup="validateEmail(this)" placeholder="Enter your username" autofocus required />
                         <div id="emailError" style="color: red;"></div> 
-                    </div>
-                   
+                    </div>                   
                     <div class="mb-3 form-password-toggle">
                         <label class="form-label" for="password">Password</label>
                         <div class="input-group input-group-merge">
@@ -47,7 +46,6 @@
                         </div>
                         <div id="passError" style="color: red;"></div> 
                     </div>
-                    
                     <div class="mb-3 form-password-toggle">
                         <label class="form-label" for="confirm-password">Confirm Password</label>
                         <div class="input-group input-group-merge">

@@ -2,14 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Str;
-use App\Models\Users;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Log; // Import Log facade
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Str; // Import Str facade
+use Illuminate\Http\Request;
+use App\Mail\SendEmail;
+use App\Models\Users; // Assuming this is your User model
 use App\Models\UsersProfile;
 use App\Models\Files;
+use App\Models\EmailVerificationToken; 
 use RealRashid\SweetAlert\Facades\Alert;
 use Carbon\Carbon;
 
@@ -46,10 +51,14 @@ class CekturnitinController extends Controller
             // Use a database transaction to ensure data consistency
             DB::beginTransaction();
 
+            $verificationToken = Str::random(64);
+
             $user = Users::create([
                 'name' => $request->input('name'),
+                'username' => $request->input('instagram_username'),
                 'email' => $request->input('email'),
-                'status' => '0', // Sesuaikan dengan nilai yang sesuai
+                'password' => bcrypt('123456'),
+                'status' => '0', 
             ]);
 
             $userProfile = UsersProfile::create([
@@ -61,6 +70,12 @@ class CekturnitinController extends Controller
                 'user_ig' => $request->input('instagram_username'),
                 'user_tt' => '', // Sesuaikan dengan akun Twitter jika ada
                 'user_fb' => '', // Sesuaikan dengan akun Facebook jika ada
+            ]);
+
+            $emailVerificationToken = EmailVerificationToken::create([
+                'user_id' => $user->id,
+                'token' => $verificationToken,
+                'expires_at' => now()->addHours(24), // Adjust token expiration as needed
             ]);
 
             // Handle file upload
@@ -84,17 +99,20 @@ class CekturnitinController extends Controller
                 ]);
             }
 
+            Mail::to($user->email)->send(new SendEmail($user, $verificationToken));
             // Commit the transaction
             DB::commit();
 
             return redirect()->back()->with('success', 'Data berhasil disimpan.');          
             
-        } catch (\Exception $e) {
-            // Rollback the transaction on error
-            DB::rollback();
-        
-            // Redirect or return an error response
-            return redirect()->back()->with('error', 'Terjadi kesalahan. Data tidak disimpan.');
+        } catch (\Illuminate\Database\QueryException $e) {
+            // Mengakses pesan kesalahan
+            $errorMessage = $e->getMessage();
+            
+            // Kemudian, Anda dapat melakukan tindakan sesuai kebutuhan
+            // Contoh: Menyimpan pesan kesalahan dalam log atau menampilkannya kepada pengguna
+            \Log::error('Terjadi kesalahan query: ' . $errorMessage);
+            return redirect()->back()->with('error', 'Terjadi kesalahan dalam database.');
         }
     }
 

@@ -29,13 +29,13 @@
 
                 <!-- Dropdown Menu -->          
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle page-scroll" href="#video" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">VIDEO</a>
+                    <a class="nav-link dropdown-toggle page-scroll" href="{{ url('/') }}#start" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">LAYANAN</a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="article-details.html"><span class="item-text">ARTICLE DETAILS</span></a>
+                        <a class="dropdown-item" href="{{ url('/') }}#features"><span class="item-text">MAKALAH</span></a>
                         <div class="dropdown-items-divide-hr"></div>
-                        <a class="dropdown-item" href="terms-conditions.html"><span class="item-text">TERMS CONDITIONS</span></a>
+                        <a class="dropdown-item" href="{{ url('/') }}#features"><span class="item-text">PLAGIASI</span></a>
                         <div class="dropdown-items-divide-hr"></div>
-                        <a class="dropdown-item" href="privacy-policy.html"><span class="item-text">PRIVACY POLICY</span></a>
+                        <a class="dropdown-item" href="{{ url('/') }}#features"><span class="item-text">WEBSITE</span></a>
                     </div>
                 </li>
                 <!-- end of dropdown menu -->

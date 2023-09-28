@@ -23,12 +23,17 @@ class SendEmail extends Mailable
     }
     
     public function build()
-{
-    return $this->subject('Registration Confirmation')
-                ->view('Emails.welcome', [
-                    'token' => $this->token,
-                ]);
-}
+    {
+        // Tentukan URL berdasarkan lingkungan (local atau production)
+        $verificationURL = env('APP_ENV') === 'local' ? env('LOCAL_URL') : env('SERVER_URL');
+        
+        return $this->subject('Verifikasi Pendaftaran')
+                    ->view('Emails.welcome', [
+                        'verificationURL' => $verificationURL,
+                        'token' => $this->token,
+                    ]);
+    }
+    
 
     /**
      * Get the attachments for the message.

@@ -88,30 +88,30 @@
                 <div class="col-lg-12">
                     <div class="text-container">
                         <div class="above-heading">TURNITIN</div>
-                        <h2>Cek Turnitin</h2>
-                        <p class="p-form">Anda memiliki kesempatan pengecekan GRATIS..!</p>
+                        <h2>Anda Memiliki Kesempatan Pengecekan Turnitin Gratis..!</h2>
+                        <p class="p-form">Masukkan Username Instagram Anda Untuk Memulai</p>
                         <form method="POST" data-toggle="validator" data-focus="false" action="{{ route('turnitin.action') }}" enctype="multipart/form-data">
                             @csrf
-                            <div class="form-group">
-                                <input type="text" class="form-control-input" id="name" name="name" required>
-                                <label class="label-control" for="name">Nama Lengkap:</label>
-                                <div class="help-block with-errors"></div>
-                            </div>
-                        
-                            <div class="form-group">
-                                <input type="email" class="form-control-input" id="email" name="email" required>
-                                <label class="label-control" for="email">Email:</label>
-                                <div class="help-block with-errors"></div>
-                            </div>
-
                             <div class="form-group">
                                 <input type="text" class="form-control-input" id="instagram_username" name="instagram_username" required>
                                 <label class="label-control" for="instagram_username">Instagram Username:</label>
                                 <div class="help-block with-errors"></div>
                                 <div id="username-validation-feedback"></div>
                                 <small class="form-text text-muted">Kami hanya akan menggunakan informasi ini untuk memeriksa status akun Instagram Anda.</small>
-                            </div>         
-                            <div class="form-group" id="drop-area">
+                            </div>      
+                            <div class="form-group" style="display: none;" id="nameInput">
+                                <input type="text" class="form-control-input" id="name" name="name" required>
+                                <label class="label-control" for="name">Nama Lengkap:</label>
+                                <div class="help-block with-errors"></div>
+                            </div>
+                            
+                            <div class="form-group" style="display: none;" id="emailInput">
+                                <input type="email" class="form-control-input" id="email" name="email" required>
+                                <label class="label-control" for="email">Email:</label>
+                                <div class="help-block with-errors"></div>
+                            </div>
+                               
+                            <div class="form-group" id="drop-area"  style="display: none;">
                                 <div class="drag-drop-text">
                                     <input type="file" class="custom-file-input" id="file" name="file" required>
                                     <h5>Drag & drop File Yang Ingin Diperiksa atau</h5> <span class="browse-files-text">Pilih Dari Perangkat</span>
@@ -161,6 +161,9 @@
                                 </li>
                                 <li class="media">
                                     <i class="fas fa-times"></i><div class="media-body">Unlimited check</div>
+                                </li>
+                                <li class="media">
+                                    <i class="fas fa-times"></i><div class="media-body">Dokumen Publik</div>
                                 </li>
                             </ul>
                             <div class="button-wrapper">
@@ -242,7 +245,7 @@
                                     <i class="fas fa-check"></i><div class="media-body">Unlimited check/day</div>
                                 </li>
                                 <li class="media">
-                                    <i class="fas fa-check"></i><div class="media-body">Dokumen pribadi dan publik</div>
+                                    <i class="fas fa-check"></i><div class="media-body">Dokumen publik</div>
                                 </li>
                             </ul>
                             <div class="button-wrapper">
@@ -379,6 +382,9 @@
     const usernameValidationFeedback = document.getElementById('username-validation-feedback');
     const submitButton = document.querySelector('.form-control-submit-button[type="submit"]');
     const registerButton = document.getElementById('registerButton');
+    const nameInput = document.getElementById('nameInput');
+    const emailInput = document.getElementById('emailInput');
+    const dropArea = document.getElementById('drop-area');
 
     usernameInput.addEventListener('input', function () {
         const username = usernameInput.value;
@@ -388,16 +394,27 @@
                 if (response.data.available) {
                     usernameValidationFeedback.innerHTML = '<i class="fas fa-check text-success"></i> Selamat, Anda Mendapat Kesempatan Pengecekan Turnitin Gratis.';
                     submitButton.style.display = 'block';
+                    nameInput.style.display = 'block';
+                    emailInput.style.display = 'block'; 
+                    dropArea.style.display = 'block';                 
                     registerButton.style.display = 'none';
                 } else {
                     usernameValidationFeedback.innerHTML = '<i class="fas fa-times text-danger"></i> Mohon Maaf, Pengecekan Gratis Sudah Pernah Digunakan Bulan Ini';
                     submitButton.style.display = 'none';
+                    nameInput.style.display = 'none';
+                    emailInput.style.display = 'none';
+                    dropArea.style.display = 'none';
                     registerButton.style.display = 'block';
                 }
             })
             .catch(function (error) {
                 // Tangani kesalahan jika ada
                 usernameValidationFeedback.innerHTML = '<i class="fas fa-exclamation-circle text-warning"></i> Terjadi kesalahan saat memeriksa username.';
+                submitButton.style.display = 'none';
+                    nameInput.style.display = 'none';
+                    emailInput.style.display = 'none';
+                    dropArea.style.display = 'none';
+                    registerButton.style.display = 'block';
             });
     });
 </script>
