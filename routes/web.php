@@ -6,6 +6,7 @@ use App\Http\Controllers\CekturnitinController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PortalController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\VerificationController;
 
 
 Route::get('/', [LandingController::class, 'showLandingPage'])->name('landing.page');
