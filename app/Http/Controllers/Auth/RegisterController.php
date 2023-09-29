@@ -122,27 +122,27 @@ class RegisterController extends Controller
 
         return redirect()->route('login.page')->with('success', 'Pendaftaran Berhasil. Cek Email Anda Untuk Memverifikasi Akun.');
        
-    // } catch (\Exception $e) {
-    //     // Rollback the transaction on error
-    //     DB::rollback();
+    } catch (\Exception $e) {
+        // Rollback the transaction on error
+        DB::rollback();
     
-    //     Log::error('Registration error: ' . $e->getMessage());
+        Log::error('Registration error: ' . $e->getMessage());
     
-    //     // Handle the error and return a response
-    //     return redirect()->back()->with('error', 'Registration failed. Please try again.');
-    // }
+        // Handle the error and return a response
+        return redirect()->back()->with('error', 'Registration failed. Please try again.');
+    }
 
-} catch (\Exception $e) {
-    // Rollback the transaction on error
-    DB::rollback();
+// } catch (\Exception $e) {
+//     // Rollback the transaction on error
+//     DB::rollback();
 
-    $errorMessage = 'Registration failed. Please try again. Error: ' . $e->getMessage();
+//     $errorMessage = 'Registration failed. Please try again. Error: ' . $e->getMessage();
 
-    Log::error('Registration error: ' . $errorMessage);
+//     Log::error('Registration error: ' . $errorMessage);
 
-    // Handle the error and return a response with the error message
-    return redirect()->back()->with('error', $errorMessage);
-}
+//     // Handle the error and return a response with the error message
+//     return redirect()->back()->with('error', $errorMessage);
+// }
 
 
 

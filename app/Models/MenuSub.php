@@ -13,6 +13,7 @@ class MenuSub extends Model
     protected $fillable = [
         'menu_id',
         'title',
+        'order',
         'url',
         'icon',
         'itemsub',

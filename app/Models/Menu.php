@@ -9,7 +9,7 @@ class Menu extends Model
 {
     use HasFactory;
 
-    protected $table = 'menus'; // Sesuaikan dengan nama tabel Anda
+    protected $table = 'menus'; // Adjust to your table name
 
-    protected $fillable = ['menu_name', 'created_at', 'updated_at'];
+    protected $fillable = ['menu_name', 'order', 'created_at', 'updated_at']; // Include 'order' in the fillable array
 }

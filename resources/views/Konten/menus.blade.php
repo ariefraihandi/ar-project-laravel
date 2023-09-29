@@ -63,8 +63,10 @@
                             <input type="text" id="menu" name="menu" class="form-control" placeholder="Menu Name" />
                         </div>
                     </div>
-                    <!-- Include the user's ID as a hidden input field -->
-                    <input type="hidden" id="user_id" name="user_id" value="{{$user->id}}" />
+                    @if(session()->has('user_id'))
+                    <input type="text" id="user_id" name="user_id" value="{{ session('user_id') }}" />
+                    @endif
+                
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">

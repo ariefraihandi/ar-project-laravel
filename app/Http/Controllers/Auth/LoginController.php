@@ -34,14 +34,14 @@ class LoginController extends Controller
             
                 if ($requestedUrl) {
                     // Redirect ke URL yang diminta sebelumnya setelah login berhasil
-                    return redirect($requestedUrl);
+                    return redirect()->to($requestedUrl)->with('user_id', $user->id);
                     // echo $user->id;
                     // echo $requestedUrl;
                 }
                 
 
                 // Jika tidak ada URL yang diminta sebelumnya, redirect ke halaman dashboard atau halaman lain yang sesuai.
-                return redirect('/user');
+                return redirect('/user')->with('user_id', $user->id);
                 // echo $user->id;
             } else {
                 // Kredensial berhasil tetapi status tidak memenuhi syarat

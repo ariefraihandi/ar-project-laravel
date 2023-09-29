@@ -3,8 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Menu;
+use Illuminate\Support\Facades\DB; // Import DB class
+use Illuminate\Support\Facades\Log; // Import Log class
 use App\Models\MenuSub;
+use App\Models\Menu;
+use App\Models\AccessSubmenu; // Import AccessSubmenu model
+use Illuminate\Support\Facades\Auth; // Import Auth facade
 
 class SubmenuController extends Controller
 {
@@ -34,18 +38,46 @@ class SubmenuController extends Controller
             'is_active' => 'required|boolean',
         ]);
 
-        // Simpan data submenu ke dalam tabel menus_sub
-        MenuSub::create([
-            'menu_id' => $request->input('menu_id'),
-            'title' => $request->input('title'),
-            'url' => $request->input('url'),
-            'icon' => $request->input('icon'),
-            'itemsub' => $request->input('itemsub'),
-            'is_active' => $request->input('is_active'),
-        ]);
+        try {
+            // Start a database transaction
+            DB::beginTransaction();
+            $nextOrder = MenuSub::max('order') + 1;
 
-        // Redirect atau kembali ke halaman sebelumnya dengan pesan sukses
-        return redirect()->back()->with('success', 'Submenu berhasil ditambahkan');
+            $menuSub = MenuSub::create([
+                'menu_id' => $request->input('menu_id'),
+                'title' => $request->input('title'),
+                'order' => $nextOrder,
+                'url' => $request->input('url'),
+                'icon' => $request->input('icon'),
+                'itemsub' => $request->input('itemsub'),
+                'is_active' => $request->input('is_active'),
+            ]);
+
+            // Get the authenticated user's ID
+            $user_id = Auth::id();
+
+            // Create a new AccessSubmenu record
+            $accessSubmenu = new AccessSubmenu();
+            $accessSubmenu->role_id = $user_id; // You may adjust this based on your role logic
+            $accessSubmenu->submenu_id = $menuSub->id; // Assuming $menuSub->id contains the ID of the newly created submenu
+            $accessSubmenu->save();
+
+            // Commit the database transaction
+            DB::commit();
+
+            // Redirect atau kembali ke halaman sebelumnya dengan pesan sukses
+            return redirect()->back()->with('success', 'Submenu berhasil ditambahkan');
+        } catch (\Exception $e) {
+            // Rollback the transaction on error
+            DB::rollback();
+
+            $errorMessage = 'Submenu creation error: ' . $e->getMessage();
+
+            Log::error('Submenu creation error: ' . $errorMessage);
+
+            // Handle the error and return a response with the error message
+            return redirect()->back()->with('error', $errorMessage);
+        }
     }
 
     public function store(Request $request)
