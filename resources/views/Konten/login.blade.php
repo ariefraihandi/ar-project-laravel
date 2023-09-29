@@ -25,9 +25,9 @@
                     <h4 class="mb-2">Masuk Untuk Memulai 🚀</h4>
                     {{-- <p class="mb-4">Daftar, untuk memulai peningkatan prestasi akademis Anda</p> --}}
                 {{-- </div> --}}
-  <br>
-  <form id="formAuthentication" class="mb-3" action="{{ route('login.action') }}" method="POST">
-    @csrf 
+                    <br>
+                  <form id="formAuthentication" class="mb-3" action="{{ route('login.action') }}" method="POST">
+                    @csrf 
                     <div class="mb-3">
                         <label for="username" class="form-label">Email or Username</label>
                         <input type="text" class="form-control" id="username" name="username" placeholder="Enter your username" autofocus required/>
@@ -61,11 +61,15 @@
                     <div class="mb-3">
                       <button class="btn btn-primary d-grid w-100" type="submit">Sign in</button>
                     </div>
+                    @if(Session::has('requested_url'))
+                        <input type="hidden" name="requested_url" value="{{ Session::get('requested_url') }}">
+                    @endif
+
                   </form>
     
                   <p class="text-center">
                     <span>New on our platform?</span>
-                    <a href="auth-register-basic.html">
+                    <a href="{{ route('regis.page') }}"> 
                       <span>Create an account</span>
                     </a>
                   </p>

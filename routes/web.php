@@ -8,6 +8,9 @@ use App\Http\Controllers\PortalController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\VerificationController;
+use App\Http\Controllers\MenuController;
+use App\Http\Controllers\SubmenuController;
+use App\Http\Controllers\MenuSubsChildController;
 
 
 Route::get('/',                     [LandingController::class, 'showLandingPage'])->name('landing.page');
@@ -18,10 +21,21 @@ Route::post('turnitin.validation',  [CekturnitinController::class, 'checkAvailab
 
 Route::get('login',                 [LoginController::class, 'showLoginPage'])->name('login.page');
 Route::post('login',                [LoginController::class, 'loginAction'])->name('login.action');
+Route::get('logout',                [LoginController::class, 'logoutAction'])->name('logout.action');
+
 
 Route::post('payment/proses',       [PaymentController::class, 'processPayment'])->name('payment.proses');
 
-Route::get('dashboard',             [PortalController::class, 'showPortalPage'])->name('dashboard.page');
+Route::get('dashboard',             [PortalController::class, 'showPortalPage'])->name('dashboard.page')->middleware('auth');
+
+Route::get('menu',                  [MenuController::class, 'showMenusPage'])->name('menus.page')->middleware('auth');
+Route::post('menu',                 [MenuController::class, 'menusAction'])->name('menus.action')->middleware('auth');
+
+Route::get('submenu',               [SubmenuController::class, 'showSubmenu'])->name('submenus.page')->middleware('auth');
+Route::post('submenu',              [SubmenuController::class, 'submenuAction'])->name('submenu.action')->middleware('auth');
+
+Route::get('submenu/child',         [MenuSubsChildController::class, 'showChildSubmenu'])->name('childsub.page')->middleware('auth');
+Route::post('submenu/child',        [MenuSubsChildController::class, 'childsubAction'])->name('childsub.action')->middleware('auth');
 
 Route::get('register',              [RegisterController::class, 'showRegisPage'])->name('regis.page');
 Route::post('register.username',    [RegisterController::class, 'checkUsername'])->name('register.username');

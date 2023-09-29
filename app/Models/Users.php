@@ -23,7 +23,9 @@ class Users extends Model implements Authenticatable
         'activated_at',
         'password',
         'username',
+        'role_id', // Remove the space
     ];
+    
 
     // Relasi dengan UserProfile
     public function userProfile()

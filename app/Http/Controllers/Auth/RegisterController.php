@@ -92,6 +92,7 @@ class RegisterController extends Controller
             'email' => $request->input('email'),
             'password' => bcrypt($request->input('password')),
             'status' => '0', // Adjust as needed
+            'role_id ' => '1', 
         ]);
 
         $userProfile = UsersProfile::create([
@@ -119,17 +120,35 @@ class RegisterController extends Controller
         // Commit the transaction
         DB::commit();
 
-        return redirect()->route('login.page')->with('success', 'Email Anda berhasil diverifikasi. Silakan masuk.');
+        return redirect()->route('login.page')->with('success', 'Pendaftaran Berhasil. Cek Email Anda Untuk Memverifikasi Akun.');
        
-    } catch (\Exception $e) {
-        // Rollback the transaction on error
-        DB::rollback();
+    // } catch (\Exception $e) {
+    //     // Rollback the transaction on error
+    //     DB::rollback();
     
-        Log::error('Registration error: ' . $e->getMessage());
+    //     Log::error('Registration error: ' . $e->getMessage());
     
-        // Handle the error and return a response
-        return redirect()->back()->with('error', 'Registration failed. Please try again.');
-    }
+    //     // Handle the error and return a response
+    //     return redirect()->back()->with('error', 'Registration failed. Please try again.');
+    // }
+
+} catch (\Exception $e) {
+    // Rollback the transaction on error
+    DB::rollback();
+
+    $errorMessage = 'Registration failed. Please try again. Error: ' . $e->getMessage();
+
+    Log::error('Registration error: ' . $errorMessage);
+
+    // Handle the error and return a response with the error message
+    return redirect()->back()->with('error', $errorMessage);
+}
+
+
+
+
+
+
 }
 
 
