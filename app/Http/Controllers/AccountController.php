@@ -38,16 +38,16 @@ class AccountController extends Controller
 
         try {
             // Validate the request data
-            $request->validate([
-                'name' => 'required|string|max:255',
-                'email' => 'required|string|email|max:255',
-                'whatsapp' => 'nullable|string|max:15',
-                'alamat' => 'nullable|string|max:255',
-                'universitas' => 'nullable|string|max:255',
-                'fakultas' => 'nullable|string|max:255',
-                'user_ig' => 'nullable|string|max:255',
-                'profile_photo' => 'nullable|max:8000', // Max file size is 2MB (2048 KB)
-            ]);
+            // $request->validate([
+            //     'name' => 'required|string|max:255',
+            //     'email' => 'required|string|email|max:255',
+            //     'whatsapp' => 'nullable|string|max:15',
+            //     'alamat' => 'nullable|string|max:255',
+            //     'universitas' => 'nullable|string|max:255',
+            //     'fakultas' => 'nullable|string|max:255',
+            //     'user_ig' => 'nullable|string|max:255',
+            //     'profile_photo' => 'nullable|max:8000', // Max file size is 2MB (2048 KB)
+            // ]);
 
             // Get the currently authenticated user
             $user = Auth::user();
