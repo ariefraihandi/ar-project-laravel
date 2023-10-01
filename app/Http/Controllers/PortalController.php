@@ -29,17 +29,12 @@ class PortalController extends Controller
       
 
         $roleId = $user->role_id; // Mengambil role_id dari pengguna
-        // $accesses = Access::getAccessByRoleId($roleId);
-// var_dump($accesses);
-        // Mengelompokkan data akses berdasarkan jenis (menu, submenu, child submenu)
-
-
-
+        $menus = Menu::all();
         $data = [
             'title' => "Portal",
             'subtitle' => "AR Project",           
             'userRole' => $userRole,
-            // 'menus' => $menus,
+            'menus' => $menus,
 
         ];
        

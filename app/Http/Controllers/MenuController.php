@@ -14,15 +14,15 @@ class MenuController extends Controller
 {
     public function showMenusPage()
     {
-        $user = auth()->user();
-        $userRole = UsersRole::where('id', $user->role_id)->first();
-      
-        $roleId = $user->role_id; 
+        $user       = auth()->user();
+        $userRole   = UsersRole::where('id', $user->role_id)->first();
+        $menus      = Menu::all();
+        $roleId     = $user->role_id; 
         $data = [
-            'title'     => "Menu",
-            'subtitle'     => "List Menu",
-            'userRole' => $userRole,
-            
+            'title'         => "Menu",
+            'subtitle'      => "List Menu",
+            'userRole'      => $userRole,
+            'menus'         => $menus,
         ];
         return view('Konten/menus', $data);
     }
@@ -74,16 +74,53 @@ class MenuController extends Controller
         //     return redirect()->back()->with('error', 'Menu creation failed. Please try again.');
         // }
 
-    } catch (\Exception $e) {
-        // Rollback the transaction on error
-        DB::rollback();
-    
-        $errorMessage = 'Menu creation error: ' . $e->getMessage();
-    
-        Log::error('Menu creation error: ' . $errorMessage);
-    
-        // Handle the error and return a response with the error message
-        return redirect()->back()->with('error', $errorMessage);
+        } catch (\Exception $e) {
+            // Rollback the transaction on error
+            DB::rollback();
+        
+            $errorMessage = 'Menu creation error: ' . $e->getMessage();
+        
+            Log::error('Menu creation error: ' . $errorMessage);
+        
+            // Handle the error and return a response with the error message
+            return redirect()->back()->with('error', $errorMessage);
+        }
     }
+
+    public function destroy($id)
+    {
+        // Hapus entri dari tabel access_menu yang memiliki menu_id yang sama dengan $id
+        AccessMenu::where('menu_id', $id)->delete();
+
+        // Kemudian hapus menu
+        $menu = Menu::find($id);
+
+        if (!$menu) {
+            return redirect()->back()->with('error', 'Menu not found');
+        }
+
+        $menu->delete();
+
+        return redirect()->back()->with('success', 'Menu and related access deleted successfully');
     }
+
+    public function update(Request $request, $id)
+    {
+        // Validasi data input jika diperlukan
+
+        // Temukan menu berdasarkan ID
+        $menu = Menu::find($id);
+
+        if (!$menu) {
+            return redirect()->back()->with('error', 'Menu not found');
+        }
+
+        // Update data menu berdasarkan data input
+        $menu->menu_name = $request->input('menu');
+        $menu->order = $request->input('order');
+        $menu->save();
+
+        return redirect()->back()->with('success', 'Menu updated successfully');
+    }
+
 }

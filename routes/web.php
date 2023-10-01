@@ -28,14 +28,21 @@ Route::post('payment/proses',       [PaymentController::class, 'processPayment']
 
 Route::get('dashboard',             [PortalController::class, 'showPortalPage'])->name('dashboard.page')->middleware('auth');
 
-Route::get('menu',                  [MenuController::class, 'showMenusPage'])->name('menus.page')->middleware('auth');
+Route::get('menu/list',             [MenuController::class, 'showMenusPage'])->name('menus.page')->middleware('auth');
 Route::post('menu',                 [MenuController::class, 'menusAction'])->name('menus.action')->middleware('auth');
+Route::delete('menu/{id}',          [MenuController::class, 'destroy'])->name('menu.destroy')->middleware('auth');
+Route::put('menu/{id}',             [MenuController::class, 'update'])->name('menu.update')->middleware('auth');
 
-Route::get('submenu',               [SubmenuController::class, 'showSubmenu'])->name('submenus.page')->middleware('auth');
+Route::get('menu/submenu',          [SubmenuController::class, 'showSubmenu'])->name('submenus.page')->middleware('auth');
 Route::post('submenu',              [SubmenuController::class, 'submenuAction'])->name('submenu.action')->middleware('auth');
+Route::delete('submenu/{id}',       [SubmenuController::class, 'destroy'])->name('submenu.destroy')->middleware('auth');
+Route::put('submenu/{id}',          [SubmenuController::class, 'submenuUpdate'])->name('submenu.update')->middleware('auth');
 
-Route::get('submenu/child',         [MenuSubsChildController::class, 'showChildSubmenu'])->name('childsub.page')->middleware('auth');
+Route::get('menu/childsub',         [MenuSubsChildController::class, 'showChildSubmenu'])->name('childsub.page')->middleware('auth');
 Route::post('submenu/child',        [MenuSubsChildController::class, 'childsubAction'])->name('childsub.action')->middleware('auth');
+Route::delete('submenu/child/{id}', [MenuSubsChildController::class, 'destroy'])->name('childsub.destroy')->middleware('auth');
+Route::put('submenu/child/{id}',    [MenuSubsChildController::class, 'childsubUpdate'])->name('childsub.update')->middleware('auth');
+
 
 Route::get('register',              [RegisterController::class, 'showRegisPage'])->name('regis.page');
 Route::post('register.username',    [RegisterController::class, 'checkUsername'])->name('register.username');

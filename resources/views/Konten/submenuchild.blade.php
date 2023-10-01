@@ -21,17 +21,41 @@
                         </tr>
                     </thead>
                     <tbody class="table-border-bottom-0">
-                        <?php $i = 1; ?>
+                        @php $i = 1; @endphp
+                        @foreach($childssubs as $childsub)
                             <tr>
-                                <th scope="row"><?= $i; ?></th>
-                                <td><i class="fab fa-angular fa-lg text-danger"></i><strong>Judul</strong></td>
-                                <td><i class="fab fa-angular fa-lg text-danger"></i><strong>Judul</strong></td>
-                                <td><i class="fab fa-angular fa-lg text-danger"></i><strong>Judul</strong></td>
-                                <td><i class="fab fa-angular fa-lg text-danger"></i><strong>Judul</strong></td>
-                                <td><i class="fab fa-angular fa-lg text-danger"></i><strong>Judul</strong></td>
-                        <?php $i++; ?>
+                                <td>{{ $i++ }}</td>
+                                <td>{{ $childsub->parent_menu_title }}</td>
+                                <td>{{ $childsub->title }}</td>
+                                <td>{{ $childsub->url }}</td>
+                                <td>
+                                    @if($childsub->is_active)
+                                        <span class="badge bg-success">Active</span>
+                                    @else
+                                        <span class="badge bg-danger">Inactive</span>
+                                    @endif
+                                </td>
+                                <td>
+                                    <div class="dropdown">
+                                        <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                                            <i class="bx bx-dots-vertical-rounded"></i>
+                                        </button>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#editmenu{{ $childsub->id }}"><i class="bx bx-edit-alt me-1"></i> Edit</a>
+                                            <form action="{{ route('childsub.destroy', $childsub->id) }}" method="POST">
+                                                @method('DELETE')
+                                                @csrf
+                                                <button type="submit" class="dropdown-item"><i class="bx bx-trash me-1"></i> Delete</button>
+                                            </form>
+                                            
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
+                
             </div>
         </div>
     </div>
@@ -86,6 +110,64 @@
             </div>
         </div>
     </div>
+
+    @foreach ($childssubs as $sm)
+    <div class="modal fade" id="editmenu{{ $sm->id }}" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editmenuTitle">Edit {{ $title }}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form method="post" action="{{ route('childsub.update', ['id' => $sm->id]) }}">
+                    @csrf
+                    @method('PUT')
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col mb-3">
+                                <label for="id_submenu" class="form-label">Sub Menu</label>
+                                <select name="id_submenu" id="id_submenu" class="form-control">
+                                    @foreach ($submenu as $m)
+                                        <option value="{{ $m->id }}" @if ($m->id === $sm->id_submenu) selected @endif>
+                                            {{ $m->title }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col mb-3">
+                                <label for="title" class="form-label">Submenu</label>
+                                <input type="text" id="title" name="title" class="form-control" value="{{ $sm->title }}" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col mb-3">
+                                <label for="url" class="form-label">URL</label>
+                                <input type="text" id="url" name="url" class="form-control" value="{{ $sm->url }}" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col mb-3">
+                                <label for="is_active" class="form-label">Status</label>
+                                <input type="text" id="is_active" name="is_active" class="form-control" value="{{ $sm->is_active }}" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                            Close
+                        </button>
+                        <button class="btn btn-primary" type="submit">Save changes</button>
+                        <input type="hidden" id="id" name="id" value="{{ $sm->id }}">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+@endforeach
+
 @endsection
 
 @push('footer-script')

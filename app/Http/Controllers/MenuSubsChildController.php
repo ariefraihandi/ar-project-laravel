@@ -16,20 +16,26 @@ class MenuSubsChildController extends Controller
 {
     public function showChildSubmenu()
     {
-        $menus      = Menu::all(); // Mengambil data menu menggunakan model Menu
-        $submenu    = MenuSub::all(); // Mengambil data menu menggunakan model Menu
-        $user = auth()->user();
-        $userRole = UsersRole::where('id', $user->role_id)->first();
+        $menus      = Menu::all(); 
+        $submenu    = MenuSub::all();
+        $childssubs = DB::table('menus_subs_child')
+        ->join('menus_sub', 'menus_subs_child.id_submenu', '=', 'menus_sub.id')
+        ->select('menus_subs_child.*', 'menus_sub.title AS parent_menu_title')
+        ->get();
+
+        $user       = auth()->user();
+        $userRole   = UsersRole::where('id', $user->role_id)->first();
       
         $roleId = $user->role_id; 
 
-
+// dd($childssubs);
         $data = [
-            'title' => "Child Submenu",
-            'subtitle' => "List Child Submenu",
-            'menus' => $menus,
-            'submenu' => $submenu,
-            'userRole' => $userRole,
+            'title'         => "Child Submenu",
+            'subtitle'      => "List Child Submenu",
+            'menus'         => $menus,
+            'submenu'       => $submenu,
+            'userRole'      => $userRole,
+            'childssubs'    => $childssubs,
         ];
         
         return view('Konten/submenuchild', $data);
@@ -85,9 +91,30 @@ class MenuSubsChildController extends Controller
         }
     }
 
-    public function edit($id)
+    public function childsubUpdate(Request $request, $id)
     {
-        // Tampilkan form untuk mengedit child submenu dengan ID tertentu
+        // Validasi data yang dikirimkan dari formulir
+        $request->validate([
+            'id_submenu' => 'required',
+            'title' => 'required',
+            'url' => 'required',
+            'is_active' => 'required',
+        ]);
+
+        // Ambil data submenu child berdasarkan ID
+        $childsub = MenuSubsChild::find($id);
+
+        // Update data submenu child
+        $childsub->id_submenu = $request->id_submenu;
+        $childsub->title = $request->title;
+        $childsub->url = $request->url;
+        $childsub->is_active = $request->is_active;
+        
+        // Simpan perubahan
+        $childsub->save();
+
+        // Redirect ke halaman yang sesuai, misalnya halaman list submenu child
+        return redirect()->route('childsub.page')->with('success', 'Data submenu child berhasil diperbarui.');
     }
 
     public function update(Request $request, $id)

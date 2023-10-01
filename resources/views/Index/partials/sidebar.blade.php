@@ -66,25 +66,25 @@
     </div>
 
     @php
-$userRole = $userRole['id'];
-$menus = App\Models\Menu::join('access_menu', 'menus.id', '=', 'access_menu.menu_id')
-    ->where('access_menu.user_id', $userRole)
-    ->select('menus.menu_name', 'menus.id as menu_id') // Mengambil id menu juga
-    ->orderBy('menus.order', 'asc')
-    ->get();
+      $userRole = $userRole['id'];
+      $menus = App\Models\Menu::join('access_menu', 'menus.id', '=', 'access_menu.menu_id')
+          ->where('access_menu.user_id', $userRole)
+          ->select('menus.menu_name', 'menus.id as menu_id') // Mengambil id menu juga
+          ->orderBy('menus.order', 'asc')
+          ->get();
 
-$submenus = App\Models\MenuSub::join('access_submenu', 'menus_sub.id', '=', 'access_submenu.submenu_id')
-    ->where('access_submenu.role_id', $userRole)
-    ->select('menus_sub.title', 'menus_sub.id as submenu_id', 'menus_sub.menu_id', 'menus_sub.url', 'menus_sub.order', 'menus_sub.icon', 'menus_sub.itemsub')
-    ->orderBy('menus_sub.order', 'asc')
-    ->get();
+      $submenus = App\Models\MenuSub::join('access_submenu', 'menus_sub.id', '=', 'access_submenu.submenu_id')
+          ->where('access_submenu.role_id', $userRole)
+          ->select('menus_sub.title', 'menus_sub.id as submenu_id', 'menus_sub.menu_id', 'menus_sub.url', 'menus_sub.order', 'menus_sub.icon', 'menus_sub.itemsub')
+          ->orderBy('menus_sub.order', 'asc')
+          ->get();
 
-$childsubmenus = App\Models\MenuSubsChild::join('access_child', 'menus_subs_child.id', '=', 'access_child.childsubmenu_id')
-    ->where('access_child.role_id', $userRole)
-    ->select('menus_subs_child.title', 'menus_subs_child.id_submenu', 'menus_subs_child.url','menus_subs_child.order')
-    ->orderBy('menus_subs_child.order', 'asc')
-    ->get();
-@endphp
+      $childsubmenus = App\Models\MenuSubsChild::join('access_child', 'menus_subs_child.id', '=', 'access_child.childsubmenu_id')
+          ->where('access_child.role_id', $userRole)
+          ->select('menus_subs_child.title', 'menus_subs_child.id_submenu', 'menus_subs_child.url','menus_subs_child.order')
+          ->orderBy('menus_subs_child.order', 'asc')
+          ->get();
+    @endphp
 
 <div class="menu-inner-shadow"></div>
 <ul class="menu-inner py-1">
@@ -93,11 +93,11 @@ $childsubmenus = App\Models\MenuSubsChild::join('access_child', 'menus_subs_chil
     <span class="menu-header-text">{{ $menu->menu_name }}</span>
   </li>
   @foreach ($submenus->where('menu_id', $menu->menu_id) as $submenu)
-  <li class="menu-item">
+  <li class="menu-item @if(\Illuminate\Support\Str::contains(request()->getRequestUri(), $submenu->title)) active @endif">
       @if ($submenu->itemsub == 1)
         <a href="javascript:void(0);" class="menu-link menu-toggle">
           <i class="menu-icon tf-icons {{ $submenu->icon }}"></i>
-          <div data-i18n="{{ $submenu->title }}">{{ $submenu->title }}</div>
+          <div data-i18n="{{ ucfirst($submenu->title) }}">{{ ucfirst($submenu->title) }}</div>
         </a>
       @else
         <a href="{{ url($submenu->url) }}" class="menu-link">
@@ -107,7 +107,8 @@ $childsubmenus = App\Models\MenuSubsChild::join('access_child', 'menus_subs_chil
       @endif
       <ul class="menu-sub">
         @foreach ($childsubmenus->where('id_submenu', $submenu->submenu_id) as $child)
-                        <li class="menu-item">
+                        {{-- <li class="menu-item"> --}}
+                          <li class="menu-item @if(\Illuminate\Support\Str::contains(request()->getRequestUri(), $child->url)) active @endif">
                             <a href="{{ url($child->url) }}" class="menu-link">
                                 <div data-i18n="{{ $child->title }}">{{ $child->title }}</div>
                             </a>

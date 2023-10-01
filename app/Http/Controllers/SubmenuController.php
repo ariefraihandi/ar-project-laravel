@@ -18,7 +18,10 @@ class SubmenuController extends Controller
         $menus = Menu::all(); // Mengambil data menu menggunakan model Menu
         $user = auth()->user();
         $userRole = UsersRole::where('id', $user->role_id)->first();
-      
+        $submenus = DB::table('menus_sub')
+        ->join('menus', 'menus_sub.menu_id', '=', 'menus.id')
+        ->select('menus_sub.*', 'menus.menu_name AS parent_menu_title')
+        ->get();
         $roleId = $user->role_id; 
 
         $data = [
@@ -26,6 +29,7 @@ class SubmenuController extends Controller
             'subtitle' => "List Submenu",
             'menus' => $menus,
             'userRole' => $userRole,
+            'submenus' => $submenus,
         ];
         
         return view('Konten/submenu', $data);
@@ -96,10 +100,41 @@ class SubmenuController extends Controller
         // Tampilkan form untuk mengedit submenu berdasarkan ID
     }
 
-    public function update(Request $request, $id)
+    public function submenuUpdate(Request $request, $id)
     {
-        // Perbarui submenu berdasarkan ID
+        // Validate the form data
+        $request->validate([
+            'menu_id' => 'required', // Add more validation rules for other fields
+            'title' => 'required',
+            'url' => 'required',
+            'icon' => 'required',
+            'itemsub' => 'required',
+            'is_active' => 'required',
+        ]);
+    
+        try {
+            // Find the submenu by its ID
+            $submenu = MenuSub::findOrFail($id);
+    
+            // Update submenu data
+            $submenu->menu_id = $request->input('menu_id');
+            $submenu->title = $request->input('title');
+            $submenu->url = $request->input('url');
+            $submenu->icon = $request->input('icon');
+            $submenu->itemsub = $request->input('itemsub');
+            $submenu->is_active = $request->input('is_active');
+            
+            // Save the updated submenu
+            $submenu->save();
+    
+            // Redirect to the submenu list with a success message
+            return redirect()->route('submenus.page')->with('success', 'Submenu updated successfully');
+        } catch (\Exception $e) {
+            // Handle any exceptions or errors here
+            return redirect()->route('submenus.page')->with('error', 'Failed to update submenu. ' . $e->getMessage());
+        }
     }
+    
 
     public function destroy($id)
     {

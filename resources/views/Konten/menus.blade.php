@@ -14,32 +14,34 @@
                     <thead>
                         <tr>
                             <th>No.</th>
-                            <th>Menu</th>
-                            <th>Status</th>
+                            <th>Menu Name</th>
+                            <th>Order</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody class="table-border-bottom-0">
-                        <?php $i = 1; ?>
-                      
-                            <tr>
-                                <th scope="row"><?= $i; ?></th>
-                                <td><i class="fab fa-angular fa-lg text-danger me-3"></i><strong>Menu</strong></td>
-                                <td><span class="badge bg-label-primary me-1">Active</span></td>
-                                <td>
-                                    <div class="dropdown">
-                                        <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                                            <i class="bx bx-dots-vertical-rounded"></i>
-                                        </button>
-                                        <div class="dropdown-menu">
-                                            <a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#editmenu1"><i class="bx bx-edit-alt me-1"></i> Edit</a>
-                                            <a class="dropdown-item" href=""><i class="bx bx-trash me-1"></i> Delete</a>
-                                        </div>
+                        @foreach($menus as $menu)
+                        <tr>
+                            <th scope="row">{{ $loop->index + 1 }}</th>
+                            <td><i class="fab fa-angular fa-lg text-danger me-3"></i><strong>{{ $menu->menu_name }}</strong></td>
+                            <td>{{ $menu->order }}</td>
+                            <td>
+                                <div class="dropdown">
+                                    <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                                        <i class="bx bx-dots-vertical-rounded"></i>
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#editmenu{{ $menu->id }}"><i class="bx bx-edit-alt me-1"></i> Edit</a>
+                                        <form action="{{ route('menu.destroy', $menu->id) }}" method="POST">
+                                            @method('DELETE')
+                                            @csrf
+                                            <button type="submit" class="dropdown-item"><i class="bx bx-trash me-1"></i> Delete</button>
+                                        </form>
                                     </div>
-                                </td>
-                            </tr>
-                            <?php $i++; ?>
-                      
+                                </div>
+                            </td>
+                        </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
@@ -78,6 +80,42 @@
         </div>
     </div>
 </div>
+
+@foreach ($menus as $sm)
+    <div class="modal fade" id="editmenu{{ $sm['id'] }}" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editmenuTitle">Edit {{ $title }}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form method="POST" action="{{ route('menu.update', $sm['id']) }}">
+                    @method('PUT')
+                    @csrf
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col mb-3">
+                            <label for="menu" class="form-label">Name</label>
+                            <input type="text" id="menu" name="menu" class="form-control" value="{{ $sm['menu_name'] }}" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col mb-3">
+                            <label for="order" class="form-label">Urutan</label>
+                            <input type="text" id="order" name="order" class="form-control" value="{{ $sm['order'] }}" />
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                    <button class="btn btn-primary" type="submit">Save changes</button>
+                    <input type="hidden" id="menuid" name="menuid" value="{{ $sm['id'] }}">
+                </div>
+            </form>
+            </div>
+        </div>
+    </div>
+@endforeach
 @endsection
 
 @push('footer-script')
