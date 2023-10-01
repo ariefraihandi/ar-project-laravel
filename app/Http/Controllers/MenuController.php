@@ -7,15 +7,21 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Menu;
+use App\Models\UsersRole;
 use App\Models\AccessMenu;
 
 class MenuController extends Controller
 {
     public function showMenusPage()
     {
+        $user = auth()->user();
+        $userRole = UsersRole::where('id', $user->role_id)->first();
+      
+        $roleId = $user->role_id; 
         $data = [
             'title'     => "Menu",
             'subtitle'     => "List Menu",
+            'userRole' => $userRole,
             
         ];
         return view('Konten/menus', $data);

@@ -38,4 +38,9 @@ class Users extends Model implements Authenticatable
     {
         return $this->hasMany(File::class, 'id_user');
     }
+
+    public function role()
+    {
+        return $this->belongsTo(UsersRole::class, 'role_id');
+    }
 }

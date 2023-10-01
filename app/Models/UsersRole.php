@@ -15,5 +15,8 @@ class UsersRole extends Model
         'is_active',
     ];
 
-    // Tambahan kode model lainnya jika diperlukan
+    public function accesses()
+    {
+        return $this->hasMany(Access::class, 'role_id');
+    }
 }
