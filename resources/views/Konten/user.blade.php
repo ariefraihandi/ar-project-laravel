@@ -30,7 +30,7 @@
                     <img src="https://ui-avatars.com/api/?name={{ urlencode($users->name) }}" alt="user-avatar" class="d-block rounded" height="100" width="100" id="uploadedAvatar"/>
                 @else
                     <!-- Display the user's existing profile image -->
-                    <img src="{{ asset('public/storage/profile/' . $userProfile->image) }}" alt="user-avatar" class="d-block rounded" height="100" width="100" id="uploadedAvatar"/>
+                    <img src="{{ asset('storage/profile/' . $userProfile->image) }}" alt="user-avatar" class="d-block rounded" height="100" width="100" id="uploadedAvatar"/>
                 @endif
                 <form method="POST" action="{{ route('account.update') }}" enctype="multipart/form-data">
                     @csrf
