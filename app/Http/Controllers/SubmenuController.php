@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB; // Import DB class
 use Illuminate\Support\Facades\Log; // Import Log class
 use App\Models\MenuSub;
 use App\Models\Menu;
+use App\Models\UsersRole;
 use App\Models\AccessSubmenu; // Import AccessSubmenu model
 use Illuminate\Support\Facades\Auth; // Import Auth facade
 
@@ -15,11 +16,16 @@ class SubmenuController extends Controller
     public function showSubmenu()
     {
         $menus = Menu::all(); // Mengambil data menu menggunakan model Menu
-        
+        $user = auth()->user();
+        $userRole = UsersRole::where('id', $user->role_id)->first();
+      
+        $roleId = $user->role_id; 
+
         $data = [
             'title' => "Submenu",
             'subtitle' => "List Submenu",
             'menus' => $menus,
+            'userRole' => $userRole,
         ];
         
         return view('Konten/submenu', $data);

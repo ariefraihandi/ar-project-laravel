@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Models\MenuSubsChild;
 use App\Models\AccessChild; // Import AccessSubmenu model
 use App\Models\Menu;
+use App\Models\UsersRole;
 use App\Models\MenuSub;
 
 class MenuSubsChildController extends Controller
@@ -17,12 +18,18 @@ class MenuSubsChildController extends Controller
     {
         $menus      = Menu::all(); // Mengambil data menu menggunakan model Menu
         $submenu    = MenuSub::all(); // Mengambil data menu menggunakan model Menu
-        
+        $user = auth()->user();
+        $userRole = UsersRole::where('id', $user->role_id)->first();
+      
+        $roleId = $user->role_id; 
+
+
         $data = [
             'title' => "Child Submenu",
             'subtitle' => "List Child Submenu",
             'menus' => $menus,
             'submenu' => $submenu,
+            'userRole' => $userRole,
         ];
         
         return view('Konten/submenuchild', $data);
