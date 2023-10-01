@@ -101,7 +101,7 @@ $childsubmenus = App\Models\MenuSubsChild::join('access_child', 'menus_subs_chil
                 <ul class="menu-sub">
                     @foreach ($childsubmenus->where('id_submenu', $submenu->submenu_id) as $child)
                         <li class="menu-item">
-                            <a href="{{ $child->url }}" class="menu-link">
+                          <a href="{{ url($child->url) }}" class="menu-link">
                                 <div data-i18n="{{ $child->title }}">{{ $child->title }}</div>
                             </a>
                         </li>
