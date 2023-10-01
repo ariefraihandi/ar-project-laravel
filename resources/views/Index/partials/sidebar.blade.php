@@ -65,7 +65,7 @@
       </a>
     </div>
 
-    {{-- @php
+    @php
 $userRole = $userRole['id'];
 $menus = App\Models\Menu::join('access_menu', 'menus.id', '=', 'access_menu.menu_id')
     ->where('access_menu.user_id', $userRole)
@@ -110,7 +110,7 @@ $childsubmenus = App\Models\MenuSubsChild::join('access_child', 'menus_subs_chil
             @endforeach
         </li>
     @endforeach
-</ul> --}}
+</ul>
 
 <script>
     // JavaScript untuk mengendalikan tampilan submenu child
