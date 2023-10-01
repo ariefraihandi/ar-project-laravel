@@ -94,14 +94,14 @@ $childsubmenus = App\Models\MenuSubsChild::join('access_child', 'menus_subs_chil
         </li>
         <li class="menu-item">
             @foreach ($submenus->where('menu_id', $menu->menu_id) as $submenu)
-                <a href="{{ url($submenu->url) }}@if ($submenu->itemsub == 1) javascript:void(0); @endif" class="menu-link @if ($submenu->itemsub == 1) menu-toggle @endif">
+                <a href="{{ url($submenu->url) }}" class="menu-link @if ($submenu->itemsub == 1) menu-toggle @endif">
                     <i class="menu-icon tf-icons {{ $submenu->icon }}"></i>
                     <div data-i18n="{{ $submenu->title }}">{{ $submenu->title }}</div>
                 </a>
                 <ul class="menu-sub">
                     @foreach ($childsubmenus->where('id_submenu', $submenu->submenu_id) as $child)
                         <li class="menu-item">
-                          <a href="{{ url($child->url) }}" class="menu-link">
+                            <a href="{{ url($child->url) }}" class="menu-link">
                                 <div data-i18n="{{ $child->title }}">{{ $child->title }}</div>
                             </a>
                         </li>
@@ -115,7 +115,8 @@ $childsubmenus = App\Models\MenuSubsChild::join('access_child', 'menus_subs_chil
 <script>
     // JavaScript untuk mengendalikan tampilan submenu child
     $(document).ready(function() {
-        $(".menu-toggle").click(function() {
+        $(".menu-toggle").click(function(e) {
+            e.preventDefault(); // Mencegah perubahan URL
             $(this).next(".menu-sub").toggle();
         });
     });
