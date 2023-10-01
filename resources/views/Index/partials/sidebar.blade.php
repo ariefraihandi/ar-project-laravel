@@ -94,7 +94,7 @@ $childsubmenus = App\Models\MenuSubsChild::join('access_child', 'menus_subs_chil
         </li>
         <li class="menu-item">
             @foreach ($submenus->where('menu_id', $menu->menu_id) as $submenu)
-                <a href="javascript:void(0);" class="menu-link @if ($submenu->itemsub == 1) menu-toggle @endif">
+                <a href="{{ url($submenu->url) }}@if ($submenu->itemsub == 1) javascript:void(0); @endif" class="menu-link @if ($submenu->itemsub == 1) menu-toggle @endif">
                     <i class="menu-icon tf-icons {{ $submenu->icon }}"></i>
                     <div data-i18n="{{ $submenu->title }}">{{ $submenu->title }}</div>
                 </a>
