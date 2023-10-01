@@ -38,16 +38,16 @@ class AccountController extends Controller
 
         try {
             // Validate the request data
-            // $request->validate([
-            //     'name' => 'required|string|max:255',
-            //     'email' => 'required|string|email|max:255',
-            //     'whatsapp' => 'nullable|string|max:15',
-            //     'alamat' => 'nullable|string|max:255',
-            //     'universitas' => 'nullable|string|max:255',
-            //     'fakultas' => 'nullable|string|max:255',
-            //     'user_ig' => 'nullable|string|max:255',
-            //     'profile_photo' => 'nullable|max:8000', // Max file size is 2MB (2048 KB)
-            // ]);
+            $request->validate([
+                'name' => 'required|string|max:255',
+                'email' => 'required|string|email|max:255',
+                'whatsapp' => 'nullable|string|max:15',
+                'alamat' => 'nullable|string|max:255',
+                'universitas' => 'nullable|string|max:255',
+                'fakultas' => 'nullable|string|max:255',
+                'user_ig' => 'nullable|string|max:255',
+                'profile_photo' => 'nullable|max:8000', // Max file size is 2MB (2048 KB)
+            ]);
 
             // Get the currently authenticated user
             $user = Auth::user();
@@ -84,15 +84,22 @@ class AccountController extends Controller
 
             if ($request->hasFile('profile_photo')) {
                 $uploadedFile = $request->file('profile_photo');
-                // Generate a unique file name
-                $fileName = uniqid('profile_photo_') . '.' . $uploadedFile->getClientOriginalExtension();
-    
+                
+                // Validasi tipe file dan ukuran file
+                $validatedData = $request->validate([
+                    'profile_photo' => 'image|mimes:jpeg,png|max:2048', // Max file size is 2MB (2048 KB)
+                ]);
+            
+                // Generate a unique file name based on the user's ID
+                $fileName = 'profile_photo_' . auth()->user()->id . '.' . $uploadedFile->getClientOriginalExtension();
+            
                 // Store the uploaded photo in the public/profile directory
                 $path = $uploadedFile->storeAs('public/profile', $fileName);
-    
+            
                 // Save the file name to the user's profile
                 $profile->update(['image' => $fileName]);
             }
+            
 
             DB::commit();
 
