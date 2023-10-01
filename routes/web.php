@@ -11,6 +11,7 @@ use App\Http\Controllers\VerificationController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\SubmenuController;
 use App\Http\Controllers\MenuSubsChildController;
+use App\Http\Controllers\AccountController;
 
 
 Route::get('/',                     [LandingController::class, 'showLandingPage'])->name('landing.page');
@@ -42,6 +43,9 @@ Route::get('menu/childsub',         [MenuSubsChildController::class, 'showChildS
 Route::post('submenu/child',        [MenuSubsChildController::class, 'childsubAction'])->name('childsub.action')->middleware('auth');
 Route::delete('submenu/child/{id}', [MenuSubsChildController::class, 'destroy'])->name('childsub.destroy')->middleware('auth');
 Route::put('submenu/child/{id}',    [MenuSubsChildController::class, 'childsubUpdate'])->name('childsub.update')->middleware('auth');
+
+Route::get('account/setting',       [AccountController::class, 'showAcountPage'])->name('account.page')->middleware('auth');
+Route::put('account/setting',       [AccountController::class, 'updateProfile'])->name('account.update')->middleware('auth');
 
 
 Route::get('register',              [RegisterController::class, 'showRegisPage'])->name('regis.page');

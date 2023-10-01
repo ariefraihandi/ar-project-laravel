@@ -41,7 +41,7 @@ class LoginController extends Controller
                 
 
                 // Jika tidak ada URL yang diminta sebelumnya, redirect ke halaman dashboard atau halaman lain yang sesuai.
-                return redirect('/user')->with('user_id', $user->id);
+                return redirect('/account/setting')->with('user_id', $user->id);
                 // echo $user->id;
             } else {
                 // Kredensial berhasil tetapi status tidak memenuhi syarat

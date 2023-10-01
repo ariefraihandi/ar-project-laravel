@@ -22,7 +22,7 @@ class UsersProfile extends Model
         'user_ig',
         'user_tt',
         'user_fb',
-        // Kolom lain yang ingin Anda izinkan untuk diisi secara massal
+        'whatsapp',
     ];
 
     // Relasi dengan User
