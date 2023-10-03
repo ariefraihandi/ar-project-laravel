@@ -102,4 +102,18 @@ class MenuRole extends Controller
         }
     }
 
+    public function updateAccessChild(Request $request)
+    {
+        $roleId = $request->input('role_id');
+        $childSubmenuId = $request->input('childsubmenu_id');
+    
+        // Hapus data AccessChild berdasarkan role_id dan childsubmenu_id
+        AccessChild::where('role_id', $roleId)
+                   ->where('childsubmenu_id', $childSubmenuId)
+                   ->delete();
+    
+        // Respon sukses ke klien
+        return redirect()->back()->with('success', 'Data AccessChild berhasil dihapus');
+    }
+    
 }

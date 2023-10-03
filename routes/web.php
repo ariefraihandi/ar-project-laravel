@@ -9,6 +9,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\VerificationController;
 use App\Http\Controllers\MenuController;
+use App\Http\Controllers\DownloadController;
 use App\Http\Controllers\SubmenuController;
 use App\Http\Controllers\MenuSubsChildController;
 use App\Http\Controllers\AccountController;
@@ -24,6 +25,10 @@ Route::post('turnitin.validation',  [CekturnitinController::class, 'checkAvailab
 Route::get('login',                 [LoginController::class, 'showLoginPage'])->name('login.page');
 Route::post('login',                [LoginController::class, 'loginAction'])->name('login.action');
 Route::get('logout',                [LoginController::class, 'logoutAction'])->name('logout.action');
+
+Route::get('redirect',              [DownloadController::class, 'download'])->name('download.redirect');
+Route::post('submit-form',          [DownloadController::class, 'submitForm'])->name('submit.form');
+
 
 
 Route::post('payment/proses',       [PaymentController::class, 'processPayment'])->name('payment.proses');
@@ -48,6 +53,8 @@ Route::put('submenu/child/{id}',    [MenuSubsChildController::class, 'childsubUp
 Route::get('menu/role',             [MenuRole::class, 'showRolePage'])->name('role.page')->middleware('auth');
 Route::delete('role/{id}',          [MenuRole::class, 'destroy'])->name('role.destroy')->middleware('auth');
 Route::get('menu/access/{id}',      [MenuRole::class, 'showAccessPage'])->name('access.page')->middleware('auth');
+Route::post('menu/access',     [MenuRole::class, 'updateAccessChild'])->name('update.accesschild')->middleware('auth');
+
 
 Route::get('account/setting',       [AccountController::class, 'showAcountPage'])->name('account.page')->middleware('auth');
 Route::put('account/setting',       [AccountController::class, 'updateProfile'])->name('account.update')->middleware('auth');

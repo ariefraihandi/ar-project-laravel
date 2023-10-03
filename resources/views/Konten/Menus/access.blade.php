@@ -36,7 +36,7 @@
                                                 <td><i class="fab fa-angular fa-lg text-danger"></i><strong>{{ $childsub->title }}</strong></td>
                                                 <td>
                                                     <div class="form-check form-switch me-3">
-                                                        <input class="form-check-input" name="accesschild" type="checkbox" {!! $checkAccesschild($userRole['id'], $childsub->id) !!} data-role="{{ $userRole['id'] }}" data-menu="{{ $childsub['id'] }}">
+                                                        <input class="form-check-input" type="checkbox" {!! $checkAccesschild($userRole['id'], $childsub->id) !!} data-role="{{ $userRole['id'] }}" data-menu="{{ $childsub['id'] }}" onclick="handleCheckbox(this)">
                                                     </div>
                                                 </td>
                                             </tr>
@@ -80,4 +80,26 @@
     @endif
 </script>
 
+<script>
+    function handleCheckbox(checkbox) {
+        const roleID = checkbox.getAttribute('data-role');
+        const menuID = checkbox.getAttribute('data-menu');
+    
+        // Menggunakan axios untuk mengirim data ke server
+        axios.post('{{ route('update.accesschild') }}', {
+            roleID: roleID,
+            menuID: menuID,
+        })
+        .then(function (response) {
+            // Tangani respons jika perlu
+            console.log('Permintaan berhasil:', response.data);
+            // Anda dapat menambahkan kode untuk menampilkan pesan sukses atau melakukan tindakan lain di sini
+        })
+        .catch(function (error) {
+            console.error('Terjadi kesalahan:', error);
+        });
+    }
+    </script>
+    
+    
 @endpush
