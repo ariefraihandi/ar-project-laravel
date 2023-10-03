@@ -57,7 +57,7 @@ class VerificationController extends Controller
         $verificationToken->delete();
 
         // Redirect ke halaman autentikasi setelah berhasil verifikasi
-        return redirect()->route('login.page')->with('success', 'Email Anda berhasil diverifikasi. Silakan masuk.');
+       
     }
 
     private function isTokenExpired($verificationToken)

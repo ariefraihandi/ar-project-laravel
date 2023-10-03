@@ -12,6 +12,7 @@ use App\Http\Controllers\MenuController;
 use App\Http\Controllers\SubmenuController;
 use App\Http\Controllers\MenuSubsChildController;
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\MenuRole;
 
 
 Route::get('/',                     [LandingController::class, 'showLandingPage'])->name('landing.page');
@@ -43,6 +44,10 @@ Route::get('menu/childsub',         [MenuSubsChildController::class, 'showChildS
 Route::post('submenu/child',        [MenuSubsChildController::class, 'childsubAction'])->name('childsub.action')->middleware('auth');
 Route::delete('submenu/child/{id}', [MenuSubsChildController::class, 'destroy'])->name('childsub.destroy')->middleware('auth');
 Route::put('submenu/child/{id}',    [MenuSubsChildController::class, 'childsubUpdate'])->name('childsub.update')->middleware('auth');
+
+Route::get('menu/role',             [MenuRole::class, 'showRolePage'])->name('role.page')->middleware('auth');
+Route::delete('role/{id}',          [MenuRole::class, 'destroy'])->name('role.destroy')->middleware('auth');
+Route::get('menu/access/{id}',      [MenuRole::class, 'showAccessPage'])->name('access.page')->middleware('auth');
 
 Route::get('account/setting',       [AccountController::class, 'showAcountPage'])->name('account.page')->middleware('auth');
 Route::put('account/setting',       [AccountController::class, 'updateProfile'])->name('account.update')->middleware('auth');

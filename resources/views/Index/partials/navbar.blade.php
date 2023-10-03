@@ -29,8 +29,15 @@ id="layout-navbar"
     <li class="nav-item navbar-dropdown dropdown-user dropdown">
       <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
         <div class="avatar avatar-online">
-          <img src="{{ asset('assets') }}/portal/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
-        </div>
+          @if (empty($userProfile['image']))
+              <img src="https://ui-avatars.com/api/?name={{ urlencode($users['name']) }}" alt="" class="w-40 h-40 rounded-circle"/>
+          @else
+              <!-- Display the user's existing profile image -->
+              <img src="{{ asset('storage/profile/' . $userProfile['image']) }}" alt="" class="w-40 h-40 rounded-circle"/>
+          @endif
+      </div>
+      
+      
       </a>
       <ul class="dropdown-menu dropdown-menu-end">
         <li>

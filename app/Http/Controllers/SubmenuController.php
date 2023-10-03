@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\DB; // Import DB class
 use Illuminate\Support\Facades\Log; // Import Log class
 use App\Models\MenuSub;
 use App\Models\Menu;
+use App\Models\Users;
+use App\Models\UsersProfile;
 use App\Models\UsersRole;
 use App\Models\AccessSubmenu; // Import AccessSubmenu model
 use Illuminate\Support\Facades\Auth; // Import Auth facade
@@ -15,21 +17,25 @@ class SubmenuController extends Controller
 {
     public function showSubmenu()
     {
-        $menus = Menu::all(); // Mengambil data menu menggunakan model Menu
-        $user = auth()->user();
-        $userRole = UsersRole::where('id', $user->role_id)->first();
-        $submenus = DB::table('menus_sub')
-        ->join('menus', 'menus_sub.menu_id', '=', 'menus.id')
-        ->select('menus_sub.*', 'menus.menu_name AS parent_menu_title')
-        ->get();
-        $roleId = $user->role_id; 
+        $menus          = Menu::all(); // Mengambil data menu menggunakan model Menu
+        $user           = auth()->user();
+        $users          = Users::where('id', $user->id)->first();
+        $userRole       = UsersRole::where('id', $user->role_id)->first();
+        $userProfile    = UsersProfile::where('user_id', $user->id)->first();
+        $submenus       = DB::table('menus_sub')
+                          ->join('menus', 'menus_sub.menu_id', '=', 'menus.id')
+                          ->select('menus_sub.*', 'menus.menu_name AS parent_menu_title')
+                          ->get();
+                          $roleId = $user->role_id; 
 
         $data = [
-            'title' => "Submenu",
-            'subtitle' => "List Submenu",
-            'menus' => $menus,
-            'userRole' => $userRole,
-            'submenus' => $submenus,
+            'title'         => "Submenu",
+            'subtitle'      => "List Submenu",
+            'menus'         => $menus,
+            'userRole'      => $userRole,
+            'submenus'      => $submenus,
+            'users'         => $users,
+            'userProfile'   => $userProfile,
         ];
         
         return view('Konten/submenu', $data);

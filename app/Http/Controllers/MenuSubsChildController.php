@@ -7,8 +7,10 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\MenuSubsChild;
-use App\Models\AccessChild; // Import AccessSubmenu model
+use App\Models\AccessChild; 
 use App\Models\Menu;
+use App\Models\Users;
+use App\Models\UsersProfile;
 use App\Models\UsersRole;
 use App\Models\MenuSub;
 
@@ -16,15 +18,16 @@ class MenuSubsChildController extends Controller
 {
     public function showChildSubmenu()
     {
-        $menus      = Menu::all(); 
-        $submenu    = MenuSub::all();
-        $childssubs = DB::table('menus_subs_child')
-        ->join('menus_sub', 'menus_subs_child.id_submenu', '=', 'menus_sub.id')
-        ->select('menus_subs_child.*', 'menus_sub.title AS parent_menu_title')
-        ->get();
-
-        $user       = auth()->user();
-        $userRole   = UsersRole::where('id', $user->role_id)->first();
+        $user           = auth()->user();
+        $menus          = Menu::all(); 
+        $users          = Users::where('id', $user->id)->first();
+        $submenu        = MenuSub::all();
+        $childssubs     = DB::table('menus_subs_child')
+                          ->join('menus_sub', 'menus_subs_child.id_submenu', '=', 'menus_sub.id')
+                          ->select('menus_subs_child.*', 'menus_sub.title AS parent_menu_title')
+                          ->get();
+        $userProfile    = UsersProfile::where('user_id', $user->id)->first();
+        $userRole       = UsersRole::where('id', $user->role_id)->first();
       
         $roleId = $user->role_id; 
 
@@ -36,6 +39,8 @@ class MenuSubsChildController extends Controller
             'submenu'       => $submenu,
             'userRole'      => $userRole,
             'childssubs'    => $childssubs,
+            'users'         => $users,
+            'userProfile'   => $userProfile,
         ];
         
         return view('Konten/submenuchild', $data);
