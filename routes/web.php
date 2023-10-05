@@ -13,6 +13,7 @@ use App\Http\Controllers\DownloadController;
 use App\Http\Controllers\SubmenuController;
 use App\Http\Controllers\MenuSubsChildController;
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\MakalahController;
 use App\Http\Controllers\MenuRole;
 
 
@@ -29,7 +30,8 @@ Route::get('logout',                [LoginController::class, 'logoutAction'])->n
 Route::get('redirect',              [DownloadController::class, 'download'])->name('download.redirect');
 Route::post('submit-form',          [DownloadController::class, 'submitForm'])->name('submit.form');
 
-
+Route::get('bossmakalah/makalah',   [MakalahController::class, 'showUploadForm'])->name('makalah.page');
+Route::post('bossmakalah/makalah',   [MakalahController::class, 'upload'])->name('makalah.upload');
 
 Route::post('payment/proses',       [PaymentController::class, 'processPayment'])->name('payment.proses');
 

@@ -2,42 +2,42 @@
 @push('css-addon')
 <style>
     body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 0;
-}
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+    }
 
-.upload-container {
-    background-color: #fff;
-    max-width: 400px;
-    margin: 20px auto;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
+    .upload-container {
+        background-color: #fff;
+        max-width: 400px;
+        margin: 20px auto;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
 
-.upload-input {
-    margin-bottom: 10px;
-}
+    .upload-input {
+        margin-bottom: 10px;
+    }
 
-label {
-    display: block;
-    font-weight: bold;
-}
+    label {
+        display: block;
+        font-weight: bold;
+    }
 
-.file-input {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-}
+    .file-input {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+    }
 
-progress {
-    width: 100%;
-    height: 10px;
-    margin-top: 5px;
-}
+    progress {
+        width: 100%;
+        height: 10px;
+        margin-top: 5px;
+    }
 
 </style>
 @endpush
@@ -88,47 +88,67 @@ progress {
 @push('footer-script')
 
 <script>
-    // Function to update progress bar
-function updateProgressBar(fileInput, progressBar) {
-    const file = fileInput.files[0];
-    const fileSize = file.size;
-    const reader = new FileReader();
-
-    reader.onload = function (e) {
-        // Simulate file upload progress (you can replace this with actual AJAX upload)
-        let progress = 0;
-        const interval = setInterval(function () {
-            progress += 25;
-            progressBar.value = progress;
-
-            if (progress >= 100) {
-                clearInterval(interval);
+    // Function to check if all file inputs have files selected
+    function checkFilesSelected() {
+        const fileInputs = document.querySelectorAll(".file-input");
+        for (const fileInput of fileInputs) {
+            if (!fileInput.files || fileInput.files.length === 0) {
+                return false;
             }
-        }, fileSize / 100);
+        }
+        return true;
+    }
 
-        // Simulate completion after 2 seconds (you can replace this with actual upload)
-        // setTimeout(function () {
-        //     progressBar.value = 100;
-        //     alert(`Upload of ${file.name} completed.`);
-        // }, 2000);
-    };
+    // Function to enable/disable submit button based on file selection
+    function updateSubmitButton() {
+        const submitButton = document.querySelector(".form-control-submit-button");
+        const filesSelected = checkFilesSelected();
+        submitButton.disabled = !filesSelected;
+    }
 
-    reader.readAsDataURL(file);
-}
+    // Function to update progress bar
+    function updateProgressBar(fileInput, progressBar) {
+        const file = fileInput.files[0];
+        const fileSize = file.size;
+        const reader = new FileReader();
 
-// Attach event listeners to file inputs
-document.addEventListener("DOMContentLoaded", function () {
-    const fileInputs = document.querySelectorAll(".file-input");
-    const progressBars = document.querySelectorAll("progress");
+        reader.onload = function (e) {
+            // Simulate file upload progress (you can replace this with actual AJAX upload)
+            let progress = 0;
+            const interval = setInterval(function () {
+                progress += 25;
+                progressBar.value = progress;
 
-    fileInputs.forEach((fileInput, index) => {
-        fileInput.addEventListener("change", function () {
-            updateProgressBar(this, progressBars[index]);
+                if (progress >= 100) {
+                    clearInterval(interval);
+                }
+            }, fileSize / 100);
+
+            // Enable/disable submit button when all files are selected
+            updateSubmitButton();
+        };
+
+        reader.readAsDataURL(file);
+    }
+
+    // Attach event listeners to file inputs
+    document.addEventListener("DOMContentLoaded", function () {
+        const fileInputs = document.querySelectorAll(".file-input");
+        const progressBars = document.querySelectorAll("progress");
+
+        fileInputs.forEach((fileInput, index) => {
+            fileInput.addEventListener("change", function () {
+                updateProgressBar(this, progressBars[index]);
+            });
         });
     });
-});
 
+    // Disable submit button on page load
+    window.addEventListener("load", function () {
+        updateSubmitButton();
+    });
 </script>
+
 <script>
     // Cek apakah ada pesan sukses yang dikirim dari controller
     @if(session('success'))
@@ -150,4 +170,5 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     @endif
 </script>
+<script async="async" data-cfasync="false" src="//ophoacit.com/1?z=6421009"></script>
 @endpush
