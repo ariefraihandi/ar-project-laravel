@@ -26,7 +26,7 @@ class PortalController extends Controller
     {
         $user = auth()->user();
         $userRole = UsersRole::where('id', $user->role_id)->first();
-      
+        $users          = Users::where('id', $user->id)->first();
 
         $roleId = $user->role_id; // Mengambil role_id dari pengguna
         $menus = Menu::all();
@@ -34,6 +34,7 @@ class PortalController extends Controller
             'title' => "Portal",
             'subtitle' => "AR Project",           
             'userRole' => $userRole,
+            'users'         => $users,
             'menus' => $menus,
 
         ];
