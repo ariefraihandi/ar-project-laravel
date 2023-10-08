@@ -21,6 +21,6 @@ class VerifyFileEmail extends Mailable
     public function build()
     {
         return $this->subject('Download Makalah')
-                    ->view('emails.userdownloadfile');
+                    ->view('Emails.userdownloadfile');
     }
 }
