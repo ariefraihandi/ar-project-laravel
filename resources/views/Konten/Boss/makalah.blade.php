@@ -18,7 +18,7 @@
                             <th>Actions</th>
                         </tr>
                     </thead>
-                    <tbody class="table-border-bottom-0">
+                    <tbody>
                         @php $i = 1; @endphp
                         @foreach($makalas as $makalah)
                         <tr>

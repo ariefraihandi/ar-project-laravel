@@ -18,6 +18,7 @@ class FreeDownloader extends Model
         'file3',
         'id_makalah',
         'status',
+        'token',
     ];
 
     // Define any relationships or additional methods here

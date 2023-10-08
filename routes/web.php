@@ -28,10 +28,16 @@ Route::post('login',                [LoginController::class, 'loginAction'])->na
 Route::get('logout',                [LoginController::class, 'logoutAction'])->name('logout.action');
 
 Route::get('redirect',              [DownloadController::class, 'download'])->name('download.redirect');
+Route::get('download',              [DownloadController::class, 'filesDownlodad'])->name('download.page');
+Route::post('download',             [DownloadController::class, 'downloading'])->name('downloading.action');
 Route::post('submit-form',          [DownloadController::class, 'submitForm'])->name('submit.form');
 
-Route::get('bossmakalah/makalah',   [MakalahController::class, 'showUploadForm'])->name('makalah.page');
-Route::post('bossmakalah/makalah',   [MakalahController::class, 'upload'])->name('makalah.upload');
+Route::get('bossmakalah/makalah',   [MakalahController::class, 'showUploadForm'])->name('makalah.page')->middleware('auth');
+Route::post('bossmakalah/makalah',  [MakalahController::class, 'upload'])->name('makalah.upload')->middleware('auth');
+
+Route::get('bossmakalah/files',     [MakalahController::class, 'showFiles'])->name('files.page')->middleware('auth');
+Route::post('verify/files',         [MakalahController::class, 'sendSuccessEmail'])->name('verify.files')->middleware('auth');
+Route::post('bossmakalah/files',    [MakalahController::class, 'upload'])->name('makalah.upload')->middleware('auth');
 
 Route::post('payment/proses',       [PaymentController::class, 'processPayment'])->name('payment.proses');
 

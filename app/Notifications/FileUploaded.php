@@ -41,7 +41,8 @@ class FileUploaded extends Notification
         return (new MailMessage)
             ->subject('Notifikasi Admin')
             ->line('File Anda telah berhasil diunggah.')
-            ->line('Terima kasih atas pengunggahan file Anda.');
+            // ->line('Terima kasih atas pengunggahan file Anda.');
+            ->line('Mohon Menunggu Sistem Kami Melakukan Pemeriksaan.');
     }
 
     /**

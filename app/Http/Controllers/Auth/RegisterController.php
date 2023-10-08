@@ -132,20 +132,6 @@ class RegisterController extends Controller
         return redirect()->back()->with('error', 'Registration failed. Please try again.');
     }
 
-// } catch (\Exception $e) {
-//     // Rollback the transaction on error
-//     DB::rollback();
-
-//     $errorMessage = 'Registration failed. Please try again. Error: ' . $e->getMessage();
-
-//     Log::error('Registration error: ' . $errorMessage);
-
-//     // Handle the error and return a response with the error message
-//     return redirect()->back()->with('error', $errorMessage);
-// }
-
-
-
 
 
 

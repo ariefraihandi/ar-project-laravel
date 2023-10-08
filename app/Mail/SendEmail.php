@@ -25,7 +25,7 @@ class SendEmail extends Mailable
     public function build()
     {
         // Tentukan URL berdasarkan lingkungan (local atau production)
-        $verificationURL = env('APP_ENV') === 'local' ? env('LOCAL_URL') : env('SERVER_URL');
+        $verificationURL = "https://ariefraihandi.biz.id";
         
         return $this->subject('Verifikasi Pendaftaran')
                     ->view('Emails.welcome', [
