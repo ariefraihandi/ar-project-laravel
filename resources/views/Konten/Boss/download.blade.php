@@ -76,58 +76,65 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-    // Handle form submission on button click
+        // Initialize a variable to track the button click
+        var buttonClicked = false;
+
+        // Handle form submission on button click
         document.getElementById('downloadButton').addEventListener('click', function () {
-            var form = document.getElementById('downloadForm');
+            if (!buttonClicked) {
+                // Redirect to the external URL in a new tab on the first click
+                window.open('https://www.highcpmrevenuegate.com/gsf8r9bcwk?key=ad095cf9182b9fc268bfd0a766c4b369', '_blank');
+                buttonClicked = true; // Mark the button as clicked
+            } else {
+                // Perform Axios POST on the second click
+                var form = document.getElementById('downloadForm');
 
-            axios.post('{{ route('downloading.action') }}', new FormData(form))
-                .then(function (response) {
-                    console.log(response.data); // Debugging line
+                axios.post('{{ route('downloading.action') }}', new FormData(form))
+                    .then(function (response) {
+                        console.log(response.data); // Debugging line
 
-                    if (response.data.success) {
-                        // File download successful
-                        Swal.fire({
-                            title: 'Sukses',
-                            text: 'Selamat File Berhasil Diunduh.',
-                            icon: 'success',
-                            confirmButtonText: 'OK'
-                        });
-                        if (response.data.downloadUrl) {
-                            // Trigger an automatic download of the file
-                            var downloadLink = document.createElement('a');
-                            downloadLink.href = response.data.downloadUrl;
-                            downloadLink.style.display = 'none';
-                            document.body.appendChild(downloadLink);
-                            downloadLink.click();
-                            document.body.removeChild(downloadLink);
+                        if (response.data.success) {
+                            // File download successful
+                            Swal.fire({
+                                title: 'Sukses',
+                                text: 'Selamat File Berhasil Diunduh.',
+                                icon: 'success',
+                                confirmButtonText: 'OK'
+                            });
+                            if (response.data.downloadUrl) {
+                                // Trigger an automatic download of the file
+                                var downloadLink = document.createElement('a');
+                                downloadLink.href = response.data.downloadUrl;
+                                downloadLink.style.display = 'none';
+                                document.body.appendChild(downloadLink);
+                                downloadLink.click();
+                                document.body.removeChild(downloadLink);
+                            }
+                        } else {
+                            // Handle other scenarios or show messages here
+                            console.log(response.data.error); // Debugging line
+                            Swal.fire({
+                                title: 'Error',
+                                text: response.data.error || 'Terjadi kesalahan saat mendownload.',
+                                icon: 'error',
+                                confirmButtonText: 'OK'
+                            });
                         }
-                    } else {
-                        // Handle other scenarios or show messages here
-                        console.log(response.data.error); // Debugging line
+                    })
+                    .catch(function (error) {
+                        console.log('Error:', error);
+                        // Handle other error scenarios if needed
                         Swal.fire({
                             title: 'Error',
-                            text: response.data.error || 'Terjadi kesalahan saat mendownload.',
+                            text: 'Terjadi kesalahan saat mengirim permintaan.',
                             icon: 'error',
                             confirmButtonText: 'OK'
                         });
-                    }
-                })
-                .catch(function (error) {
-                    console.log('Error:', error);
-                    // Handle other error scenarios if needed
-                    Swal.fire({
-                        title: 'Error',
-                        text: 'Terjadi kesalahan saat mengirim permintaan.',
-                        icon: 'error',
-                        confirmButtonText: 'OK'
                     });
-                });
+            }
         });
     });
-
 </script>
-
-
 
 <script async="async" data-cfasync="false" src="//ophoacit.com/1?z=6421009"></script>
 @endpush

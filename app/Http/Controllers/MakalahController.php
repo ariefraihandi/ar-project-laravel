@@ -13,6 +13,7 @@ use App\Models\DownloadLog;
 use Illuminate\Http\Request;
 use App\Mail\SendEmail;
 use App\Mail\VerifyFileEmail;
+use App\Mail\NotVerifiedFileEmail;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Log;
@@ -126,6 +127,20 @@ class MakalahController extends Controller
             // Jika data tidak ditemukan, cetak pesan bahwa data tidak ditemukan
             echo "Data tidak ditemukan";
         }
+    }
+   
+    public function sendFailEmail(Request $request)
+    {
+        $email = $request->input('email');
+        $kode = $request->input('id_makalah');
+        // Lakukan pencarian dalam tabel free_downloader
+       
+        $verificationURL = "https://ariefraihandi.biz.id/redirect?id_makalah=$kode&judul_makalah=Makalah+$kode&format=docx&harga=5000 ";
+       
+            Mail::to($email)->send(new NotVerifiedFileEmail($verificationURL));
+            return redirect()->back()->with('success', 'Email Berhasil Dikirim');
+            
+            
     }
 
 

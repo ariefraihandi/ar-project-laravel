@@ -45,6 +45,15 @@
                                         Verify
                                     </button>
                                 </form>
+                                <form action="{{ route('notverified.files') }}" method="POST">
+                                    @csrf
+                                    <input type="hidden" name="token" value="{{ $makalah->token }}">
+                                    <input type="hidden" name="email" value="{{ $makalah->email }}">
+                                    <input type="hidden" name="id_makalah" value="{{ $makalah->id_makalah }}">
+                                    <button type="submit" class="btn btn-warning" style="padding: 5px 10px;">
+                                        Not Verified
+                                    </button>
+                                </form>
                                 <br>
                                 <button class="btn btn-danger">Delete</button>
                             </td>
