@@ -27,7 +27,8 @@ class MakalahController extends Controller
         $users          = Users::where('id', $user->id)->first();
         $userRole       = UsersRole::where('id', $user->role_id)->first();
         $userProfile    = UsersProfile::where('user_id', $user->id)->first();
-        $makalas        = Makalah::all();
+        $makalas        = Makalah::orderBy('id', 'desc')->paginate(10);
+
         $data = [
             'title'         => "Bosmakalah",
             'subtitle'      => "Daftar Makalah",
@@ -157,11 +158,10 @@ class MakalahController extends Controller
 
     public function store(Request $request)
     {
-        // Validasi input
         $validatedData = $request->validate([
             'kode' => 'required',
             'url' => 'required',
-            'harga' => 'required|numeric',
+            'harga' => 'required',
         ]);
 
         // Simpan data makalah ke database

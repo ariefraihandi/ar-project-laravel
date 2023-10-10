@@ -37,7 +37,51 @@
                         @endforeach
                     </tbody>
                 </table>
-                
+              
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col">
+                            <div class="demo-inline-spacing">
+                                <!-- Basic Pagination -->
+                                <nav aria-label="Page navigation">
+                                    <ul class="pagination">
+                                        <li class="page-item first">
+                                            <a class="page-link" href="{{ $makalas->url(1) }}" aria-label="First">
+                                                <span aria-hidden="true"><i class="tf-icon bx bx-chevrons-left"></i></span>
+                                            </a>
+                                        </li>
+                                        <li class="page-item prev">
+                                            <a class="page-link" href="{{ $makalas->previousPageUrl() }}" aria-label="Previous">
+                                                <span aria-hidden="true"><i class="tf-icon bx bx-chevron-left"></i></span>
+                                            </a>
+                                        </li>
+                                        @php
+                                            $start = max(1, $makalas->currentPage() - 2);
+                                            $end = min($start + 4, $makalas->lastPage());
+                                        @endphp
+                                        @for ($page = $start; $page <= $end; $page++)
+                                            <li class="page-item {{ $makalas->currentPage() == $page ? 'active' : '' }}">
+                                                <a class="page-link" href="{{ $makalas->url($page) }}">{{ $page }}</a>
+                                            </li>
+                                        @endfor
+                                        <li class="page-item">
+                                            <a class="page-link" href="{{ $makalas->nextPageUrl() }}" aria-label="Next">
+                                                <span aria-hidden="true"><i class="tf-icon bx bx-chevron-right"></i></span>
+                                            </a>
+                                        </li>
+                                        <li class="page-item last">
+                                            <a class="page-link" href="{{ $makalas->url($makalas->lastPage()) }}" aria-label="Last">
+                                                <span aria-hidden="true"><i class="tf-icon bx bx-chevrons-right"></i></span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                                
+                                <!--/ Basic Pagination -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 
             </div>
         </div>

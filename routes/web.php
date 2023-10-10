@@ -38,7 +38,7 @@ Route::get('bossmakalah/files',     [MakalahController::class, 'showFiles'])->na
 Route::post('verify/files',         [MakalahController::class, 'sendSuccessEmail'])->name('verify.files')->middleware('auth');
 Route::post('notverified/files',    [MakalahController::class, 'sendFailEmail'])->name('notverified.files')->middleware('auth');
 Route::post('bossmakalah/files',    [MakalahController::class, 'upload'])->name('makalah.upload')->middleware('auth');
-Route::post('bossmakalah/makalah',    [MakalahController::class, 'store'])->name('makalah.action')->middleware('auth');
+Route::post('bossmakalah/makalah',  [MakalahController::class, 'store'])->name('makalah.action')->middleware('auth');
 
 Route::post('payment/proses',       [PaymentController::class, 'processPayment'])->name('payment.proses');
 
