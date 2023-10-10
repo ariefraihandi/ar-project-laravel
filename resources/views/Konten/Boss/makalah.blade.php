@@ -4,7 +4,8 @@
     <div class="container-xxl flex-grow-1 container-p-y">
         <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"><?= $title; ?> /</span> <?= $subtitle; ?></h4>    
         <!-- Basic Bootstrap Table -->
-        <a class="btn btn-success mb-3" href="#" data-bs-toggle="modal" data-bs-target="#addSubMenu">Add Sub Menu</a>
+        <a class="btn btn-success mb-3" href="#" data-bs-toggle="modal" data-bs-target="#addSubMenu">Excel Upload</a>
+        <a class="btn btn-primary mb-3" href="#" data-bs-toggle="modal" data-bs-target="#addData">Tambah Data</a>
         <div class="card">
             <h5 class="card-header"><?= $title; ?></h5>
             <div class="table-responsive text-nowrap">
@@ -59,11 +60,53 @@
                             </div>
                         </div>
                     </div>
+                    
                     <div class="modal-footer">
                         <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
                             Close
                         </button>
                         <button type="submit" class="btn btn-success">Import Data</button>
+                    </div>
+                </form>
+                
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="addData" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addSubMenuTitle">Tambah Data</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form method="post" action="{{ route('makalah.action') }}" enctype="multipart/form-data">
+                    @csrf
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col mb-3">
+                                <label for="kode" class="form-label">Kode</label>
+                                <input type="text" id="kode" name="kode" class="form-control" value="BM-" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col mb-3">
+                                <label for="url" class="form-label">Url</label>
+                                <input type="text" id="url" name="url" class="form-control" value="https://product.bossmakalah.com/wp-content/uploads/" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col mb-3">
+                                <label for="harga" class="form-label">Harga</label>
+                                <input type="text" id="harga" name="harga" class="form-control" value="5000" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                            Close
+                        </button>
+                        <button type="submit" class="btn btn-success">Tambah Data</button>
                     </div>
                 </form>
                 

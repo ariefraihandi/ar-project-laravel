@@ -143,8 +143,6 @@ class MakalahController extends Controller
             
     }
 
-
-
     private function generateDownloadToken()
     {
         $characters = '0123456789';
@@ -155,6 +153,21 @@ class MakalahController extends Controller
         }
 
         return $token;
+    }
+
+    public function store(Request $request)
+    {
+        // Validasi input
+        $validatedData = $request->validate([
+            'kode' => 'required',
+            'url' => 'required',
+            'harga' => 'required|numeric',
+        ]);
+
+        // Simpan data makalah ke database
+        Makalah::create($validatedData);
+
+        return redirect()->route('makalah.page')->with('success', 'Data makalah berhasil ditambahkan.');
     }
 
 }
