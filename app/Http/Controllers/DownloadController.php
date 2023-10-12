@@ -138,6 +138,7 @@ class DownloadController extends Controller
                 'Accept' => 'application/json',
                 'Content-Type' => 'application/json',
                 'va' => $va,
+                'ip' => $request->ip(),
                 'signature' => $signature,
                 'timestamp' => $timestamp,
             // ])->post('https://sandbox.ipaymu.com/api/v2/payment', $body);

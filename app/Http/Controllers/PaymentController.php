@@ -71,7 +71,7 @@ class PaymentController extends Controller
             'headers' => [
                 'Accept' => 'application/json',
                 'Content-Type' => 'application/json',
-                // 'ip' => '127.0.0.1',
+                'ip' => $request->ip(),
                 'va' => $va,
                 'signature' => $signature,
                 'timestamp' => $timestamp,
