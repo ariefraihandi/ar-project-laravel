@@ -28,6 +28,10 @@ Route::post('login',                [LoginController::class, 'loginAction'])->na
 Route::get('logout',                [LoginController::class, 'logoutAction'])->name('logout.action');
 
 Route::get('redirect',              [DownloadController::class, 'download'])->name('download.redirect');
+Route::get('bayar',                 [DownloadController::class, 'bayar'])->name('bayar.redirect');
+Route::post('submit-bayar',         [DownloadController::class, 'submitBayar'])->name('beli.form');
+
+
 Route::get('download',              [DownloadController::class, 'filesDownlodad'])->name('download.page');
 Route::post('download',             [DownloadController::class, 'downloading'])->name('downloading.action');
 Route::post('submit-form',          [DownloadController::class, 'submitForm'])->name('submit.form');
@@ -41,6 +45,10 @@ Route::post('bossmakalah/files',    [MakalahController::class, 'upload'])->name(
 Route::post('bossmakalah/makalah',  [MakalahController::class, 'store'])->name('makalah.action')->middleware('auth');
 
 Route::post('payment/proses',       [PaymentController::class, 'processPayment'])->name('payment.proses');
+Route::get('/thank',                [PaymentController::class, 'thanks'])->name('payment.thank');
+Route::get('/cancel',               [PaymentController::class, 'cancelPayment'])->name('payment.cancel');
+Route::post('/callback/ipaymu',     [PaymentController::class, 'handleIPaymuCallback'])->name('payment.handle');
+
 
 Route::get('dashboard',             [PortalController::class, 'showPortalPage'])->name('dashboard.page')->middleware('auth');
 

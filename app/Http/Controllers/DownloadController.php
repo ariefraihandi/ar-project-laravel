@@ -6,15 +6,18 @@ namespace App\Http\Controllers;
 use App\Models\FreeDownloader;
 use App\Models\Makalah;
 use App\Models\DownloadLog;
+use App\Models\PembelianMakalah;
 use Illuminate\Http\Request;
 use App\Notifications\FileUploaded;
-use Illuminate\Support\Facades\Crypt;
 use RealRashid\SweetAlert\Facades\Alert; // Import SweetAlert
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail; 
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Facades\Mail; // Import Mail
-use App\Mail\AdminNotification; // Import mail yang akan digunakan
+use Illuminate\Support\Facades\Http;
+use App\Mail\AdminNotification;
 
 class DownloadController extends Controller
 {
@@ -39,6 +42,123 @@ class DownloadController extends Controller
         return view('Konten/Boss/free', $data);
 
     }
+    
+    public function bayar(Request $request)
+    {
+        // Validate user inputs
+    
+        // Get input values from the form
+        $idMakalah = $request->input('id_makalah');
+        $judulMakalah = $request->input('judul_makalah');
+        $format = $request->input('format');
+        $harga = $request->input('harga');
+        $whatsapp = $request->input('whatsapp');
+    
+        // Process the WhatsApp number to remove '0' or '62' at the beginning
+    
+        // Set the data to be passed to the view
+        $data = [
+            'title' => "Data Pembayaran",
+            'subtitle' => "AR Project",
+            'idMakalah' => $idMakalah,
+            'judulMakalah' => $judulMakalah,
+            'format' => $format,
+            'harga' => $harga,
+        ];
+        // Render the 'bayar' view with the data
+        return view('Konten/Boss/bayar', $data);
+    }
+    
+    public function submitBayar(Request $request)
+    {
+        try {
+            $validatedData = $request->validate([
+                'id_makalah' => 'required',
+                'judul_makalah' => 'required',
+                'format' => 'required',
+                'harga' => 'required',
+                'email' => 'required|email',
+                'whatsapp' => 'required',
+            ]);
+    
+            $idMakalah = $validatedData['id_makalah'];
+            $judulMakalah = $validatedData['judul_makalah'];
+            $format = $validatedData['format'];
+            $harga = $validatedData['harga'];
+            $email = $validatedData['email'];
+            $nomorHp = $validatedData['whatsapp'];
+    
+            $nomorHp = preg_replace('/^0|^(62)/', '', $nomorHp);
+            $makalah = Makalah::where('kode', $idMakalah)->first();
+    
+            $token = Str::random(40);
+    
+            $pembelian = new PembelianMakalah();
+            $pembelian->id_makalah = $idMakalah;
+            $pembelian->judul_makalah = $judulMakalah;
+            $pembelian->format = $format;
+            $pembelian->harga = $makalah->harga;
+            $pembelian->email = $email;
+            $pembelian->nomor_hp = $nomorHp;
+            $pembelian->token = $token;
+            $pembelian->status = 0;
+            $pembelian->save();
+    
+        
+            // $va = env('IPAYMU_VA_S');
+            // $apiKey = env('IPAYMU_API_KEY_S');
+
+            $va = env('IPAYMU_VA');
+            $apiKey = env('IPAYMU_API_KEY');
+
+
+            // $domain = 'http://127.0.0.1:8000';
+            $domain = 'https://ariefraihandi.biz.id';
+    
+            $body = [
+                'product' => [$judulMakalah],
+                'qty' => [1],
+                'name' => [$email],
+                'phone' => [$nomorHp],
+                'price' => [$makalah->harga],
+                'returnUrl' => $domain . '/thank?token=' . $token,
+                'cancelUrl' => $domain . '/cancel?token=' . $token,
+                'notifyUrl' => route('payment.handle'),
+                'referenceId' => $token,
+            ];
+    
+            $jsonBody = json_encode($body, JSON_UNESCAPED_SLASHES);
+            $requestBody = strtolower(hash('sha256', $jsonBody));
+            $stringToSign = strtoupper('POST') . ':' . $va . ':' . $requestBody . ':' . $apiKey;
+            $signature = hash_hmac('sha256', $stringToSign, $apiKey);
+            $timestamp = date('YmdHis');
+    
+            // Kirim permintaan ke iPaymu
+            $response = Http::withHeaders([
+                'Accept' => 'application/json',
+                'Content-Type' => 'application/json',
+                'va' => $va,
+                'signature' => $signature,
+                'timestamp' => $timestamp,
+            ])->post('https://sandbox.ipaymu.com/api/v2/payment', $body);
+            // ])->post('https://my.ipaymu.com/api/v2/payment', $body);
+            $responseData = $response->json();
+    
+            if ($response->ok() && $responseData['Status'] == 200) {
+                $sessionId = $responseData['Data']['SessionID'];
+                $url = $responseData['Data']['Url'];
+                return redirect($url);
+            } else {
+                return redirect()->back()->with('error', 'Gagal membuat pembayaran di iPaymu.');
+            }
+        } catch (\Exception $e) {
+            dd($e);
+            return redirect()->back()->with('error', 'An error occurred while processing your request.');
+        }
+    }
+    
+
+    
 
     public function submitForm(Request $request)
     {

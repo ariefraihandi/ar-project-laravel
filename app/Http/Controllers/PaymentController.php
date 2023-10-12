@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
-use App\Models\HargaBarang; // Sesuaikan namespace model dengan proyek Anda
-use App\Models\Payment; // Sesuaikan namespace model dengan proyek Anda
+use App\Models\PembelianMakalah;
+use App\Models\HargaBarang; 
+use App\Models\Payment;
 use GuzzleHttp\Client;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\PaymentSuccessMail;
 
 class PaymentController extends Controller
 {
@@ -87,4 +90,74 @@ class PaymentController extends Controller
             return response()->json(['message' => 'Gagal membuat pembayaran di iPaymu'], 400);
         }
     }
+
+    public function handleIPaymuCallback(Request $request)
+{
+    // Dapatkan data callback dari iPaymu
+    $callbackData = $request->all();
+    \Log::info('Callback Data:', $callbackData);
+
+    // Proses data callback dan cari pembelian berdasarkan reference_id
+    $referenceId = $callbackData['reference_id'];
+    \Log::info('Reference ID:', $referenceId);
+
+    $pembelian = PembelianMakalah::where('token', $referenceId)->first();
+    \Log::info('Pembelian:', $pembelian);
+
+    if ($pembelian) {
+        \Log::info('Pembelian Status Before Update:', $pembelian->status);
+        // Update status pembelian menjadi berhasil
+        $pembelian->status = 1;
+        $pembelian->save();
+        \Log::info('Pembelian Status After Update:', $pembelian->status);
+
+        // Kirim email ke pembeli
+        Mail::to($pembelian->email)->send(new PaymentSuccessMail($pembelian));
+    }
+
+    // Respon ke iPaymu dengan OK
+    return response('OK', 200);
+}
+
+
+    public function thanks(Request $request)
+    {
+        $token = $request->query('token');
+    
+        // Cek apakah token ada di tabel pembelian_makalah
+        $pembelian = PembelianMakalah::where('token', $token)->first();
+        $data = [
+            'title'     => "Pembayaran Berhasil",
+            'subtitle'     => "AR Project",
+            'pembelian' => $pembelian,
+        ];
+
+        if ($pembelian) {
+            session()->flash('success', 'Pembayaran Berhasil.');
+            return view('Konten/Boss/succesBayar', $data);
+        } else {
+            session()->flash('error', 'Data Tidak Ditemukan');
+            return view('Konten/Boss/succesBayar', $data);
+        }
+    }
+
+    public function cancelPayment($token)
+    {
+        $token = $request->query('token');
+        $pembelian = PembelianMakalah::where('token', $token)->first();
+        $data = [
+            'title'     => "Pembayaran Gagal",
+            'subtitle'     => "AR Project",
+            'pembelian' => $pembelian,
+        ];
+        
+        if ($pembelian) {
+            session()->flash('error', 'Pembayaran Dibatalkan');
+            return view('Konten/Boss/succesBayar', $data);
+        } else {
+            session()->flash('success', 'Data Tidak Ditemukan');
+            return view('Konten/Boss/succesBayar', $data);
+        }
+    }
+    
 }
