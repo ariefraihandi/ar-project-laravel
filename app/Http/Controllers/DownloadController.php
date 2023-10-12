@@ -140,8 +140,8 @@ class DownloadController extends Controller
                 'va' => $va,
                 'signature' => $signature,
                 'timestamp' => $timestamp,
-            ])->post('https://sandbox.ipaymu.com/api/v2/payment', $body);
-            // ])->post('https://my.ipaymu.com/api/v2/payment', $body);
+            // ])->post('https://sandbox.ipaymu.com/api/v2/payment', $body);
+            ])->post('https://my.ipaymu.com/api/v2/payment', $body);
             $responseData = $response->json();
     
             if ($response->ok() && $responseData['Status'] == 200) {
