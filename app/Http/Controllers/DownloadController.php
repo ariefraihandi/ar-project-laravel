@@ -150,8 +150,11 @@ class DownloadController extends Controller
                 $url = $responseData['Data']['Url'];
                 return redirect($url);
             } else {
-               
-                return redirect()->back()->with('error', 'Gagal membuat pembayaran di iPaymu.');
+                // Capture the error message from the response
+                $errorResponse = $response->json();
+                $errorMessage = $errorResponse['Message']; // Assuming iPaymu provides an error message
+            
+                return redirect()->back()->with('error', 'Gagal membuat pembayaran di iPaymu: ' . $errorMessage);
             }
         } catch (\Exception $e) {
             dd($e);
