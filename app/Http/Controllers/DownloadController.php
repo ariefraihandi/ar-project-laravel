@@ -105,15 +105,15 @@ class DownloadController extends Controller
             $pembelian->save();
     
         
-            // $va = env('IPAYMU_VA_S');
-            // $apiKey = env('IPAYMU_API_KEY_S');
+            $va = env('IPAYMU_VA_S');
+            $apiKey = env('IPAYMU_API_KEY_S');
 
-            $va = env('IPAYMU_VA');
-            $apiKey = env('IPAYMU_API_KEY');
+            // $va = env('IPAYMU_VA');
+            // $apiKey = env('IPAYMU_API_KEY');
 
 
-            // $domain = 'http://127.0.0.1:8000';
-            $domain = 'https://ariefraihandi.biz.id';
+            $domain = 'http://127.0.0.1:8000';
+            // $domain = 'https://ariefraihandi.biz.id';
     
             $body = [
                 'product' => [$judulMakalah],
@@ -141,8 +141,8 @@ class DownloadController extends Controller
                 'ip' => $request->ip(),
                 'signature' => $signature,
                 'timestamp' => $timestamp,
-            // ])->post('https://sandbox.ipaymu.com/api/v2/payment', $body);
-            ])->post('https://my.ipaymu.com/api/v2/payment', $body);
+            ])->post('https://sandbox.ipaymu.com/api/v2/payment', $body);
+            // ])->post('https://my.ipaymu.com/api/v2/payment', $body);
             $responseData = $response->json();
     
             if ($response->ok() && $responseData['Status'] == 200) {
