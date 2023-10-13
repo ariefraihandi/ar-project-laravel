@@ -110,8 +110,8 @@ class PaymentController extends Controller
                 $pembelian->status = $callbackData['status_code'];
                 $pembelian->save();
 
-                // Send an email to the buyer
-                Mail::to($pembelian->email)->send(new PaymentSuccessMail($pembelian));
+                $tokenUrl = 'https://ariefraihandi.biz.id/thank?token=' . $pembelian->token;
+                Mail::to($pembelian->email)->send(new PaymentSuccessMail($pembelian, $tokenUrl));
 
                 // Respond to IPAYMU with a success message
                 return response()->json(['message' => 'Payment successfully processed'], 200);
