@@ -112,8 +112,8 @@ class DownloadController extends Controller
             // $apiKey = env('IPAYMU_API_KEY');
 
 
-            // $domain = 'http://127.0.0.1:8000';
-            $domain = 'https://ariefraihandi.biz.id';
+            $domain = 'http://127.0.0.1:8000';
+            // $domain = 'https://ariefraihandi.biz.id';
     
             $body = [
                 'product' => [$judulMakalah],
@@ -163,36 +163,36 @@ class DownloadController extends Controller
     }
     
     public function downloadPayment(Request $request)
-{
-    // Mendapatkan nilai token dari permintaan
-    $token = $request->input('token');
+    {
+        // Mendapatkan nilai token dari permintaan
+        $token = $request->input('token');
 
-    // Temukan data pembelian berdasarkan token atau ID yang sesuai
-    $pembelian = PembelianMakalah::where('token', $token)->first();
+        // Temukan data pembelian berdasarkan token atau ID yang sesuai
+        $pembelian = PembelianMakalah::where('token', $token)->first();
 
-    // Jika pembelian ditemukan
-    if ($pembelian) {
-        // Periksa status pembelian
-        if ($pembelian->status === 1) {
-            // Temukan makalah berdasarkan kode
-            $makalah = Makalah::where('kode', $pembelian->id_makalah)->first();
+        // Jika pembelian ditemukan
+        if ($pembelian) {
+            // Periksa status pembelian
+            if ($pembelian->status == 1) {
+                // Temukan makalah berdasarkan kode
+                $makalah = Makalah::where('kode', $pembelian->id_makalah)->first();
 
-            if ($makalah) {
-                // Redirect ke URL makalah dalam tab baru (target=_blank)
-                return redirect()->away($makalah->url);
+                if ($makalah) {
+                    // Redirect ke URL makalah dalam tab baru (target=_blank)
+                    return redirect()->away($makalah->url);
+                } else {
+                    // Makalah tidak ditemukan
+                    return response()->json(['message' => 'Makalah not found'], 404);
+                }
             } else {
-                // Makalah tidak ditemukan
-                return response()->json(['message' => 'Makalah not found'], 404);
+                // Status pembelian tidak valid
+                return response()->json(['message' => 'Status pembelian tidak valid'], 400);
             }
         } else {
-            // Status pembelian tidak valid
-            return response()->json(['message' => 'Status pembelian tidak valid'], 400);
+            // Pembelian tidak ditemukan
+            return response()->json(['message' => 'Purchase not found'], 404);
         }
-    } else {
-        // Pembelian tidak ditemukan
-        return response()->json(['message' => 'Purchase not found'], 404);
     }
-}
 
 
     
