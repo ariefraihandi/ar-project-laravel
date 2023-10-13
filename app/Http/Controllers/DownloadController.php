@@ -162,7 +162,32 @@ class DownloadController extends Controller
         }
     }
     
-
+    public function downloadPayment(Request $request)
+    {
+        // Mendapatkan nilai token dari permintaan
+        $token = $request->input('token');
+    
+        // Temukan data pembelian berdasarkan token atau ID yang sesuai
+        $pembelian = PembelianMakalah::where('token', $token)->first();
+    
+        // Jika pembelian ditemukan
+        if ($pembelian) {
+            // Dapatkan nama berkas pembayaran dari pembelian
+            $namaBerkas = $pembelian->nama_berkas_pembayaran;
+    
+            // Verifikasi bahwa berkas pembayaran ada dalam penyimpanan (storage)
+            if (Storage::exists('path/to/payment_files/' . $namaBerkas)) {
+                // Mengirim berkas sebagai respons
+                return response()->download(storage_path('app/path/to/payment_files/' . $namaBerkas));
+            } else {
+                // Berkas tidak ditemukan, Anda dapat menangani ini dengan cara tertentu
+                return response()->json(['message' => 'File not found'], 404);
+            }
+        } else {
+            // Pembelian tidak ditemukan
+            return response()->json(['message' => 'Purchase not found'], 404);
+        }
+    }
     
 
     public function submitForm(Request $request)

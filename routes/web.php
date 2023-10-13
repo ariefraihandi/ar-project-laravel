@@ -35,6 +35,9 @@ Route::post('submit-bayar',         [DownloadController::class, 'submitBayar'])-
 Route::get('download',              [DownloadController::class, 'filesDownlodad'])->name('download.page');
 Route::post('download',             [DownloadController::class, 'downloading'])->name('downloading.action');
 Route::post('submit-form',          [DownloadController::class, 'submitForm'])->name('submit.form');
+Route::post('download-bayar',       [DownloadController::class, 'downloadPayment'])->name('download.bayar');
+
+
 
 Route::get('bossmakalah/makalah',   [MakalahController::class, 'showUploadForm'])->name('makalah.page')->middleware('auth');
 Route::post('bossmakalah/makalah',  [MakalahController::class, 'upload'])->name('makalah.upload')->middleware('auth');

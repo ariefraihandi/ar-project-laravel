@@ -92,41 +92,39 @@ class PaymentController extends Controller
     }
 
     public function handleIPaymuCallback(Request $request)
-{
-    try {
-        // Verify the request came from IPAYMU (you may need to implement request verification logic)
+    {
+        try {
+            // Verify the request came from IPAYMU (you may need to implement request verification logic)
 
-        // Assuming the request is already verified
-        $callbackData = $request->all();
+            // Assuming the request is already verified
+            $callbackData = $request->all();
 
-        // Process callback data and find the purchase based on reference_id
-        $referenceId = $callbackData['reference_id'];
+            // Process callback data and find the purchase based on reference_id
+            $referenceId = $callbackData['reference_id'];
 
-        // Find the purchase based on the reference_id
-        $pembelian = PembelianMakalah::where('token', $referenceId)->first();
+            // Find the purchase based on the reference_id
+            $pembelian = PembelianMakalah::where('token', $referenceId)->first();
 
-        if ($pembelian) {
-            // Update the status to the IPAYMU status_code (1 for "berhasil")
-            $pembelian->status = $callbackData['status_code'];
-            $pembelian->save();
+            if ($pembelian) {
+                // Update the status to the IPAYMU status_code (1 for "berhasil")
+                $pembelian->status = $callbackData['status_code'];
+                $pembelian->save();
 
-            // Send an email to the buyer
-            Mail::to($pembelian->email)->send(new PaymentSuccessMail($pembelian));
+                // Send an email to the buyer
+                Mail::to($pembelian->email)->send(new PaymentSuccessMail($pembelian));
 
-            // Respond to IPAYMU with a success message
-            return response()->json(['message' => 'Payment successfully processed'], 200);
-        } else {
-            // If the purchase is not found, respond with an appropriate message
-            return response()->json(['message' => 'Purchase not found'], 404);
+                // Respond to IPAYMU with a success message
+                return response()->json(['message' => 'Payment successfully processed'], 200);
+            } else {
+                // If the purchase is not found, respond with an appropriate message
+                return response()->json(['message' => 'Purchase not found'], 404);
+            }
+        } catch (\Exception $e) {
+            // Handle exceptions and respond with an error message that includes the error message
+            return response()->json(['message' => 'An error occurred during callback processing: ' . $e->getMessage()], 500);
         }
-    } catch (\Exception $e) {
-        // Handle exceptions and respond with an error message that includes the error message
-        return response()->json(['message' => 'An error occurred during callback processing: ' . $e->getMessage()], 500);
-    }
-    
-}
-
-    
+        
+    }   
     
     private function verifyIPaymuRequest(Request $request)
     {
@@ -136,9 +134,6 @@ class PaymentController extends Controller
         return true; // Return true if the request is verified, or false if it's not.
     }
     
-    
-
-
 public function thanks(Request $request)
 {
     $token = $request->query('token');

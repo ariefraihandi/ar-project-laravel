@@ -48,8 +48,22 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="text-container">
+                    @if ($pembelian)
                     <div class="above-heading">Pembayaran Berhasil</div>
-                    <h2>Judul Makalah: {{ $pembelian->judul_makalah }}</h2>
+                        <h2>Judul Makalah: {{ $pembelian->judul_makalah }}</h2>
+
+                        <form method="POST" data-toggle="validator" data-focus="false" action="{{ route('download.bayar') }}" enctype="multipart/form-data">
+                            @csrf
+                            <input type="hidden" class="form-control-input" id="token" name="token" value="{{$pembelian->judul_makalah}}">
+                            <div class="form-group" style="display: flex; justify-content: center; align-items: center;">
+                                <button type="submit" class="form-control-submit-button" id="download-button">Download</button>
+                            </div>
+                        </form>                        
+                    @else
+                        <h2>Data Tidak Diketahui</h2>
+                    @endif
+
+
                 </div> <!-- end of text-container -->
             </div> <!-- end of col -->
         </div> <!-- end of row -->
@@ -58,7 +72,39 @@
 @endsection
 
 @push('footer-script')
+
 <script>
+    document.getElementById('download-button').addEventListener('click', function(event) {
+        event.preventDefault(); // Menghentikan tindakan bawaan formulir
+
+        // Dapatkan nilai token
+        var token = document.getElementById('token').value;
+
+        // Lakukan permintaan AJAX untuk memeriksa status pembelian
+        $.ajax({
+            type: 'POST',
+            url: '{{ route('download.bayar') }}', // Gantilah dengan rute yang sesuai
+            data: {token: token},
+            success: function(response) {
+                if (response.status === 1) {
+                    // Jika status pembelian adalah 1 (berhasil), maka arahkan ke URL makalah
+                    window.open(response.makalahUrl, '_blank');
+                } else {
+                    // Tampilkan pesan kesalahan jika status bukan 1
+                    alert('Status pembelian tidak valid.');
+                }
+            },
+            error: function() {
+                alert('Terjadi kesalahan saat memeriksa status pembelian.');
+            }
+        });
+    });
+</script>
+
+
+<script>
+@endif
+
     // Cek apakah ada pesan sukses yang dikirim dari controller
     @if(session('success'))
         Swal.fire({
