@@ -112,8 +112,8 @@ class DownloadController extends Controller
             // $apiKey = env('IPAYMU_API_KEY');
 
 
-            $domain = 'http://127.0.0.1:8000';
-            // $domain = 'https://ariefraihandi.biz.id';
+            // $domain = 'http://127.0.0.1:8000';
+            $domain = 'https://ariefraihandi.biz.id';
     
             $body = [
                 'product' => [$judulMakalah],
