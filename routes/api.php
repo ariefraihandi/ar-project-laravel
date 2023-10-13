@@ -38,3 +38,5 @@ Route::middleware('throttle:5,1')->group(function () {
         }
     });
 });
+
+Route::post('/api/callback/ipaymu', [PaymentController::class, 'handleIPaymuCallback'])->name('payment.handle')->middleware('verifyIpaymuCsrf');
