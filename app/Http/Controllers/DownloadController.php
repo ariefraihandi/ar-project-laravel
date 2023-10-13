@@ -174,8 +174,16 @@ class DownloadController extends Controller
     if ($pembelian) {
         // Periksa status pembelian
         if ($pembelian->status === 1) {
-            $makalahs = Makalah::where('kode', $pembelian->id_makalah)->first();
-            return redirect()->away($makalahs->url);
+            // Temukan makalah berdasarkan kode
+            $makalah = Makalah::where('kode', $pembelian->id_makalah)->first();
+
+            if ($makalah) {
+                // Redirect ke URL makalah dalam tab baru (target=_blank)
+                return redirect()->away($makalah->url);
+            } else {
+                // Makalah tidak ditemukan
+                return response()->json(['message' => 'Makalah not found'], 404);
+            }
         } else {
             // Status pembelian tidak valid
             return response()->json(['message' => 'Status pembelian tidak valid'], 400);
@@ -185,6 +193,7 @@ class DownloadController extends Controller
         return response()->json(['message' => 'Purchase not found'], 404);
     }
 }
+
 
     
 
