@@ -135,6 +135,7 @@ class DownloadController extends Controller
     
             // Kirim permintaan ke iPaymu
             $response = Http::withHeaders([
+                'X-CSRF-TOKEN: ' => $csrfToken,
                 'Accept' => 'application/json',
                 'Content-Type' => 'application/json',
                 'va' => $va,
