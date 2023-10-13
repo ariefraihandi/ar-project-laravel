@@ -103,8 +103,6 @@
 
 
 <script>
-@endif
-
     // Cek apakah ada pesan sukses yang dikirim dari controller
     @if(session('success'))
         Swal.fire({
