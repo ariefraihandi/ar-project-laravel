@@ -13,6 +13,7 @@ class PaymentSuccessMail extends Mailable
     use Queueable, SerializesModels;
 
     protected $pembelian;
+    protected $tokenUrl;
 
     /**
      * Create a new message instance.
