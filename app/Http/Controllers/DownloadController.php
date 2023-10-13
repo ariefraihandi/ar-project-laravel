@@ -174,8 +174,8 @@ class DownloadController extends Controller
     if ($pembelian) {
         // Periksa status pembelian
         if ($pembelian->status === 1) {
-            // Status pembelian adalah 1 (berhasil), maka arahkan ke URL makalah
-            return redirect()->away($pembelian->makalah_url);
+            $makalahs = Makalah::where('kode', $pembelian->id_makalah)->first();
+            return redirect()->away($makalahs->url);
         } else {
             // Status pembelian tidak valid
             return response()->json(['message' => 'Status pembelian tidak valid'], 400);
