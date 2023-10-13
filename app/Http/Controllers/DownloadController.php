@@ -198,11 +198,14 @@ class DownloadController extends Controller
         // Validasi form
         $validator = Validator::make($request->all(), [
             'email' => 'required|email',
+            'instagram' => 'required',
             'file1' => 'required|file|mimes:pdf',
             'file2' => 'required|file|mimes:pdf',
             'file3' => 'required|file|mimes:pdf',
+            'followInstagram' => 'required|in:1', // Menambahkan validasi centang
             'id_makalah' => 'required|string',
         ]);
+        
 
         if ($validator->fails()) {
             // Validasi gagal, redirect kembali dengan pesan kesalahan dan input data
@@ -232,6 +235,7 @@ class DownloadController extends Controller
             // Buat rekaman baru dalam database
             $fileUploader = FreeDownloader::create([
                 'email' => $request->input('email'),
+                'ig_user' => $request->input('instagram'),
                 'file1' => $filePaths['file1'] ?? null,
                 'file2' => $filePaths['file2'] ?? null,
                 'file3' => $filePaths['file3'] ?? null,

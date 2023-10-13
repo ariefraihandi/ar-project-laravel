@@ -58,6 +58,11 @@
                             <label class="label-control" for="email">Email:</label>
                             <div class="help-block with-errors"></div>
                         </div>
+                        <div class="form-group" id="instagramInput">
+                            <input type="text" class="form-control-input" id="instagram" name="instagram" required>
+                            <label class="label-control" for="instagram">Username Instagram:</label>
+                            <div class="help-block with-errors"></div>
+                        </div>                        
                         <div class="upload-input">
                             <label for="file1">Makalah 1:</label>
                             <input type="file" id="file1" name="file1" class="file-input" accept=".pdf">
@@ -73,6 +78,14 @@
                             <input type="file" name="file3" id="file3" class="file-input" accept=".pdf">
                             <progress id="progress3" max="100" value="0"></progress>
                         </div>
+                        <div class="form-group" id="followInstagramInput">
+                            <label class="label-control">
+                                Saya telah mengikuti Instagram <a href="https://www.instagram.com/ariefraihandi/" target="_blank">@ariefraihandi</a>:
+                            </label>
+                            <input type="checkbox" id="followInstagram" name="followInstagram" value="1" required>
+                        </div>
+                        
+                        
                         <input type="hidden" class="form-control-input" id="id_makalah" name="id_makalah" value="{{$idMakalah}}">
                         <div class="form-group" style="display: flex; justify-content: center; align-items: center;">
                             <button type="submit" class="form-control-submit-button">Submit</button>

@@ -15,6 +15,7 @@
                             <th>Email</th>
                             <th>Code</th>
                             <th>Files</th>
+                            <th>Instagram</th>
                             <th>Date</th>
                             <th>Actions</th>
                         </tr>
@@ -26,6 +27,7 @@
                             <td>{{ $i }}</td>
                             <td>{{ $makalah->email }}</td>
                             <td>{{ $makalah->id_makalah }}</td>
+                           
                             <td>
                                 <a href="{{ asset('storage/uploads/' . $makalah->file1) }}"  target="_blank">File 1 | </a>
                            
@@ -33,7 +35,9 @@
                             
                                 <a href="{{ asset('storage/uploads/' . $makalah->file3) }}" target="_blank">File 3</a>
                             </td>
-                            
+                            <td>
+                                <a href="https://www.instagram.com/{{ $makalah->ig_user }}" target="_blank">{{ $makalah->ig_user }}</a>
+                            </td>
                             <td>{{ \Carbon\Carbon::parse($makalah->created_at)->format('d M') }}</td>
                             <td>
                                 <form action="{{ route('verify.files') }}" method="POST">
