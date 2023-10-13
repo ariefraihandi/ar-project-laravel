@@ -5,23 +5,20 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken as Middleware;
 
-class VerifyIpaymuCsrfToken extends Middleware
+class VerifyIpaymuCsrfToken
 {
-    protected $except = [
-        '/callback/ipaymu', // Add your callback route here
-    ];
-
     public function handle($request, Closure $next)
     {
-        // Check for CSRF token in the request except for the callback route
-        if (! $this->inExceptArray($request) && ! $this->tokensMatch($request)) {
+        // Ensure that the request has the 'X-CSRF-TOKEN' header
+        $requestToken = $request->header('X-CSRF-TOKEN');
+        $expectedToken = csrf_token();
+
+        if ($requestToken !== $expectedToken) {
             // CSRF token mismatch - handle the error or log it
             return response('CSRF token mismatch', 400);
         }
 
-        return $this->addCookieToResponse($request, $next($request));
+        return $next($request);
     }
 }
-

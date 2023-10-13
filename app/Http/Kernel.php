@@ -66,4 +66,10 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'ensureCekbayar'    => \App\Http\Middleware\EnsureCekBayar::class,
     ];
+
+    protected $routeMiddleware = [
+        // ...
+        'verifyIpaymuCsrf' => \App\Http\Middleware\VerifyIpaymuCsrfToken::class,
+    ];
+    
 }
