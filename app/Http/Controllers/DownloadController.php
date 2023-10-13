@@ -126,6 +126,7 @@ class DownloadController extends Controller
                 'notifyUrl' => route('payment.handle'),
                 'referenceId' => $token,
             ];
+           
     
             $jsonBody = json_encode($body, JSON_UNESCAPED_SLASHES);
             $requestBody = strtolower(hash('sha256', $jsonBody));
@@ -133,10 +134,7 @@ class DownloadController extends Controller
             $signature = hash_hmac('sha256', $stringToSign, $apiKey);
             $timestamp = date('YmdHis');
     
-            $csrfToken = csrf_token();
-
             $response = Http::withHeaders([
-                'X-CSRF-TOKEN: ' => $csrfToken,
                 'Accept' => 'application/json',
                 'Content-Type' => 'application/json',
                 'va' => $va,
@@ -153,7 +151,6 @@ class DownloadController extends Controller
                 $url = $responseData['Data']['Url'];
                 return redirect($url);
             } else {
-                // Capture the error message from the response
                 $errorResponse = $response->json();
                 $errorMessage = $errorResponse['Message']; // Assuming iPaymu provides an error message
             

@@ -47,7 +47,6 @@ Route::post('bossmakalah/makalah',  [MakalahController::class, 'store'])->name('
 Route::post('payment/proses',       [PaymentController::class, 'processPayment'])->name('payment.proses');
 Route::get('thank',                 [PaymentController::class, 'thanks'])->name('payment.thank');
 Route::get('/cancel',               [PaymentController::class, 'cancelPayment'])->name('payment.cancel');
-// Route::post('/callback/ipaymu',     [PaymentController::class, 'handleIPaymuCallback'])->name('payment.handle')->middleware('verifyIpaymuCsrf');
 
 
 
