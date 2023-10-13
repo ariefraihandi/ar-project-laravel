@@ -57,59 +57,25 @@ class PortalController extends Controller
     }
 
 
-    // private function getIPaymuBalance() {
-    //     $va = '0000002276624504'; // Ganti dengan VA Anda
-    //     $apiKey = 'SANDBOXDC2E69E7-FC26-4251-BDDB-4EEF2B920C39-20220131095236'; // Ganti dengan API Key Anda
-    //     $timestamp = date('YmdHis');
+    private function formatBalance($balance) {
+        $formattedBalance = '';
     
-    //     $curl = curl_init();
+        if ($balance >= 1000000) {
+            $formattedBalance = number_format($balance / 1000000, 1, ',', '.') . ' M';
+        } elseif ($balance >= 1000) {
+            $formattedBalance = number_format($balance / 1000, 1, ',', '.') . ' K';
+        } else {
+            $formattedBalance = number_format($balance, 1, ',', '.');
+        }
     
-    //     $data = [
-    //         'account' => $va
-    //     ];
+        return $formattedBalance;
+    }
     
-    //     $jsonBody = json_encode($data, JSON_UNESCAPED_SLASHES);
-    //     $requestBody = strtolower(hash('sha256', $jsonBody));
-    //     $stringToSign = 'POST:' . $va . ':' . $requestBody . ':' . $apiKey;
-    //     $signature = hash_hmac('sha256', $stringToSign, $apiKey);
     
-    //     curl_setopt_array($curl, array(
-    //         CURLOPT_URL => 'https://sandbox.ipaymu.com/api/v2/balance',
-    //         CURLOPT_RETURNTRANSFER => true,
-    //         CURLOPT_ENCODING => '',
-    //         CURLOPT_MAXREDIRS => 10,
-    //         CURLOPT_TIMEOUT => 0,
-    //         CURLOPT_FOLLOWLOCATION => true,
-    //         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-    //         CURLOPT_CUSTOMREQUEST => 'POST',
-    //         CURLOPT_POSTFIELDS => json_encode($data),
-    //         CURLOPT_HTTPHEADER => array(
-    //             'Content-Type: application/json',
-    //             'signature: ' . $signature,
-    //             'va: ' . $va,
-    //             'timestamp: ' . $timestamp
-    //         ),
-    //     ));
-    
-    //     $response = curl_exec($curl);
-    //     $httpCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
-    
-    //     curl_close($curl);
-    
-    //     if ($httpCode === 200) {
-    //         return $response;
-    //     } else {
-    //         return 'Failed to retrieve balance. HTTP Status: ' . $httpCode;
-    //     }
-    // }
-
     private function getIPaymuBalance() {
         $va = env('IPAYMU_VA');
         $apiKey = env('IPAYMU_API_KEY');
-        
-        // $va = env('IPAYMU_VA_S');
-        // $apiKey = env('IPAYMU_API_KEY_S');
-
+    
         $timestamp = date('YmdHis');
     
         $curl = curl_init();
@@ -124,7 +90,8 @@ class PortalController extends Controller
         $signature = hash_hmac('sha256', $stringToSign, $apiKey);
     
         curl_setopt_array($curl, array(
-            CURLOPT_URL => 'https://ipaymu.com/api/v2/balance',
+            CURLOPT_URL => 'https://my.ipaymu.com/api/v2/balance',
+            // CURLOPT_URL => 'https://sandbox.ipaymu.com/api/v2/balance',
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => '',
             CURLOPT_MAXREDIRS => 10,
@@ -140,6 +107,7 @@ class PortalController extends Controller
                 'timestamp: ' . $timestamp
             ),
         ));
+        
     
         $response = curl_exec($curl);
         $httpCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
@@ -150,8 +118,8 @@ class PortalController extends Controller
             $responseData = json_decode($response, true);
             if ($responseData && isset($responseData['Data']['MerchantBalance'])) {
                 $merchantBalance = $responseData['Data']['MerchantBalance'];
-                // Konversi ke format IDR
-                $formattedBalance = 'Rp ' . number_format($merchantBalance, 0, ',', '.');
+                // Format the balance
+                $formattedBalance = $this->formatBalance($merchantBalance);
                 return $formattedBalance;
             } else {
                 return 'Failed to retrieve balance or invalid response.';
@@ -160,6 +128,5 @@ class PortalController extends Controller
             return 'Failed to retrieve balance. HTTP Status: ' . $httpCode;
         }
     }
-    
-    
 }
+    
