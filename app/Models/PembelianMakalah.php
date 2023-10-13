@@ -9,6 +9,6 @@ class PembelianMakalah extends Model
 {
     use HasFactory;
 
-    protected $table = 'pembelian_makalah'; // Nama tabel yang sesuai dengan nama tabel Anda
+    protected $table = 'pembelian_makalah';
     protected $fillable = ['id_makalah', 'judul_makalah', 'format', 'harga', 'email', 'nomor_hp', 'status', 'token'];
 }

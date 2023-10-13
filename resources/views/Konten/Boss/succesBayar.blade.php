@@ -50,8 +50,6 @@
                 <div class="text-container">
                     <div class="above-heading">Pembayaran Berhasil</div>
                     <h2>Judul Makalah: {{ $pembelian->judul_makalah }}</h2>
-                    
-                    
                 </div> <!-- end of text-container -->
             </div> <!-- end of col -->
         </div> <!-- end of row -->
