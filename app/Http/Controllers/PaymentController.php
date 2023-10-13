@@ -93,61 +93,46 @@ class PaymentController extends Controller
 
     public function handleIPaymuCallback(Request $request)
     {
-        // Verify the request came from iPaymu (you may need to check their documentation for security details)
-        $verified = $this->verifyIPaymuRequest($request);
+        // Get callback data from iPaymu
+        $callbackData = $request->json()->all();
+        \Log::info('Callback Data:', $callbackData);
     
-        if (!$verified) {
-            \Log::error('Unauthorized callback request from iPaymu');
-            return response('Unauthorized', 401);
-        }
+        // Extract relevant data from the callback
+        $referenceId = $callbackData['reference_id'];
+        $status = $callbackData['status_code']; // Use 'status_code' from the callback
     
-        try {
-            // Get callback data from iPaymu
-            $callbackData = $request->all();
-            \Log::info('Callback Data:', $callbackData);
+        \Log::info('Reference ID:', $referenceId);
     
-            // Process callback data and find the purchase based on reference_id
-            $referenceId = $callbackData['reference_id'];
-            \Log::info('Reference ID:', $referenceId);
+        $pembelian = PembelianMakalah::where('token', $referenceId)->first();
+        \Log::info('Pembelian:', $pembelian);
     
-            $pembelian = PembelianMakalah::where('token', $referenceId)->first();
-            \Log::info('Pembelian:', $pembelian);
+        if ($pembelian) {
+            \Log::info('Pembelian Status Before Update:', $pembelian->status);
     
-            if ($pembelian) {
-                \Log::info('Pembelian Status Before Update:', $pembelian->status);
+            // Update status in the database based on 'status_code' from the callback
+            $pembelian->status = $status; // Use 'status_code' from the callback
+            $pembelian->save();
     
-                // Update status to 'berhasil' (or the appropriate status code)
-                $pembelian->status = '1'; // Update to your specific status code
-                $pembelian->save();
+            \Log::info('Pembelian Status After Update:', $pembelian->status);
     
-                \Log::info('Pembelian Status After Update:', $pembelian->status);
-    
-                // Send an email to the buyer
+            // Send an email to the buyer
+            try {
                 Mail::to($pembelian->email)->send(new PaymentSuccessMail($pembelian));
-    
-                // Respond to iPaymu with a success message
-                return response('Payment successfully processed', 200);
+            } catch (Exception $emailException) {
+                \Log::error('Error sending email: ' . $emailException->getMessage());
+                // You can return a specific error response for email sending failure
+                return response('Error sending email', 500);
             }
     
-            // If the purchase is not found, respond with an appropriate message
-            \Log::error('Purchase not found for reference_id: ' . $referenceId);
-            return response('Purchase not found', 404);
-        } catch (Exception $e) {
-            // Handle any exceptions and log the error
-            \Log::error('Error handling iPaymu callback: ' . $e->getMessage());
-    
-            // Respond with an error message
-            return response('An error occurred while processing the payment', 500);
+            // Respond to iPaymu with a success message
+            return response('Payment successfully processed', 200);
         }
+    
+        // If the purchase is not found, respond with an appropriate message
+        \Log::error('Purchase not found for reference_id: ' . $referenceId);
+        return response('Purchase not found', 404);
     }
     
-    private function verifyIPaymuRequest(Request $request)
-    {
-        // Implement request verification logic here.
-        // This may involve verifying the request signature, checking IP addresses, or using API keys, depending on iPaymu's documentation and security requirements.
-    
-        return true; // Return true if the request is verified, or false if it's not.
-    }
 
 
 
