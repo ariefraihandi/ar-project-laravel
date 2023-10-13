@@ -19,11 +19,13 @@ class PaymentSuccessMail extends Mailable
      * Create a new message instance.
      *
      * @param  \App\Models\PembelianMakalah  $pembelian
+     * @param  string  $tokenUrl
      * @return void
      */
-    public function __construct($pembelian)
+    public function __construct($pembelian, $tokenUrl)
     {
         $this->pembelian = $pembelian;
+        $this->tokenUrl = $tokenUrl;
     }
 
     /**
@@ -32,11 +34,9 @@ class PaymentSuccessMail extends Mailable
      * @return $this
      */
     public function build()
-{
-    $tokenUrl = $this->tokenUrl;
-    return $this->markdown('Emails.payment-success')
-        ->with(['pembelian' => $this->pembelian, 'tokenUrl' => $tokenUrl])
-        ->subject('Payment Success');
-}
-
+    {
+        return $this->markdown('Emails.payment-success')
+            ->with(['pembelian' => $this->pembelian, 'tokenUrl' => $this->tokenUrl])
+            ->subject('Payment Success');
+    }
 }
