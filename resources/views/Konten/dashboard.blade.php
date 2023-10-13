@@ -62,7 +62,7 @@
                   </div>
                 </div>
                 <span class="fw-semibold d-block mb-1">Profit</span>
-                <h3 class="card-title mb-2">$12,628</h3>
+                <h3 class="card-title mb-2">{{$balance}}</h3>
                 <small class="text-success fw-semibold"><i class="bx bx-up-arrow-alt"></i> +72.80%</small>
               </div>
             </div>

@@ -26,59 +26,69 @@ class PortalController extends Controller
     {
         $user = auth()->user();
         $userRole = UsersRole::where('id', $user->role_id)->first();
-        $users          = Users::where('id', $user->id)->first();
+        $users = Users::where('id', $user->id)->first();
 
-        $roleId = $user->role_id; // Mengambil role_id dari pengguna
+        // Fetch the balance from iPaymu
+        $balance = $this->getIPaymuBalance(); // Implement the method to get the balance
+
+        $roleId = $user->role_id;
         $menus = Menu::all();
         $data = [
             'title' => "Portal",
-            'subtitle' => "AR Project",           
+            'subtitle' => "AR Project",
             'userRole' => $userRole,
-            'users'         => $users,
+            'users' => $users,
             'menus' => $menus,
-
+            'balance' => $balance, // Add the balance to the data array
         ];
-       
-        // dd($userRole);
-        // var_dump($userRole);
-        return view('Konten/dashboard', $data); // Updated the view name to use dot notation
+
+        return view('Konten/dashboard', $data);
     }
+
+    private function getIPaymuBalance()
+{
+    // Set up the request to iPaymu API
+    $account = env('IPAYMU_VA'); // Replace with your iPaymu VA (Virtual Account)
+    $apiKey = env('IPAYMU_API_KEY'); // Replace with your iPaymu API key
+    $timestamp = gmdate('YmdHis');
+
+    $signature = hash('sha256', $account . $apiKey . $timestamp);
+
+    // Create a cURL request
+    $curl = curl_init();
+
+    curl_setopt_array($curl, array(
+        CURLOPT_URL => 'https://ipaymu.com/api/v2/balance', // Use the correct URL for the live environment
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_TIMEOUT => 30,
+        CURLOPT_CUSTOMREQUEST => 'POST',
+        CURLOPT_POSTFIELDS => json_encode(['account' => $account]),
+        CURLOPT_HTTPHEADER => array(
+            'Content-Type: application/json',
+            'va: ' . $account,
+            'signature: ' . $signature,
+            'timestamp: ' . $timestamp,
+        ),
+    ));
+
+    $response = curl_exec($curl);
+
+    if (curl_errno($curl)) {
+        return "Error: " . curl_error($curl);
+    }
+
+    curl_close($curl);
+
+    // Parse the JSON response to extract the balance
+    $responseData = json_decode($response, true);
+
+if (isset($responseData['Data']['MerchantBalance'])) {
+    return $responseData['Data']['MerchantBalance'];
+} else {
+    print_r($responseData); // This will print the response data for debugging
+    return "Balance not found in response";
 }
 
+}
 
-// foreach ($accesses as $access) {
-//     // Mengelompokkan data menu
-//     if (isset($access->menu_name) && $access->menu_name !== null) {
-//         $menuId = $access->id; // Gunakan ID sebagai kunci
-//         $menus[$menuId] = [
-//             'name' => $access->menu_name, // Nama menu
-//             'submenus' => [], // Inisialisasi submenu
-//         ];
-//     }
-
-//     // Mengelompokkan data submenu
-//     if (isset($access->submenu_name) && $access->submenu_name !== null) {
-//         // Pastikan menu terkait sudah ada dalam array menus
-//         if (isset($menus[$menuId])) {
-//             $submenuId = $access->id; // Gunakan ID sebagai kunci
-//             $menus[$menuId]['submenus'][$submenuId] = [
-//                 'name' => $access->submenu_name, // Nama submenu
-//                 'icon' => $access->submenu_icon, // Nama submenu
-//                 'itemsub' => $access->submenu_itemsub, // Nama submenu
-//                 'childSubmenus' => [], // Inisialisasi child submenu
-//             ];
-//         }
-//     }
-
-//     // Mengelompokkan data child submenu
-//     if (isset($access->childsubmenu_name) && $access->childsubmenu_name !== null) {
-//         // Pastikan menu dan submenu terkait sudah ada dalam array menus
-//         if (isset($menus[$menuId]) && isset($menus[$menuId]['submenus'][$submenuId])) {
-//             $childSubmenuId = $access->id; // Gunakan ID sebagai kunci
-//             $menus[$menuId]['submenus'][$submenuId]['childSubmenus'][$childSubmenuId] = [
-//                 'name' => $access->childsubmenu_name, // Nama child submenu
-//                 'url' => $access->childsubmenu_url, // URL dari child submenu
-//             ];
-//         }
-//     }
-// }
+}
