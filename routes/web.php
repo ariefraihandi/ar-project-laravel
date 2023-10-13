@@ -45,9 +45,10 @@ Route::post('bossmakalah/files',    [MakalahController::class, 'upload'])->name(
 Route::post('bossmakalah/makalah',  [MakalahController::class, 'store'])->name('makalah.action')->middleware('auth');
 
 Route::post('payment/proses',       [PaymentController::class, 'processPayment'])->name('payment.proses');
-Route::get('thank',                [PaymentController::class, 'thanks'])->name('payment.thank');
+Route::get('thank',                 [PaymentController::class, 'thanks'])->name('payment.thank');
 Route::get('/cancel',               [PaymentController::class, 'cancelPayment'])->name('payment.cancel');
-Route::post('/callback/ipaymu',     [PaymentController::class, 'handleIPaymuCallback'])->name('payment.handle');
+Route::post('/callback/ipaymu',     [PaymentController::class, 'handleIPaymuCallback'])->name('payment.handle')->middleware('verifyIpaymuCsrf');
+
 
 
 Route::get('dashboard',             [PortalController::class, 'showPortalPage'])->name('dashboard.page')->middleware('auth');
