@@ -138,7 +138,7 @@ class DownloadController extends Controller
                 'Accept' => 'application/json',
                 'Content-Type' => 'application/json',
                 'va' => $va,
-                // 'ip' => $request->ip(),
+                'ip' => $request->ip(),
                 'signature' => $signature,
                 'timestamp' => $timestamp,
       
