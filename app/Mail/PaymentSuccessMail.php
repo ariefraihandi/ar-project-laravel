@@ -32,7 +32,7 @@ class PaymentSuccessMail extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.payment-success')
+        return $this->markdown('Emails.payment-success')
             ->with(['pembelian' => $this->pembelian])
             ->subject('Payment Success');
     }
