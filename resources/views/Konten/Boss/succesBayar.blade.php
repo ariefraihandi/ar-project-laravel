@@ -54,7 +54,7 @@
 
                         <form method="POST" data-toggle="validator" data-focus="false" action="{{ route('download.bayar') }}" enctype="multipart/form-data">
                             @csrf
-                            <input type="hidden" class="form-control-input" id="token" name="token" value="{{$pembelian->judul_makalah}}">
+                            <input type="text" class="form-control-input" id="token" name="token" value="{{$pembelian->token}}">
                             <div class="form-group" style="display: flex; justify-content: center; align-items: center;">
                                 <button type="submit" class="form-control-submit-button" id="download-button">Download</button>
                             </div>
