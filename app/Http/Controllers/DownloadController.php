@@ -163,33 +163,28 @@ class DownloadController extends Controller
     }
     
     public function downloadPayment(Request $request)
-    {
-        // Mendapatkan nilai token dari permintaan
-        $token = $request->input('token');
-    
-        // Temukan data pembelian berdasarkan token atau ID yang sesuai
-        $pembelian = PembelianMakalah::where('token', $token)->first();
-    
-        // Inisialisasi respons JSON
-        $response = ['status' => 0, 'makalahUrl' => ''];
-    
-        // Jika pembelian ditemukan
-        if ($pembelian) {
-            // Dapatkan status pembelian
-            $status = $pembelian->status;
-    
-            if ($status == 1) {
-                // Jika status pembelian adalah 1 (berhasil), maka atur URL makalah
-                $response['status'] = 1;
-                $response['makalahUrl'] = route('download.makalah', $pembelian->id_makalah);
-            } else {
-                // Jika status pembelian tidak valid, tetapkan status 0 (tidak valid)
-                $response['status'] = 0;
-            }
+{
+    // Mendapatkan nilai token dari permintaan
+    $token = $request->input('token');
+
+    // Temukan data pembelian berdasarkan token atau ID yang sesuai
+    $pembelian = PembelianMakalah::where('token', $token)->first();
+
+    // Jika pembelian ditemukan
+    if ($pembelian) {
+        // Periksa status pembelian
+        if ($pembelian->status === 1) {
+            // Status pembelian adalah 1 (berhasil), maka arahkan ke URL makalah
+            return redirect()->away($pembelian->makalah_url);
+        } else {
+            // Status pembelian tidak valid
+            return response()->json(['message' => 'Status pembelian tidak valid'], 400);
         }
-    
-        return response()->json($response);
+    } else {
+        // Pembelian tidak ditemukan
+        return response()->json(['message' => 'Purchase not found'], 404);
     }
+}
 
     
 

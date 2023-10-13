@@ -73,34 +73,6 @@
 
 @push('footer-script')
 
-<script>
-   document.getElementById('download-button').addEventListener('click', function(event) {
-    event.preventDefault(); // Menghentikan tindakan bawaan formulir
-
-    // Dapatkan nilai token
-    var token = document.getElementById('token').value;
-
-    // Lakukan permintaan AJAX untuk memeriksa status pembelian
-    $.ajax({
-        type: 'POST',
-        url: '{{ route('download.bayar') }}',
-        data: { token: token },
-        success: function(response) {
-            if (response.status === 1) {
-                // Jika status pembelian adalah 1 (berhasil), maka arahkan ke URL makalah dalam tab baru
-                window.open(response.makalahUrl, '_blank');
-            } else {
-                // Tampilkan pesan kesalahan jika status bukan 1
-                alert('Status pembelian tidak valid.');
-            }
-        },
-        error: function() {
-            alert('Terjadi kesalahan saat memeriksa status pembelian.');
-        }
-    });
-});
-
-</script>
 
 
 <script>
