@@ -103,13 +103,9 @@ class DownloadController extends Controller
             $pembelian->token = $token;
             $pembelian->status = 0;
             $pembelian->save();
-    
-        
-            $va = env('IPAYMU_VA_S');
-            $apiKey = env('IPAYMU_API_KEY_S');
 
-            // $va = env('IPAYMU_VA');
-            // $apiKey = env('IPAYMU_API_KEY');
+            $va = env('IPAYMU_VA');
+            $apiKey = env('IPAYMU_API_KEY');
 
 
             // $domain = 'http://127.0.0.1:8000';
@@ -142,8 +138,8 @@ class DownloadController extends Controller
                 'signature' => $signature,
                 'timestamp' => $timestamp,
       
-            ])->post('https://sandbox.ipaymu.com/api/v2/payment', $body);
-            // ])->post('https://my.ipaymu.com/api/v2/payment', $body);
+            // ])->post('https://sandbox.ipaymu.com/api/v2/payment', $body);
+            ])->post('https://my.ipaymu.com/api/v2/payment', $body);
             $responseData = $response->json();
     
             if ($response->ok() && $responseData['Status'] == 200) {
