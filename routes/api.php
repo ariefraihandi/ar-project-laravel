@@ -39,4 +39,8 @@ Route::middleware('throttle:5,1')->group(function () {
     });
 });
 
-Route::post('/api/callback/ipaymu', [PaymentController::class, 'handleIPaymuCallback'])->name('payment.handle')->middleware('verifyIpaymuCsrf');
+// Route::post('/api/callback/ipaymu', [PaymentController::class, 'handleIPaymuCallback'])->name('payment.handle')->middleware('verifyIpaymuCsrf');
+
+Route::post('/callback/ipaymu', [App\Http\Controllers\PaymentController::class, 'handleIPaymuCallback'])
+    ->name('payment.handle')
+    ->middleware('verifyIpaymuCsrf');
