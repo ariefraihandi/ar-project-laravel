@@ -133,7 +133,8 @@ class DownloadController extends Controller
             $signature = hash_hmac('sha256', $stringToSign, $apiKey);
             $timestamp = date('YmdHis');
     
-            // Kirim permintaan ke iPaymu
+            $csrfToken = csrf_token();
+
             $response = Http::withHeaders([
                 'X-CSRF-TOKEN: ' => $csrfToken,
                 'Accept' => 'application/json',
