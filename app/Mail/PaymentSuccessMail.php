@@ -32,8 +32,9 @@ class PaymentSuccessMail extends Mailable
      */
     public function build()
     {
+        $verificationURL = "https://ariefraihandi.biz.id";
         return $this->markdown('Emails.payment-success')
-            ->with(['pembelian' => $this->pembelian])
+            ->with(['pembelian' => $this->pembelian, 'verificationURL' => $verificationURL,])
             ->subject('Payment Success');
     }
 }
