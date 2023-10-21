@@ -5,17 +5,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SendEmail;
 use App\Jobs\SendEmailJob;
-
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "api" middleware group. Make something great!
-|
-*/
+use App\Http\Controllers\ArprojectController;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
@@ -39,8 +29,9 @@ Route::middleware('throttle:5,1')->group(function () {
     });
 });
 
-// Route::post('/api/callback/ipaymu', [PaymentController::class, 'handleIPaymuCallback'])->name('payment.handle')->middleware('verifyIpaymuCsrf');
 
 Route::post('/callback/ipaymu', [App\Http\Controllers\PaymentController::class, 'handleIPaymuCallback'])
     ->name('payment.handle')
     ->middleware('verifyIpaymuCsrf');
+
+Route::post('/check-user-key', [ArprojectController::class, 'checkUserKey']);

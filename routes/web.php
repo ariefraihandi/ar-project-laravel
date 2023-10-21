@@ -12,6 +12,7 @@ use App\Http\Controllers\MenuController;
 use App\Http\Controllers\DownloadController;
 use App\Http\Controllers\SubmenuController;
 use App\Http\Controllers\MenuSubsChildController;
+use App\Http\Controllers\ArprojectController;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\MakalahController;
 use App\Http\Controllers\MenuRole;
@@ -46,6 +47,9 @@ Route::post('verify/files',         [MakalahController::class, 'sendSuccessEmail
 Route::post('notverified/files',    [MakalahController::class, 'sendFailEmail'])->name('notverified.files')->middleware('auth');
 Route::post('bossmakalah/files',    [MakalahController::class, 'upload'])->name('makalah.upload')->middleware('auth');
 Route::post('bossmakalah/makalah',  [MakalahController::class, 'store'])->name('makalah.action')->middleware('auth');
+
+Route::get('arproject/pengguna',    [ArprojectController::class, 'showPenggunaPage'])->name('pengguna.Page')->middleware('auth');
+Route::post('arproject/pengguna',   [ArprojectController::class, 'store'])->name('pengguna.store')->middleware('auth');
 
 Route::post('payment/proses',       [PaymentController::class, 'processPayment'])->name('payment.proses');
 Route::get('thank',                 [PaymentController::class, 'thanks'])->name('payment.thank');
