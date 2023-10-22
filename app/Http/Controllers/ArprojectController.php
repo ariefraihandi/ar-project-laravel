@@ -56,14 +56,14 @@ class ArprojectController extends Controller
     public function checkUserKey(Request $request)
     {
         $user_key = $request->input('user_key');
-
         $pengguna = Pengguna::where('api_key', $user_key)->first();
-
+        
         if ($pengguna) {
             return response()->json(['message' => 'User key is valid'], 200);
         } else {
             return response()->json(['message' => 'User key is invalid'], 401);
         }
     }
+    
 
 }
