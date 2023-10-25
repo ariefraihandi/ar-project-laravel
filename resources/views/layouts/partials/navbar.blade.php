@@ -21,21 +21,23 @@
                     <a class="nav-link page-scroll" href="{{ url('/') }}">HOME <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link page-scroll" href="#features">FEATURES</a>
+                    <a class="nav-link page-scroll" href="{{ url('/') }}#features">FEATURES</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link page-scroll" href="#details">DETAILS</a>
+                    <a class="nav-link page-scroll" href="{{ url('/') }}#details">DETAILS</a>
                 </li>
 
                 <!-- Dropdown Menu -->          
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle page-scroll" href="{{ url('/') }}#start" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">LAYANAN</a>
+                    <a class="nav-link dropdown-toggle page-scroll" href="{{ url('/') }}#start" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">PRODUK</a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="{{ url('/') }}#features"><span class="item-text">MAKALAH</span></a>
                         <div class="dropdown-items-divide-hr"></div>
                         <a class="dropdown-item" href="{{ url('/') }}#features"><span class="item-text">PLAGIASI</span></a>
                         <div class="dropdown-items-divide-hr"></div>
                         <a class="dropdown-item" href="{{ url('/') }}#features"><span class="item-text">WEBSITE</span></a>
+                        <div class="dropdown-items-divide-hr"></div>
+                        <a class="dropdown-item" href="{{ url('/') }}#features"><span class="item-text">SOAL CPNS</span></a>
                     </div>
                 </li>
                 <!-- end of dropdown menu -->

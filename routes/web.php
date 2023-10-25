@@ -15,10 +15,12 @@ use App\Http\Controllers\MenuSubsChildController;
 use App\Http\Controllers\ArprojectController;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\MakalahController;
+use App\Http\Controllers\DownloadCPNSPageController;
 use App\Http\Controllers\MenuRole;
 
 
 Route::get('/',                     [LandingController::class, 'showLandingPage'])->name('landing.page');
+Route::get('download-soal-cpns',    [DownloadCPNSPageController::class, 'showCpnsPage'])->name('cpns.page');
 
 Route::get('turnitin',              [CekturnitinController::class, 'showTurnitinPage'])->name('turnitin.page');
 Route::post('turnitin',             [CekturnitinController::class, 'checkTurnitin'])->name('turnitin.action');
