@@ -10,4 +10,9 @@
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<a href="https://api.whatsapp.com/send?phone=6282276624504&text=Assalamualaikum" class="float" target="_blank">
+<i class="fa fa-whatsapp my-float"></i>
+</a>
+
 @stack('footer-script')

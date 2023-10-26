@@ -49,7 +49,7 @@
             <div class="col-lg-12">
                 <div class="text-container">
                     <div class="above-heading">Payment Page</div>
-                    <h2>Judul Makalah: {{$judulMakalah}}</h2>
+                    <h2>Judul: {{$judulMakalah}}</h2>
                     {{-- <p class="p-form">Upload Makalah Untuk Mendownload</p> --}}
                     <form method="POST" data-toggle="validator" data-focus="false" action="{{ route('beli.form') }}" enctype="multipart/form-data">
                         @csrf

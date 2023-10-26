@@ -6,11 +6,11 @@
                 <div class="col-lg-6 col-xl-5">
                     <div class="text-container">
                         <h1>Download Ebook Soal CPNS</h1>
-                        <p class="p-large">Dapatkan Bundling Ebook Soal Tes CPNS dengan Ribuan Soal untuk Persiapan Ujian Anda.</p>                        
-                        <a class="btn-solid-lg page-scroll" href="sign-up.html">Download Sekarang</a>
+                        <p class="p-large">Dapatkan Bundling Ebook Soal Tes CPNS dengan Ribuan Soal untuk Persiapan Ujian Anda.</p>
+                        <a class="btn-solid-lg page-scroll" href="http://127.0.0.1:8000/bayar?id_makalah=CP-001&judul_makalah=Download+Paket+Bundling+Soal+Seleksi+CPNS&format=pdf&harga=25000">Download Sekarang</a>
                         {{-- <a class="btn-solid-lg page-scroll" href="#start">Pelajari Selengkapnya</a> --}}
                     </div> <!-- end of text-container -->
-                </div> <!-- end of col -->
+                </div>
                 <div class="col-lg-6 col-xl-7">
                     <div class="image-container">
                         <div class="img-wrapper">
