@@ -104,11 +104,11 @@ class DownloadController extends Controller
             $pembelian->status = 0;
             $pembelian->save();
 
-            $va = env('IPAYMU_VA');
-            $apiKey = env('IPAYMU_API_KEY');
+            // $va = env('IPAYMU_VA');
+            // $apiKey = env('IPAYMU_API_KEY');
 
-        //             $va = env('IPAYMU_VA_S');
-        // $apiKey = env('IPAYMU_API_KEY_S');
+                    $va = env('IPAYMU_VA_S');
+        $apiKey = env('IPAYMU_API_KEY_S');
 
 
             // $domain = 'http://127.0.0.1:8000';
