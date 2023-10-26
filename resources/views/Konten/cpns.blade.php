@@ -151,7 +151,7 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="card-title">PAKET BUNDLING</div>
-                            <div class="price"><span class="currency">Rp</span><span class="value">30.000</span></div>
+                            <div class="price"><span class="currency">Rp</span><span class="value">25.000</span></div>
                             <div class="frequency">Permanet</div>
                             <div class="divider"></div>
                             <ul class="list-unstyled li-space-lg">
@@ -178,7 +178,7 @@
                                 </li>
                             </ul>
                             <div class="button-wrapper">
-                                <a class="btn-solid-reg page-scroll" href="http://127.0.0.1:8000/bayar?id_makalah=CP-001&judul_makalah=Paket+Bundling+Soal+Seleksi+CPNS&format=pdf&harga=25000">Pesan Sekarang</a>
+                                <a class="btn-solid-reg page-scroll" href="hhttps://ariefraihandi.biz.id/bayar?id_makalah=CP-001&judul_makalah=Paket+Bundling+Soal+Seleksi+CPNS&format=pdf&harga=25000">Pesan Sekarang</a>
                             </div>
                         </div>
                     </div> <!-- end of card -->

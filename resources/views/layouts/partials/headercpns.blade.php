@@ -7,7 +7,7 @@
                     <div class="text-container">
                         <h1>Download Ebook Soal CPNS</h1>
                         <p class="p-large">Dapatkan Bundling Ebook Soal Tes CPNS dengan Ribuan Soal untuk Persiapan Ujian Anda.</p>
-                        <a class="btn-solid-lg page-scroll" href="http://127.0.0.1:8000/bayar?id_makalah=CP-001&judul_makalah=Download+Paket+Bundling+Soal+Seleksi+CPNS&format=pdf&harga=25000">Download Sekarang</a>
+                        <a class="btn-solid-lg page-scroll" href="https://ariefraihandi.biz.id/bayar?id_makalah=CP-001&judul_makalah=Download+Paket+Bundling+Soal+Seleksi+CPNS&format=pdf&harga=25000">Download Sekarang</a>
                         {{-- <a class="btn-solid-lg page-scroll" href="#start">Pelajari Selengkapnya</a> --}}
                     </div> <!-- end of text-container -->
                 </div>
