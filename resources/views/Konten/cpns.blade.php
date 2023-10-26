@@ -178,7 +178,7 @@
                                 </li>
                             </ul>
                             <div class="button-wrapper">
-                                <a class="btn-solid-reg page-scroll" href="hhttps://ariefraihandi.biz.id/bayar?id_makalah=CP-001&judul_makalah=Paket+Bundling+Soal+Seleksi+CPNS&format=pdf&harga=25000">Pesan Sekarang</a>
+                                <a class="btn-solid-reg page-scroll" href="https://ariefraihandi.biz.id/bayar?id_makalah=CP-001&judul_makalah=Paket+Bundling+Soal+Seleksi+CPNS&format=pdf&harga=25000">Pesan Sekarang</a>
                             </div>
                         </div>
                     </div> <!-- end of card -->
