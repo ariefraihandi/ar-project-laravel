@@ -3,14 +3,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
     <!-- SEO Meta Tags -->
-    <meta name="description" content="Tivo is a HTML landing page template built with Bootstrap to help you crate engaging presentations for SaaS apps and convert visitors into users.">
-    <meta name="author" content="Inovatik">
+    @if (!empty($description))
+        {!! $description !!}
+    @else
+        <meta name="description" content="Kami adalah penyedia jasa terpercaya untuk pembuatan makalah berkualitas, pengecekan plagiasi, dan perbaikan plagiasi. Dapatkan bantuan ahli dalam menghasilkan karya akademis yang unik dan bebas plagiarisme.">
+    @endif
 
+    
+    <meta name="author" content="AR Project">
+
+    @if (!empty($gtagScript))
+        {!! $gtagScript !!}
+    @endif
     <!-- OG Meta Tags to improve the way the post looks when you share the page on LinkedIn, Facebook, Google+ -->
 	<meta property="og:site_name" content="AR Project" /> <!-- Nama situs web Anda -->
     <meta property="og:site" content="https://www.ariefraihandi.biz.id" /> <!-- Tautan situs web Anda -->
-    <meta property="og:title" content="Jasa Pembuatan Makalah, Pengecekan Turnitin, dan Pembuatan Website di Lhokseumawe" /> <!-- Judul yang akan ditampilkan pada posting yang dibagikan -->
-    <meta property="og:description" content="Kami adalah penyedia jasa terpercaya di Lhokseumawe untuk pembuatan makalah berkualitas, pengecekan Turnitin gratis, perbaikan plagiasi, dan pembuatan website profesional." /> <!-- Deskripsi yang akan ditampilkan pada posting yang dibagikan -->
+    @if (!empty($metatitle))
+        {!! $metatitle !!}
+    @else
+        <meta property="og:title" content="Jasa Pembuatan Makalah, Pengecekan Turnitin, dan Pembuatan Website di Lhokseumawe" />
+    @endif
+
+    @if (!empty($metadescription))
+        {!! $metadescription !!}
+    @else
+        <meta property="og:description" content="Kami adalah penyedia jasa terpercaya di Lhokseumawe untuk pembuatan makalah berkualitas, pengecekan Turnitin gratis, perbaikan plagiasi, dan pembuatan website profesional." />
+    @endif                                                                  
     <meta property="og:image" content="https://www.ariefraihandi.biz.id/assets/images/logo/arp.png" /> <!-- Tautan gambar yang sesuai dengan bisnis Anda (pastikan gambarnya berformat jpg) -->
     <meta property="og:url" content="https://www.ariefraihandi.biz.id" /> <!-- Tautan yang ingin Anda bagikan dalam posting -->
     <meta property="og:type" content="article" />
