@@ -20,7 +20,7 @@ use App\Http\Controllers\MenuRole;
 
 
 Route::get('/',                     [LandingController::class, 'showLandingPage'])->name('landing.page');
-Route::get('download-soal-cpns',    [DownloadCPNSPageController::class, 'showCpnsPage'])->name('cpns.page');
+Route::get('soal-cpns',    [DownloadCPNSPageController::class, 'showCpnsPage'])->name('cpns.page');
 
 Route::get('turnitin',              [CekturnitinController::class, 'showTurnitinPage'])->name('turnitin.page');
 Route::post('turnitin',             [CekturnitinController::class, 'checkTurnitin'])->name('turnitin.action');

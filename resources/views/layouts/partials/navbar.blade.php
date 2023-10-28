@@ -37,7 +37,7 @@
                         <div class="dropdown-items-divide-hr"></div>
                         <a class="dropdown-item" href="{{ url('/') }}#features"><span class="item-text">WEBSITE</span></a>
                         <div class="dropdown-items-divide-hr"></div>
-                        <a class="dropdown-item" href="{{ url('/') }}#features"><span class="item-text">SOAL CPNS</span></a>
+                        <a class="dropdown-item" href="{{ url('/soal-cpns') }}"><span class="item-text">SOAL CPNS</span></a>
                     </div>
                 </li>
                 <!-- end of dropdown menu -->
