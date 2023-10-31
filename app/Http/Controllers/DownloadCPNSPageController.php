@@ -28,7 +28,6 @@ class DownloadCPNSPageController extends Controller
                 gtag('event', 'conversion', {
                     'send_to': 'AW-11392355575/qqiHCNnbrvIYEPeZprgq',
                     'transaction_id': ''
-                });
             </script>
         SCRIPT,
     ];
