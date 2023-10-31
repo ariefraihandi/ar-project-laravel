@@ -45,6 +45,15 @@
 	<link href="{{ asset('assets') }}/css/styles.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MSNRHF2230"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-MSNRHF2230');
+    </script>
 
 	<!-- Favicon  -->
     <link rel="icon" href="{{ asset('assets') }}/images/logo/arp.png">
