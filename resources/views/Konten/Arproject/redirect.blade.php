@@ -81,53 +81,54 @@
                         <div class="swiper-container text-slider">
                             <div class="swiper-wrapper">
                                 
-                                <!-- Slide -->
-                                <div class="swiper-slide">
-                                    <div class="image-wrapper">
-                                        <img class="img-fluid" src="{{ asset('assets') }}/images/testimonial-1.jpg" alt="alternative">
-                                    </div> <!-- end of image-wrapper -->
-                                    <div class="text-wrapper">
-                                        <div class="testimonial-text">I started to use Tivo with the free trial about a year ago and never stopped since then. It does all the repeating marketing tasks and allows me to focus on core development activities like new product research and design. I love it and recommend it to everyone.</div>
-                                        <div class="testimonial-author">Jude Thorn - Online Marketer</div>
-                                    </div> <!-- end of text-wrapper -->
-                                </div> <!-- end of swiper-slide -->
-                                <!-- end of slide -->
+                               <!-- Slide -->
+<div class="swiper-slide">
+    <div class="image-wrapper">
+        <img class="img-fluid" src="{{ asset('assets') }}/images/testimonial-1.jpg" alt="alternative">
+    </div> <!-- end of image-wrapper -->
+    <div class="text-wrapper">
+        <div class="testimonial-text">Saya mulai menggunakan layanan ini sekitar setahun yang lalu dan saya tidak pernah berhenti sejak saat itu. Layanan ini sangat membantu dalam pembuatan makalah dan memungkinkan saya fokus pada kegiatan utama seperti penelitian produk baru dan desain. Saya sangat menyukainya dan sangat merekomendasikannya kepada semua orang.</div>
+        <div class="testimonial-author">Budi Susanto - Mahasiswa</div>
+    </div> <!-- end of text-wrapper -->
+</div> <!-- end of swiper-slide -->
+<!-- end of slide -->
 
-                                <!-- Slide -->
-                                <div class="swiper-slide">
-                                    <div class="image-wrapper">
-                                        <img class="img-fluid" src="{{ asset('assets') }}/images/testimonial-2.jpg" alt="alternative">
-                                    </div> <!-- end of image-wrapper -->
-                                    <div class="text-wrapper">
-                                        <div class="testimonial-text">Awesome features for the money. I never thought such a low ammount of money would bring me so many leads per month. Before Tivo I used the services of an agency which cost 10x more and delivered far less. Highly recommended to marketers focused on results.</div>
-                                        <div class="testimonial-author">Roy Smith - Developer</div>
-                                    </div> <!-- end of text-wrapper -->
-                                </div> <!-- end of swiper-slide -->
-                                <!-- end of slide -->
+<!-- Slide -->
+<div class="swiper-slide">
+    <div class="image-wrapper">
+        <img class="img-fluid" src="{{ asset('assets') }}/images/testimonial-2.jpg" alt="alternative">
+    </div> <!-- end of image-wrapper -->
+    <div class="text-wrapper">
+        <div class="testimonial-text">Fitur-fitur luar biasa dengan harga yang terjangkau. Saya tidak pernah membayangkan bahwa biaya yang sangat rendah akan memberi saya begitu banyak makalah per bulan. Sebelum menggunakan layanan ini, saya menggunakan jasa lain yang biayanya 10 kali lipat lebih mahal dan hasilnya jauh lebih buruk. Sangat direkomendasikan untuk para peneliti yang fokus pada hasil.</div>
+        <div class="testimonial-author">Siti Rahayu - Peneliti</div>
+    </div> <!-- end of text-wrapper -->
+</div> <!-- end of swiper-slide -->
+<!-- end of slide -->
 
-                                <!-- Slide -->
-                                <div class="swiper-slide">
-                                    <div class="image-wrapper">
-                                        <img class="img-fluid" src="{{ asset('assets') }}/images/testimonial-3.jpg" alt="alternative">
-                                    </div> <!-- end of image-wrapper -->
-                                    <div class="text-wrapper">
-                                        <div class="testimonial-text">Tivo is the best marketing automation app for small and medium sized business. It understands the mindset of young entrepreneurs and provides the necessary data for wise marketing decisions. Just give it a try and you will definitely not regret spending your time.</div>
-                                        <div class="testimonial-author">Marsha Singer - Online Marketer</div>
-                                    </div> <!-- end of text-wrapper -->
-                                </div> <!-- end of swiper-slide -->
-                                <!-- end of slide -->
+<!-- Slide -->
+<div class="swiper-slide">
+    <div class "image-wrapper">
+        <img class="img-fluid" src="{{ asset('assets') }}/images/testimonial-3.jpg" alt="alternative">
+    </div> <!-- end of image-wrapper -->
+    <div class="text-wrapper">
+        <div class="testimonial-text">Tivo adalah aplikasi otomatisasi pemasaran terbaik untuk bisnis kecil dan menengah. Ini memahami cara berpikir pengusaha muda dan menyediakan data yang diperlukan untuk pengambilan keputusan pemasaran yang bijak. Cukup coba dan Anda pasti tidak akan menyesal menghabiskan waktu Anda.</div>
+        <div class="testimonial-author">Ahmad Farhan - Pebisnis Online</div>
+    </div> <!-- end of text-wrapper -->
+</div> <!-- end of swiper-slide -->
+<!-- end of slide -->
 
-                                <!-- Slide -->
-                                <div class="swiper-slide">
-                                    <div class="image-wrapper">
-                                        <img class="img-fluid" src="{{ asset('assets') }}/images/testimonial-4.jpg" alt="alternative">
-                                    </div> <!-- end of image-wrapper -->
-                                    <div class="text-wrapper">
-                                        <div class="testimonial-text">Tivo is one of the greatest marketing automation apps out there. I especially love the Reporting Tools module because it gives me such a great amount of information based on little amounts of input gathered in just few weeks of light weight usage. Recommended!</div>
-                                        <div class="testimonial-author">Ronda Louis - Online Marketer</div>
-                                    </div> <!-- end of text-wrapper -->
-                                </div> <!-- end of swiper-slide -->
-                                <!-- end of slide -->
+<!-- Slide -->
+<div class="swiper-slide">
+    <div class="image-wrapper">
+        <img class="img-fluid" src="{{ asset('assets') }}/images/testimonial-4.jpg" alt="alternative">
+    </div> <!-- end of image-wrapper -->
+    <div class="text-wrapper">
+        <div class="testimonial-text">Tivo adalah salah satu aplikasi otomatisasi pemasaran terbaik. Saya khususnya menyukai modul Alat Pelaporan karena memberi saya banyak informasi berdasarkan sedikit data yang diinputkan dalam beberapa minggu penggunaan yang ringan. Sangat direkomendasikan!</div>
+        <div class="testimonial-author">Dewi Sari - Pebisnis Online</div>
+    </div> <!-- end of text-wrapper -->
+</div> <!-- end of swiper-slide -->
+<!-- end of slide -->
+
 
                             </div> <!-- end of swiper-wrapper -->
                             
