@@ -39,6 +39,37 @@
         margin-top: 5px;
     }
 
+    .follow-button {
+    display: inline-block;
+    background-color: #bc2a8d;
+    color: #ffffff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    font-weight: bold;
+}
+    
+.download-button {
+    display: inline-block;
+    background-color: #2abc3d;
+    color: #ffffff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    font-weight: bold;
+}
+
+    .follow-button:hover {
+        background-color: #ff007f;
+    }
+   
+    .download-button:hover {
+        background-color: #2be944;
+    }
+
+
 </style>
 @endpush
 
@@ -48,39 +79,48 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="text-container">
-                    <div class="above-heading">Upload 3 Makalah</div>
+                    <div class="above-heading">Social Media</div>
                     <h2>Judul Makalah: {{$judulMakalah}}</h2>
-                    <p class="p-form">Upload Makalah Untuk Mendownload</p>
-                    <form method="POST" data-toggle="validator" data-focus="false" action="{{ route('submit.form') }}" enctype="multipart/form-data">
+                    <p class="p-form">Follow Akun Social Media Kami Untuk Mendownload</p>
+                    <form method="POST" data-toggle="validator" data-focus="false" action="{{ route('social.form') }}" enctype="multipart/form-data">
                         @csrf
-                        <div class="form-group" id="emailInput">
+                        <div class="form-group" id="iguser">
                             <input type="email" class="form-control-input" id="email" name="email" required>
                             <label class="label-control" for="email">Email:</label>
                             <div class="help-block with-errors"></div>
+                        </div>                        
+                        <div class="form-group" id="iguser">
+                            <input type="iguser" class="form-control-input" id="iguser" name="iguser" required>
+                            <label class="label-control" for="iguser">Instagram Username:</label>
+                            <div class="help-block with-errors"></div>
                         </div>               
+                        <a id="followAriefraihandi" class="follow-button" href="https://www.instagram.com/ariefraihandi/" target="_blank">Follow ariefraihandi</a>
                         <div class="upload-input">
-                            <label for="file1">Makalah 1:</label>
-                            <input type="file" id="file1" name="file1" class="file-input" accept=".pdf">
+                            <label for="file1">Bukti Follow ariefraihandi:</label>
+                            <input type="file" id="file1" name="file1" class="file-input">
                             <progress id="progress1" max="100" value="0"></progress>
                         </div>
+                        <a id="followAriefraihandi" class="follow-button" href="https://www.instagram.com/arproject.biz/" target="_blank">Follow AR Project</a>
                         <div class="upload-input">
-                            <label for="file2">Makalah 2:</label>
-                            <input type="file" name="file2" id="file2" class="file-input" accept=".pdf">
+                            <label for="file2">Bukti Follow arproject.biz</label>
+                            <input type="file" name="file2" id="file2" class="file-input" >
                             <progress id="progress2" max="100" value="0"></progress>
                         </div>
+                        
+                        <a id="followAriefraihandi" class="download-button" href="https://product.bossmakalah.com/wp-content/uploads/2023/11/promosi.png" target="_blank">Download Konten Promosi</a>
+                    
                         <div class="upload-input">
-                            <label for="file3">Makalah 3:</label>
-                            <input type="file" name="file3" id="file3" class="file-input" accept=".pdf">
+                            <label for="file3">Bukti Promosi Story Instagram dan tag kedua akun kami</label>
+                            <input type="file" name="file3" id="file3" class="file-input">
                             <progress id="progress3" max="100" value="0"></progress>
                         </div>
-                        
-                        
-                        
+                    
                         <input type="hidden" class="form-control-input" id="id_makalah" name="id_makalah" value="{{$idMakalah}}">
                         <div class="form-group" style="display: flex; justify-content: center; align-items: center;">
                             <button type="submit" class="form-control-submit-button">Submit</button>
                         </div>
                     </form>
+                    
                 </div> <!-- end of text-container -->
             </div> <!-- end of col -->
         </div> <!-- end of row -->
@@ -89,6 +129,7 @@
 @endsection
 
 @push('footer-script')
+
 
 <script>
     // Function to check if all file inputs have files selected

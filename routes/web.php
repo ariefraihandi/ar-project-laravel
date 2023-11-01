@@ -30,14 +30,15 @@ Route::get('login',                 [LoginController::class, 'showLoginPage'])->
 Route::post('login',                [LoginController::class, 'loginAction'])->name('login.action');
 Route::get('logout',                [LoginController::class, 'logoutAction'])->name('logout.action');
 
-Route::get('redirect',              [DownloadController::class, 'download'])->name('download.redirect');
+Route::get('redirect',              [DownloadController::class, 'choiceAction'])->name('choice.action');
+Route::get('upload',                [DownloadController::class, 'upload'])->name('download.redirect');
+Route::get('social',                [DownloadController::class, 'social'])->name('social.redirect');
 Route::get('bayar',                 [DownloadController::class, 'bayar'])->name('bayar.redirect');
 Route::post('submit-bayar',         [DownloadController::class, 'submitBayar'])->name('beli.form');
-
-
 Route::get('download',              [DownloadController::class, 'filesDownlodad'])->name('download.page');
 Route::post('download',             [DownloadController::class, 'downloading'])->name('downloading.action');
 Route::post('submit-form',          [DownloadController::class, 'submitForm'])->name('submit.form');
+Route::post('social-form',          [DownloadController::class, 'submitSocialForm'])->name('social.form');
 Route::post('download-bayar',       [DownloadController::class, 'downloadPayment'])->name('download.bayar');
 
 

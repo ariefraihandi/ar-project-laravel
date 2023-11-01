@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use App\Models\FreeDownloader;
 use App\Models\Makalah;
 use App\Models\DownloadLog;
+use App\Models\SocialData;
 use App\Models\PembelianMakalah;
 use Illuminate\Http\Request;
 use App\Notifications\FileUploaded;
@@ -21,7 +22,25 @@ use App\Mail\AdminNotification;
 
 class DownloadController extends Controller
 {
-    public function download(Request $request)
+    public function choiceAction(Request $request)
+    {
+        $idMakalah = $request->input('id_makalah');
+        $judulMakalah = $request->input('judul_makalah');
+        $format = $request->input('format');
+        $harga = $request->input('harga');
+
+        $data = [
+            'title'     => "Pilih Metode Download",
+            'subtitle'     => "AR Project",
+            'idMakalah' => $idMakalah,
+            'judulMakalah' => $judulMakalah,
+            'format' => $format,
+            'harga' => $harga,
+        ];
+        return view('Konten/Arproject/redirect', $data);
+    }
+    
+    public function upload(Request $request)
     {
         // Mendapatkan data dari URL
         $idMakalah = $request->input('id_makalah');
@@ -43,6 +62,89 @@ class DownloadController extends Controller
 
     }
     
+    public function social(Request $request)
+    {
+        // Mendapatkan data dari URL
+        $idMakalah = $request->input('id_makalah');
+        $judulMakalah = $request->input('judul_makalah');
+        $format = $request->input('format');
+        $harga = $request->input('harga');
+    
+        // Simpan data dalam array $data
+        $data = [
+            'title'     => "Submit 3 Makalah",
+            'subtitle'     => "AR Project",
+            'idMakalah' => $idMakalah,
+            'judulMakalah' => $judulMakalah,
+            'format' => $format,
+            'harga' => $harga,
+        ];
+    
+        return view('Konten/Boss/social', $data);
+
+    }
+    
+    public function submitSocialForm(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'iguser' => 'required|string',
+            'email' => 'required|email', // Validasi email
+            'file1' => 'nullable|file|image', // Validasi untuk gambar
+            'file2' => 'nullable|file|image', // Validasi untuk gambar
+            'file3' => 'nullable|file|image', // Validasi untuk gambar
+        ]);
+    
+        if ($validator->fails()) {
+            // Validasi gagal, redirect kembali dengan pesan kesalahan dan input data
+            return redirect()->back()
+                ->with('error', 'Form Tidak Terisi Dengan Lengkap');
+        }
+    
+        // Handle unggahan file
+        $filePaths = [];
+    
+        foreach (['file1', 'file2', 'file3'] as $fieldName) {
+            if ($request->hasFile($fieldName)) {
+                $file = $request->file($fieldName);
+                $originalFileName = $file->getClientOriginalName();
+    
+                // Generate nama unik dengan menambahkan awalan timestamp
+                $uniqueFileName = time() . '_' . $originalFileName;
+    
+                // Simpan file dengan nama unik
+                $filePath = $file->storeAs('uploads', $uniqueFileName, 'public');
+                $filePaths[$fieldName] = $uniqueFileName;
+            }
+        }
+    
+        try {
+            $token = str_pad(rand(1, pow(10, 10) - 1), 10, '0', STR_PAD_LEFT);
+            // Buat rekaman baru dalam database
+            $socialData = SocialData::create([
+                'instagram_username' => $request->input('iguser'),
+                'email' => $request->input('email'), // Mengambil alamat email dari input
+                'file1_path' => $filePaths['file1'] ?? null,
+                'file2_path' => $filePaths['file2'] ?? null,
+                'file3_path' => $filePaths['file3'] ?? null,
+                'token' => $token,
+                'id_makalah' => $request->input('id_makalah'),
+            ]);
+    
+            // Kirim notifikasi
+            // Sesuaikan ini dengan kelas notifikasi Anda
+            $socialData->notify(new FileUploaded());
+    
+            // Kirim email ke admin
+            Mail::to('raihandi93@gmail.com')->send(new AdminNotification());
+    
+            return redirect()->back()->with('success', 'Data Berhasil Dikirim, Mohon Cek Email Anda Secara Berkala.');
+        } catch (\Exception $e) {
+            $errorMessage = 'Kesalahan Sistem: ' . $e->getMessage();
+            Log::error('Kesalahan Sistem: ' . $errorMessage);
+            return redirect()->back()->with('error', $errorMessage);
+        }
+    }
+
     public function bayar(Request $request)
     {
         // Validate user inputs
@@ -193,19 +295,14 @@ class DownloadController extends Controller
         }
     }
 
-
-    
-
     public function submitForm(Request $request)
     {
         // Validasi form
         $validator = Validator::make($request->all(), [
             'email' => 'required|email',
-            'instagram' => 'required',
             'file1' => 'required|file|mimes:pdf',
             'file2' => 'required|file|mimes:pdf',
             'file3' => 'required|file|mimes:pdf',
-            'followInstagram' => 'required|in:1', // Menambahkan validasi centang
             'id_makalah' => 'required|string',
         ]);
         
@@ -238,7 +335,7 @@ class DownloadController extends Controller
             // Buat rekaman baru dalam database
             $fileUploader = FreeDownloader::create([
                 'email' => $request->input('email'),
-                'ig_user' => $request->input('instagram'),
+                // 'ig_user' => $request->input('instagram'),
                 'file1' => $filePaths['file1'] ?? null,
                 'file2' => $filePaths['file2'] ?? null,
                 'file3' => $filePaths['file3'] ?? null,
