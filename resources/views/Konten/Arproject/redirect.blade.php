@@ -38,7 +38,7 @@
                             <div class="button-wrapper">
                                 <a class="btn-solid-reg page-scroll" href="{{ route('social.redirect', ['id_makalah' => $idMakalah, 'judul_makalah' => $judulMakalah, 'format' => $format, 'harga' => $harga]) }}">Mulai</a>
                             </div>
-                        </div>
+                        </div   >
                     </div> <!-- end of card -->
                     <!-- end of card -->
 
@@ -107,7 +107,7 @@
 
 <!-- Slide -->
 <div class="swiper-slide">
-    <div class "image-wrapper">
+    <div class="image-wrapper">
         <img class="img-fluid" src="{{ asset('assets') }}/images/testimonial-3.jpg" alt="alternative">
     </div> <!-- end of image-wrapper -->
     <div class="text-wrapper">

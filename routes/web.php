@@ -20,7 +20,7 @@ use App\Http\Controllers\MenuRole;
 
 
 Route::get('/',                     [LandingController::class, 'showLandingPage'])->name('landing.page');
-Route::get('soal-cpns',    [DownloadCPNSPageController::class, 'showCpnsPage'])->name('cpns.page');
+Route::get('soal-cpns',             [DownloadCPNSPageController::class, 'showCpnsPage'])->name('cpns.page');
 
 Route::get('turnitin',              [CekturnitinController::class, 'showTurnitinPage'])->name('turnitin.page');
 Route::post('turnitin',             [CekturnitinController::class, 'checkTurnitin'])->name('turnitin.action');
@@ -40,6 +40,8 @@ Route::post('download',             [DownloadController::class, 'downloading'])-
 Route::post('submit-form',          [DownloadController::class, 'submitForm'])->name('submit.form');
 Route::post('social-form',          [DownloadController::class, 'submitSocialForm'])->name('social.form');
 Route::post('download-bayar',       [DownloadController::class, 'downloadPayment'])->name('download.bayar');
+Route::get('profile/{username}',       [DownloadController::class, 'show'])->name('downloachek.ig');
+
 
 
 

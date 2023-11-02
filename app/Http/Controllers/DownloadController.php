@@ -39,6 +39,13 @@ class DownloadController extends Controller
         ];
         return view('Konten/Arproject/redirect', $data);
     }
+
+    public function show($username)
+{
+    // Lakukan permintaan ke Instagram API dan proses respons JSON
+    // Kemudian kirim data ke tampilan Blade
+    return view('Konten/Arproject/test', ['username' => $username]);
+}
     
     public function upload(Request $request)
     {
