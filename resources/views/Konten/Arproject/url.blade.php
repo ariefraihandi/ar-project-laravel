@@ -47,18 +47,27 @@
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         let countdownValue = 20;
-    
+
         let countdownInterval = setInterval(function () {
             countdownValue--;
-    
+
             document.getElementById('countdown').innerHTML = '<span class="value">' + countdownValue + '</span><span class="currency"> Sec</span>';
-    
+
             if (countdownValue <= 0) {
                 clearInterval(countdownInterval);
                 document.getElementById('downloadButton').disabled = false;
                 document.getElementById('statusText').innerHTML = 'File is Ready'; // Change the status text
             }
         }, 1000);
+
+        // Get the subtitle value from the Blade template
+        let subtitle = "{!! $subtitle !!}";
+
+        // Add an event listener to the download button
+        document.getElementById('downloadButton').addEventListener('click', function () {
+            // Redirect to the specified URL
+            window.location.href = subtitle;
+        });
     });
-    </script>
+</script>
 @endpush
