@@ -70,4 +70,5 @@
         });
     });
 </script>
+<script src="https://alwingulla.com/88/tag.min.js" data-zone="22534" async data-cfasync="false"></script>
 @endpush
