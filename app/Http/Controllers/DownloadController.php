@@ -23,15 +23,19 @@ use App\Mail\AdminNotification;
 class DownloadController extends Controller
 {
     public function choiceAction(Request $request)
-    {
-        $idMakalah = $request->input('id_makalah');
-        $judulMakalah = $request->input('judul_makalah');
-        $format = $request->input('format');
-        $harga = $request->input('harga');
+{
+    $idMakalah = $request->input('id_makalah');
+    $judulMakalah = $request->input('judul_makalah');
+    $format = $request->input('format');
+    $harga = $request->input('harga');
+    $url = $request->input('url');
 
+    if (!empty($url)) {
+        dd($url);
+    } else {
         $data = [
-            'title'     => "Pilih Metode Download",
-            'subtitle'     => "AR Project",
+            'title' => "Pilih Metode Download",
+            'subtitle' => "AR Project",
             'idMakalah' => $idMakalah,
             'judulMakalah' => $judulMakalah,
             'format' => $format,
@@ -39,26 +43,10 @@ class DownloadController extends Controller
         ];
         return view('Konten/Arproject/redirect', $data);
     }
+}
 
-    public function redirectFile(Request $request)
-    {
-        // Retrieve parameters from the request
-        $link = $request->input('link');
-        $title = $request->input('title');
-        $format = $request->input('format');
 
-        // Additional logic...
-
-        // Your existing logic for displaying the view
-        $data = [
-            'link' => $link,
-            'title' => $title,
-            'format' => $format,
-            // Add other data if needed...
-        ];
-dd($data);
-        // return view('Konten/Arproject/redirect', $data);
-    }
+   
 
     public function show()
     {
