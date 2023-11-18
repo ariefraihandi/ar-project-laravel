@@ -31,7 +31,11 @@ class DownloadController extends Controller
     $url = $request->input('url');
 
     if (!empty($url)) {
-        dd($url);
+        $data = [
+            'title' => "Redirect",
+            'subtitle' => $url,
+        ];
+        return view('Konten/Arproject/url', $data);
     } else {
         $data = [
             'title' => "Pilih Metode Download",
