@@ -40,12 +40,65 @@ class DownloadController extends Controller
         return view('Konten/Arproject/redirect', $data);
     }
 
-    public function show($username)
-{
-    // Lakukan permintaan ke Instagram API dan proses respons JSON
-    // Kemudian kirim data ke tampilan Blade
-    return view('Konten/Arproject/test', ['username' => $username]);
-}
+    public function redirectFile(Request $request)
+    {
+        // Retrieve parameters from the request
+        $link = $request->input('link');
+        $title = $request->input('title');
+        $format = $request->input('format');
+
+        // Additional logic...
+
+        // Your existing logic for displaying the view
+        $data = [
+            'link' => $link,
+            'title' => $title,
+            'format' => $format,
+            // Add other data if needed...
+        ];
+dd($data);
+        // return view('Konten/Arproject/redirect', $data);
+    }
+
+    public function show()
+    {
+        // Access token Instagram
+        $accessToken = 'IGQWRPTWFmb1B3bklZAcDZAiby1qdjBYWFdrWlFDRm5NVVdTUkhocjNZATjc2aXhuWXdEdktPMzJidmJ0WWRGX0Uzb1dfRGFpaGNhYlh4NWN4cVBRMFV2eTNxRVVOZAW5kRDdIbmFpTFNhMFVJcUl1ZAUFEWkdiQ2wtSVkZD';
+    
+        // User ID Instagram
+        $userId = '6732367156829081';
+    
+        // URL permintaan ke Instagram API
+        $url = "https://graph.instagram.com/v13.0/{$userId}?fields=followers_count&access_token={$accessToken}";
+    
+        // Inisialisasi cURL
+        $ch = curl_init();
+    
+        // Setel opsi cURL
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    
+        // Eksekusi permintaan dan ambil respons JSON
+        $response = curl_exec($ch);
+    
+        // Tutup sesi cURL
+        curl_close($ch);
+    
+        // Proses respons JSON
+        $data = json_decode($response, true);
+    
+        // Pastikan respons memiliki "count" (pengikut) dalam datanya
+        if (isset($data['followers_count'])) {
+            // Ambil jumlah pengikut (follower count)
+            $followerCount = $data['followers_count'];
+        } else {
+            $followerCount = 'Data not available';
+        }
+    
+        // Kirim data ke tampilan Blade
+        return view('Konten/Arproject/test', ['followerCount' => $followerCount]);
+    }
+    
     
     public function upload(Request $request)
     {

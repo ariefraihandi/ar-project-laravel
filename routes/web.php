@@ -31,6 +31,7 @@ Route::post('login',                [LoginController::class, 'loginAction'])->na
 Route::get('logout',                [LoginController::class, 'logoutAction'])->name('logout.action');
 
 Route::get('redirect',              [DownloadController::class, 'choiceAction'])->name('choice.action');
+Route::post('redirect',             [DownloadController::class, 'redirectFile'])->name('redirect.page');
 Route::get('upload',                [DownloadController::class, 'upload'])->name('download.redirect');
 Route::get('social',                [DownloadController::class, 'social'])->name('social.redirect');
 Route::get('bayar',                 [DownloadController::class, 'bayar'])->name('bayar.redirect');
@@ -40,7 +41,7 @@ Route::post('download',             [DownloadController::class, 'downloading'])-
 Route::post('submit-form',          [DownloadController::class, 'submitForm'])->name('submit.form');
 Route::post('social-form',          [DownloadController::class, 'submitSocialForm'])->name('social.form');
 Route::post('download-bayar',       [DownloadController::class, 'downloadPayment'])->name('download.bayar');
-Route::get('profile/{username}',       [DownloadController::class, 'show'])->name('downloachek.ig');
+Route::get('profile',               [DownloadController::class, 'show'])->name('downloachek.ig');
 
 
 
