@@ -28,7 +28,18 @@
         {!! $metadescription !!}
     @else
         <meta property="og:description" content="Kami adalah penyedia jasa terpercaya di Lhokseumawe untuk pembuatan makalah berkualitas, pengecekan Turnitin gratis, perbaikan plagiasi, dan pembuatan website profesional." />
-    @endif                                                                  
+    @endif
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-5FHDCKHK81"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-5FHDCKHK81');
+    </script>
+
     <meta property="og:image" content="https://www.ariefraihandi.biz.id/assets/images/logo/arp.png" /> <!-- Tautan gambar yang sesuai dengan bisnis Anda (pastikan gambarnya berformat jpg) -->
     <meta property="og:url" content="https://www.ariefraihandi.biz.id" /> <!-- Tautan yang ingin Anda bagikan dalam posting -->
     <meta property="og:type" content="article" />
@@ -45,15 +56,6 @@
 	<link href="{{ asset('assets') }}/css/styles.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MSNRHF2230"></script>
-    <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-MSNRHF2230');
-    </script>
 
 	<!-- Favicon  -->
     <link rel="icon" href="{{ asset('assets') }}/images/logo/arp.png">
